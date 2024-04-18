@@ -2,10 +2,12 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LabBookPage from './bookLab';
-
-
-const Drawer = createDrawerNavigator();
+import React, { useState } from 'react';
+import Sec1Homepage from './sec1Land';
+import { Entypo } from '@expo/vector-icons';
+const Tab = createBottomTabNavigator();
 
 function HomeScreen({ navigation }) {
   return (
@@ -23,18 +25,26 @@ function HomeScreen({ navigation }) {
 export default function Home() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName='Home'>
-        <Drawer.Screen
+      <Tab.Navigator initialRouteName='Home' tabBarBadge = {{focused: true, color: 'Red', size: 11}}>
+        <Tab.Screen
           name='Home'
           component={HomeScreen}
-         
+          options={{
+            tabBarLabel: "Launchpad",
+            tabBarIcon: () => (<Entypo name="home" size={24} color="black" />),
+          }}
           />
-        <Drawer.Screen
+        <Tab.Screen
           name='Book an appointment'
+          component={Sec1Homepage}
+    
+          />
+        <Tab.Screen
+          name='Sec 1 Science'
           component={LabBookPage}
     
           />
-      </Drawer.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
