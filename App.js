@@ -11,7 +11,9 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <View>
     <Home />
+    </View>
   );
 }
 
