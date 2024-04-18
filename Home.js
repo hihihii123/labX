@@ -2,6 +2,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import LabBookPage from './bookLab';
 
 
 const Drawer = createDrawerNavigator();
@@ -17,13 +18,7 @@ function HomeScreen({ navigation }) {
     </View>
   );
 }
-function LabBookPage({ navigation }) {
-  return (
-      <View style={{flex:1, alignItems: 'center', justifyContent: 'center', }}>
-          <Text>Placeholder</Text>
-      </View>
-  );
-}
+
 
 export default function Home() {
   return (
