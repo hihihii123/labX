@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import Sec1Homepage from './sec1Land';
 import { Entypo } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
+import Sec2Homepage from './sec2Land';
 
 function HomeScreen({ navigation }) {
   return (
@@ -22,7 +23,7 @@ function HomeScreen({ navigation }) {
 }
 
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName='Home' tabBarBadge = {{focused: true, color: 'Red', size: 11}}>
@@ -36,13 +37,17 @@ export default function Home() {
           />
         <Tab.Screen
           name='Book an appointment'
-          component={Sec1Homepage}
+          component={LabBookPage}
     
           />
         <Tab.Screen
           name='Sec 1 Science'
-          component={LabBookPage}
+          component={Sec1Homepage}
     
+          />
+        <Tab.Screen 
+          name='Sec 2 Science'
+          component={Sec2Homepage}
           />
       </Tab.Navigator>
     </NavigationContainer>
