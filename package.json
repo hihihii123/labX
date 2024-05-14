@@ -14,7 +14,7 @@
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
-    "expo": "^50.0.17",
+    "expo": "^51.0.5",
     "expo-status-bar": "~1.11.1",
     "firebase": "^10.11.0",
     "react": "18.2.0",
