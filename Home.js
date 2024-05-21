@@ -9,6 +9,7 @@ import Sec1Homepage from './sec1Land';
 import { Entypo } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 import Sec2Homepage from './sec2Land';
+import ForumPage from './forum';
 
 function HomeScreen({ navigation }) {
   return (
@@ -48,6 +49,10 @@ export default function Home({ navigation }) {
         <Tab.Screen 
           name='Sec 2 Science'
           component={Sec2Homepage}
+          />
+        <Tab.Screen
+          name='Forum'
+          component={ForumPage}
           />
       </Tab.Navigator>
     </NavigationContainer>
