@@ -11,6 +11,10 @@
   "dependencies": {
     "@babel/plugin-transform-template-literals": "^7.24.1",
     "@expo/metro-runtime": "~3.2.1",
+    "@react-native-community/google-signin": "^5.0.0",
+    "@react-native-firebase/app": "^20.0.0",
+    "@react-native-firebase/auth": "^20.0.0",
+    "@react-native-google-signin/google-signin": "^12.1.0",
     "@react-native-picker/picker": "2.7.5",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/drawer": "^6.6.15",

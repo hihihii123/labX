@@ -26,8 +26,8 @@ function Sec2HomeB({ navigation }) {
 }
 export default function Sec2Homepage({ navigation }) {
     return (
-        <NavigationContainer>
-            <Stack.Navigator >
+
+            <Stack.Navigator initialRouteName='Sec 2 Home'>
                 <Stack.Screen
                     title='Sec 2 Home'
                     component={Sec2Home}
@@ -37,7 +37,7 @@ export default function Sec2Homepage({ navigation }) {
                 component={Sec2HomeB}
                     />
             </Stack.Navigator>
-        </NavigationContainer>
+ 
     );
 }
 
