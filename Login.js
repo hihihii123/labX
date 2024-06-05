@@ -6,6 +6,7 @@ import { View, Text, Button } from "react-native";
 
 import { UserContext } from "./usercontextslave";
 
+
 const auth = FIREBASE_AUTH;
 const provider = new GoogleAuthProvider(FIREBASE_APP);
 import { styles } from "./Home";

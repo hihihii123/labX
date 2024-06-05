@@ -9,6 +9,10 @@ import ForumPage from './forum';
 import Login from './Login';
 import { UserContext } from './usercontextslave';
 import React from 'react';
+import ISS from './ISS';
+import Consult from './Consult';
+
+
 const Tab = createBottomTabNavigator();
 
 function HomeScreen({ navigation }) {
@@ -21,6 +25,8 @@ function HomeScreen({ navigation }) {
         />
     </View>
   );
+
+  
 }
 
 export default function Home() {
@@ -30,42 +36,38 @@ export default function Home() {
       <NavigationContainer style={{backgroundColor: '#393E43', flex: 1}}>
         <Tab.Navigator initialRouteName='Home' tabBarBadge = {{focused: true, color: 'Red', size: 11}} screenOptions={{tabBarStyle: {backgroundColor: '#818a94'}, tabBarInactiveTintColor: '#000', tabBarActiveTintColor: '#EEE', headerStyle: {backgroundColor: '#393E43'}, headerTintColor: '#FFF'}}>
           <Tab.Screen
-            name='Home'
-            component={HomeScreen}
+            name='Consultation'
+            component={Consult}
             
             options={{
-              tabBarLabel: "Launchpad",
+              tabBarLabel: "Consultation",
               tabBarIcon: () => (<Entypo name="home" size={24} color="white" />),
               
               
             }}
             />
           <Tab.Screen
-            name='Book an appointment'
-            component={LabBookPage}
-            options={{ tabBarLabel: 'Book an appointment' }}
-
-            />
-          <Tab.Screen
-            name='Sec 1 Science'
-            component={Sec1Homepage}
-            options={{ tabBarLabel: 'Sec 1 Science' }}
-            />
-          <Tab.Screen 
-            name='Sec 2 Science'
-            component={Sec2Homepage}
-            options={{ tabBarLabel: 'Sec 2 Science' }}
-            />
-          <Tab.Screen
             name='Forum'
             component={ForumPage}
             options={{ tabBarLabel: 'Forum' }}
+
             />
           <Tab.Screen
-            name='Login'
+            name='Home'
+            component={HomeScreen}
+            options={{ tabBarLabel: 'Home' }}
+            />
+          <Tab.Screen 
+            name='ISS'
+            component={ISS}
+            options={{ tabBarLabel: 'ISS' }}
+            />
+          <Tab.Screen
+            name='Settings'
             component={Login}
             options={{ tabBarLabel: 'Login' }}
             />
+   
         </Tab.Navigator>
       </NavigationContainer>
     </UserContext.Provider>
