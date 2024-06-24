@@ -17,7 +17,7 @@ import { styles } from "./Home";
 export default function Login() {
     const [loading, setLoading] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
-    const { user, setUser } = React.useContext(UserContext);
+    const {user, setUser} = React.useContext(UserContext);
     const signin = async() => {
         setLoading(true);
         try {
