@@ -19,7 +19,7 @@ import MainISSNav from "./ISS";
 import Consult from "./Consult";
 import { set } from "lodash";
 import { useFonts } from "expo-font";
-
+import ForumPull from "./testForum";
 const platform = Platform.OS;
 
 const Tab = createBottomTabNavigator();
@@ -62,8 +62,7 @@ function HomeScreen({ navigation }) {
               <Text
                 style={[styles.materialsExpandWhen, styles.welcomeBackTypo]}
               >
-                Materials expand when heated because the forces of attraction
-                between the particles is reduced.
+                Materials expand when heated because the forces of attraction between the particles is reduced.
               </Text>
             </Text>
           </View>
@@ -121,13 +120,17 @@ export default function Home() {
       <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>
         <Tab.Navigator
           initialRouteName="Home"
-          tabBarBadge={{ focused: true, color: "Red", size: 11 }}
+          tabBarBadge={{ focused: true, color: "Red", size: 11, }}
+          
           screenOptions={{
-            tabBarStyle: { backgroundColor: "#222426" },
+            tabBarStyle: { backgroundColor: "#222426", height: 72*heightScale},
             tabBarInactiveTintColor: "#387cc5",
             tabBarActiveTintColor: "#d13036",
             headerStyle: { backgroundColor: "#393E43" },
             headerTintColor: "#FFF",
+            tabBarAllowFontScaling: true,
+            tabBarLabelStyle: { fontSize: 7*Math.sqrt(heightScale ** 2 + widthScale ** 2) },
+            
           }}
         >
           <Tab.Screen
@@ -178,7 +181,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    fontSize: 50,
+    fontSize: 50 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     color: "#FFF",
     flex: 1,
     alignSelf: "center",
@@ -188,7 +191,7 @@ export const styles = StyleSheet.create({
   headerSFPRO: {
     color: "#387CC5",
     fontFamily: "SF Pro Display",
-    fontSize: 64,
+    fontSize: 64 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontStyle: "normal",
     fontWeight: 700,
     lineHeight: 41 * heightScale,
@@ -197,7 +200,7 @@ export const styles = StyleSheet.create({
   textSFPRO: {
     color: "#387CC5",
     fontFamily: "SF Pro Display",
-    fontSize: 16,
+    fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
     fontStyle: "normal",
     fontWeight: "300",
     letterSpacing: 0.128 * widthScale,
@@ -205,7 +208,7 @@ export const styles = StyleSheet.create({
   headerEthno: {
     color: "#387CC5",
     fontFamily: "ethnocentric rg",
-    fontSize: 48,
+    fontSize: 48 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontStyle: "normal",
     fontWeight: "400",
     lineHeight: 41 * heightScale,
@@ -214,7 +217,7 @@ export const styles = StyleSheet.create({
   textSFCompact: {
     color: "#387CC5",
     fontFamily: "SF Compact",
-    fontSize: 32,
+    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontStyle: "normal",
     fontWeight: "600",
     lineHeight: 41 * heightScale,
@@ -227,10 +230,10 @@ export const styles = StyleSheet.create({
   },
   welcomeBackTypo: {
     fontFamily: "SF Compact",
-    fontSize: 32,
+    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
   },
   textTypo: {
-    fontSize: 40,
+    fontSize: 40 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     top: 792 * heightScale,
     fontFamily: "SF Pro Display",
     textAlign: "left",
@@ -239,7 +242,7 @@ export const styles = StyleSheet.create({
   appearanceLayout: {
     height: 265 * heightScale,
     width: 356 * widthScale,
-    position: "absolute",
+    position: "relative",
   },
   apperancePosition: {
     borderRadius: 20 * widthScale,
@@ -270,10 +273,11 @@ export const styles = StyleSheet.create({
     color: "#387cc5",
     lineHeight: 41 * heightScale,
     position: "absolute",
+    fontSize: 24 * Math.sqrt(widthScale ** 2 + heightScale ** 2), // Adjusted fontSize
   },
   daysTypo: {
     width: 81 * widthScale,
-    fontSize: 24,
+    fontSize: 24 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     left: 253 * widthScale,
     height: 22 * heightScale,
     fontFamily: "InriaSans-Bold",
@@ -287,12 +291,12 @@ export const styles = StyleSheet.create({
     position: "absolute",
   },
   hi: {
-    fontSize: 64,
+    fontSize: 64 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontFamily: "SF Pro Display",
     fontWeight: "700",
   },
   aUser: {
-    fontSize: 48,
+    fontSize: 48 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontFamily: "ethnocentric rg",
   },
   hiAUserContainer: {
@@ -300,16 +304,13 @@ export const styles = StyleSheet.create({
     left: 0,
     top: 0,
   },
-  //From here
-  // Assuming the original design is based on iPhone 14 (393x852)
 
-  // Apply the scale functions to your styles
   welcomeBack: {
     top: 44 * heightScale,
     fontWeight: "500",
     letterSpacing: 0.1 * widthScale,
     fontFamily: "SF Compact",
-    fontSize: 32,
+    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     textAlign: "left",
     color: "#387cc5",
     lineHeight: 41 * heightScale,
@@ -390,7 +391,7 @@ export const styles = StyleSheet.create({
     height: 56 * heightScale,
     alignItems: "center",
     display: "flex",
-    fontSize: 36,
+    fontSize: 36 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontFamily: "SF Compact",
     fontWeight: "500",
     letterSpacing: 0.1 * widthScale,
@@ -414,7 +415,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     letterSpacing: 0.1 * widthScale,
-    fontSize: 32,
+    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontWeight: "700",
     textAlign: "left",
     color: "#387cc5",
@@ -424,7 +425,7 @@ export const styles = StyleSheet.create({
   today: {
     color: "#ff1c1c",
     width: 80 * widthScale,
-    fontSize: 24,
+    fontSize: 24 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     left: 253 * widthScale,
     height: 22 * heightScale,
     fontFamily: "InriaSans-Bold",
@@ -474,7 +475,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#393e43",
   },
   factOfThe: {
-    fontSize: 36,
+    fontSize: 36 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
     fontFamily: "SF Compact",
     fontWeight: "500",
     color: "#387cc5",
@@ -483,6 +484,6 @@ export const styles = StyleSheet.create({
     fontWeight: "300",
     color: "#d13036",
     fontFamily: "SF Compact",
-    fontSize: 32,
+    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
   },
 });

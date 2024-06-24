@@ -1,19 +1,28 @@
 import * as React from "react";
-import {Text, StyleSheet, View} from "react-native";
+import {Text, StyleSheet, View, Dimensions} from "react-native";
+import { useFonts } from "expo-font";
+
+const { width, height } = Dimensions.get('window');
+const baseWidth = 543;
+const baseHeight = 902;
+
+const scaleWidth = size => (width / baseWidth) * size;
+const scaleHeight = size => (height / baseHeight) * size;
 
 const Resources = () => {
-  	
+	const [fontsLoaded] = useFonts({
+		"SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
+		"ethnocentric rg": require("./assets/fonts/ethnocentric rg.otf"),
+		"SF Compact": require("./assets/fonts/SF-Compact.ttf"),
+		"InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
+		"InriaSans-Regular": require("./assets/fonts/InriaSans-Regular.ttf"),
+	  });
   	return (
     		<View style={styles.resources}>
       			<View style={styles.resourcesWrapper}>
         				<Text style={styles.resources1}>Resources</Text>
       			</View>
-      			<View style={[styles.resourcesChild, styles.apperanceBg]} />
-      			<Text style={[styles.text, styles.textTypo1]}>􀎟</Text>
-      			<Text style={[styles.text1, styles.textTypo1]}>􀉬</Text>
-      			<Text style={styles.text2}>􀝞</Text>
-      			<Text style={[styles.text3, styles.textTypo1]}>􀣌</Text>
-      			<Text style={[styles.text4, styles.textTypo1]}>􀌥</Text>
+
       			<View style={[styles.appearance, styles.groupParentLayout]}>
         				<View style={[styles.apperance, styles.groupParentLayout]} />
         				<Text style={[styles.citationGenerator, styles.pastYearProjectsLayout]}>Citation Generator</Text>
@@ -58,150 +67,152 @@ const Resources = () => {
 };
 
 const styles = StyleSheet.create({
-  	apperanceBg: {
-    		backgroundColor: "#222426",
-    		left: 0
-  	},
-  	textTypo1: {
-    		fontSize: 40,
-    		top: 792,
-    		textAlign: "left",
-    		color: "#387cc5",
-    		fontFamily: "SF Pro Display",
-    		position: "absolute"
-  	},
-  	groupParentLayout: {
-    		height: 60,
-    		width: 356,
-    		position: "absolute"
-  	},
-  	pastYearProjectsLayout: {
-    		height: 49,
-    		width: 348,
-    		alignItems: "center",
-    		display: "flex",
-    		letterSpacing: 0.1,
-    		fontSize: 36,
-    		left: 8,
-    		top: 5,
-    		textAlign: "left",
-    		color: "#387cc5",
-    		lineHeight: 41,
-    		position: "absolute"
-  	},
-  	textTypo: {
-    		fontSize: 24,
-    		color: "#d13036",
-    		textAlign: "left",
-    		fontFamily: "SF Pro Display",
-    		position: "absolute"
-  	},
-  	resources1: {
-    		fontSize: 48,
-    		letterSpacing: 0.2,
-    		fontWeight: "700",
-    		textAlign: "left",
-    		color: "#387cc5",
-    		fontFamily: "SF Pro Display",
-    		lineHeight: 41,
-    		left: 0,
-    		top: 0,
-    		position: "absolute"
-  	},
-  	resourcesWrapper: {
-    		top: 57,
-    		left: 22,
-    		width: 233,
-    		height: 41,
-    		position: "absolute"
-  	},
-  	resourcesChild: {
-    		top: 780,
-    		width: 393,
-    		height: 72,
-    		position: "absolute"
-  	},
-  	text: {
-    		left: 177,
-    		width: 57,
-    		height: 48
-  	},
-  	text1: {
-    		left: 15
-  	},
-  	text2: {
-    		left: 257,
-    		color: "#d13036",
-    		fontSize: 40,
-    		top: 792,
-    		textAlign: "left",
-    		fontFamily: "SF Pro Display",
-    		position: "absolute"
-  	},
-  	text3: {
-    		left: 330
-  	},
-  	text4: {
-    		left: 102
-  	},
-  	apperance: {
-    		borderRadius: 20,
-    		backgroundColor: "#222426",
-    		left: 0,
-    		top: 0,
-    		width: 356
-  	},
-  	citationGenerator: {
-    		fontFamily: "InriaSans-Regular"
-  	},
-  	appearance: {
-    		top: 146,
-    		left: 15
-  	},
-  	pastYearProjects: {
-    		fontWeight: "300",
-    		fontFamily: "InriaSans-Light"
-  	},
-  	appearance1: {
-    		left: 0,
-    		width: 356,
-    		top: 0
-  	},
-  	text5: {
-    		top: 15,
-    		left: 318
-  	},
-  	appearanceParent: {
-    		top: 233,
-    		left: 15
-  	},
-  	appearanceGroup: {
-    		top: 320,
-    		left: 15
-  	},
-  	appearanceContainer: {
-    		top: 407,
-    		left: 15
-  	},
-  	groupView: {
-    		top: 494,
-    		left: 15
-  	},
-  	appearanceParent1: {
-    		top: 581,
-    		left: 15
-  	},
-  	text10: {
-    		top: 161,
-    		left: 333
-  	},
-  	resources: {
-    		backgroundColor: "#393e43",
-    		flex: 1,
-    		width: "100%",
-    		height: 852,
-    		overflow: "hidden"
-  	}
-});
+	apperanceBg: {
+	  backgroundColor: "#222426",
+	  left: 0
+	},
+	textTypo1: {
+	  fontSize: 40,
+	  top: scaleHeight(792),
+	  textAlign: "left",
+	  color: "#387cc5",
+	  fontFamily: "SF Pro Display",
+	  position: "absolute"
+	},
+	groupParentLayout: {
+	  height: scaleHeight(60),
+	  width: scaleWidth(356),
+	  position: "absolute"
+	},
+	pastYearProjectsLayout: {
+	  height: scaleHeight(49),
+	  width: scaleWidth(348),
+	  alignItems: "center",
+	  display: "flex",
+	  letterSpacing: 0.1,
+	  fontSize: 36,
+	  left: scaleWidth(8),
+	  top: scaleHeight(5),
+	  textAlign: "left",
+	  color: "#387cc5",
+	  lineHeight: scaleHeight(41),
+	  position: "absolute"
+	},
+	textTypo: {
+	  fontSize: 24,
+	  color: "#d13036",
+	  textAlign: "left",
+	  fontFamily: "SF Pro Display",
+	  position: "absolute"
+	},
+	resources1: {
+	  fontSize: 48,
+	  letterSpacing: 0.2,
+	  fontWeight: "700",
+	  textAlign: "left",
+	  color: "#387cc5",
+	  fontFamily: "SF Pro Display",
+	  lineHeight: scaleHeight(41),
+	  left: 0,
+	  top: 0,
+	  position: "absolute"
+	},
+	resourcesWrapper: {
+	  top: scaleHeight(57),
+	  left: scaleWidth(22),
+	  width: scaleWidth(233),
+	  height: scaleHeight(41),
+	  position: "absolute"
+	},
+	resourcesChild: {
+	  top: scaleHeight(780),
+	  width: scaleWidth(393),
+	  height: scaleHeight(72),
+	  position: "absolute"
+	},
+	text: {
+	  left: scaleWidth(177),
+	  width: scaleWidth(57),
+	  height: scaleHeight(48)
+	},
+	text1: {
+	  left: scaleWidth(15)
+	},
+	text2: {
+	  left: scaleWidth(257),
+	  color: "#d13036",
+	  fontSize: 40,
+	  top: scaleHeight(792),
+	  textAlign: "left",
+	  fontFamily: "SF Pro Display",
+	  position: "absolute"
+	},
+	text3: {
+	  left: scaleWidth(330)
+	},
+	text4: {
+	  left: scaleWidth(102)
+	},
+	apperance: {
+	  borderRadius: 20,
+	  backgroundColor: "#222426",
+	  left: 0,
+	  top: 0,
+	  width: scaleWidth(356)
+	},
+	citationGenerator: {
+	  fontFamily: "InriaSans-Regular"
+	},
+	appearance: {
+	  top: scaleHeight(146),
+	  left: scaleWidth(15)
+	},
+	pastYearProjects: {
+	  fontWeight: "300",
+	  fontFamily: "InriaSans-Light"
+	},
+	appearance1: {
+	  left: 0,
+	  width: scaleWidth(356),
+	  top: 0
+	},
+	text5: {
+	  top: scaleHeight(15),
+	  left: scaleWidth(318)
+	},
+	appearanceParent: {
+	  top: scaleHeight(233),
+	  left: scaleWidth(15)
+	},
+	appearanceGroup: {
+	  top: scaleHeight(320),
+	  left: scaleWidth(15)
+	},
+	appearanceContainer: {
+	  top: scaleHeight(407),
+	  left: scaleWidth(15)
+	},
+	groupView: {
+	  top: scaleHeight(494),
+	  left: scaleWidth(15)
+	},
+	appearanceParent1: {
+	  top: scaleHeight(581),
+	  left: scaleWidth(15)
+	},
+	text10: {
+	  top: scaleHeight(161),
+	  left: scaleWidth(333)
+	},
+	resources: {
+	  backgroundColor: "#393e43",
+	  flex: 1,
+	  width: "auto",
+	  height: "auto",
+	  justifyContent: "center",
+	  overflow: "hidden",
+	  
+	}
+  });
 
 export default Resources;
