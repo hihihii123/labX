@@ -19,7 +19,7 @@ import MainISSNav from "./ISS";
 import Consult from "./Consult";
 import { set } from "lodash";
 import { useFonts } from "expo-font";
-import ForumPull from "./testForum";
+import ForumHomePage from "./testForum";
 const platform = Platform.OS;
 
 const Tab = createBottomTabNavigator();
@@ -113,7 +113,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-export default function Home() {
+export default function Home({navigation}) {
   const [user, setUser] = React.useState(null);
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -143,23 +143,35 @@ export default function Home() {
           />
           <Tab.Screen
             name="Forum"
-            component={ForumPage}
-            options={{ tabBarLabel: "Forum" }}
+            component={ForumHomePage}
+            options={{
+              tabBarLabel: platform == "web" ? "Forum" : "",
+              tabBarIcon: () => <Text style={styles.textSFPRO}>􀌥</Text>,
+            }}
           />
           <Tab.Screen
             name="Home"
             component={HomeScreen}
-            options={{ tabBarLabel: "Home" }}
+            options={{
+              tabBarLabel: platform == "web" ? "Home" : "",
+              tabBarIcon: () => <Text style={styles.textSFPRORED}>􀎟</Text>,
+            }}
           />
           <Tab.Screen
             name="ISS"
             component={MainISSNav}
-            options={{ tabBarLabel: "ISS" }}
+            options={{
+              tabBarLabel: platform == "web" ? "ISS" : "",
+              tabBarIcon: () => <Text style={styles.textSFPRO}>􀝞</Text>,
+            }}
           />
           <Tab.Screen
             name="Settings"
             component={Login}
-            options={{ tabBarLabel: "Login" }}
+            options={{
+              tabBarLabel: platform == "web" ? "Settings" : "",
+              tabBarIcon: () => <Text style={styles.textSFPRO}>􀣌</Text>,
+            }}
           />
         </Tab.Navigator>
       </NavigationContainer>
@@ -199,6 +211,14 @@ export const styles = StyleSheet.create({
   },
   textSFPRO: {
     color: "#387CC5",
+    fontFamily: "SF Pro Display",
+    fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
+    fontStyle: "normal",
+    fontWeight: "300",
+    letterSpacing: 0.128 * widthScale,
+  },
+  textSFPRORED: {
+    color: "#d13036",
     fontFamily: "SF Pro Display",
     fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
     fontStyle: "normal",

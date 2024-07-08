@@ -65,8 +65,7 @@ export default function Login() {
                 <Button style={styles.Text} title='Log in with Google' onPress={signin} />
             </View>
         
-            <Text style={styles.Text}>Welcome, {user !== null ? user.displayName : 'ohno'}!</Text>
-            <Text style={styles.Text}>Your email is {user !== null ? user.email : 'ohno'}!</Text>
+            <Text style={{fontSize: 20, color: '#fff'}}>{ loggedIn ? user.email:'Sign in'}</Text>
 
     
         </View>
