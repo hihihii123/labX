@@ -38,7 +38,8 @@
             "./assets/fonts/SF-Compact.ttf",
             "./assets/fonts/InriaSans-Bold.ttf",
             "./assets/fonts/InriaSans-Light.ttf",
-            "./assets/fonts/InriaSans-Regular.ttf"
+            "./assets/fonts/InriaSans-Regular.ttf",
+            "./assets/fonts/SF-Compact-Text-Regular.otf"
           ]
         }
       ]

@@ -91,7 +91,8 @@ export default function MainISSNav({ navigation }) {
   return (
     <Stack.Navigator
       initialRouteName="ISSHome"
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerStyle: { backgroundColor: "#393E43" },
+      headerTintColor: "#FFF", }}
     >
       <Stack.Screen name="ISSHome" component={ISSHome} />
       <Stack.Screen name="Resources" component={Resources} />
