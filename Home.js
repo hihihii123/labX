@@ -39,6 +39,7 @@ function HomeScreen({ navigation }) {
     "ethnocentric rg": require("./assets/fonts/ethnocentric rg.otf"),
     "SF Compact": require("./assets/fonts/SF-Compact.ttf"),
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
+    "SF Compact Text": require("./assets/fonts/SF-Compact-Text-Regular.otf"),
   });
   const { user, setUser } = React.useContext(UserContext);
   return (
@@ -126,8 +127,7 @@ export default function Home({navigation}) {
             tabBarStyle: { backgroundColor: "#222426", height: 72*heightScale},
             tabBarInactiveTintColor: "#387cc5",
             tabBarActiveTintColor: "#d13036",
-            headerStyle: { backgroundColor: "#393E43" },
-            headerTintColor: "#FFF",
+            headerShown: false,
             tabBarAllowFontScaling: true,
             tabBarLabelStyle: { fontSize: 7*Math.sqrt(heightScale ** 2 + widthScale ** 2) },
             
@@ -506,4 +506,39 @@ export const styles = StyleSheet.create({
     fontFamily: "SF Compact",
     fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
   },
+  forum: {
+    fontSize: 48,
+    letterSpacing: 0.2,
+    lineHeight: 41,
+    fontWeight: "700",
+    fontFamily: "SF Pro Display",
+    color: "#387cc5",
+    textAlign: "left"
+    },
+    sec1: {
+      fontSize: 36,
+      letterSpacing: 0.1,
+      lineHeight: 41,
+      fontFamily: "SF Compact Text",
+      color: "#387cc5",
+      textAlign: "left",
+      display: "flex",
+      alignItems: "center",
+      width: 348,
+      height: 49
+    },
+    forumBG: {
+      backgroundColor: "#393e43",
+      flex: 1,
+      width: "100%",
+      height: 852,
+      overflow: "hidden"
+    },
+    apperancBTFR: {
+      borderRadius: 20,
+      backgroundColor: "#222426",
+      flex: 1,
+      width: "100%",
+      height: 60
+      }
 });
