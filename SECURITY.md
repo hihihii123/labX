@@ -10,4 +10,4 @@
 
 ## Reporting a Vulnerability
 
-If you want to report a vulnerability, email me at ang_sen_luen_matthias@s2023.ssts.edu.sg
+If you want to report a vulnerability, put it in the issues tab. Please use the right tags.
