@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList, Pressable, Dimensions } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
-import { styles } from "./Home";
+import { heightScale, styles, widthScale } from "./Home";
 import { FIREBASE_DB } from "./firebaseConfig";
 import { doc, getDoc} from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
+
+
 
 export default function ForumHomePage() {
   return (
@@ -35,24 +37,28 @@ function ForumHome({ navigation }) {
   return (
     <View style={styles.forumBG}>
       <Text style={styles.forum}>Forum</Text>
+      <View style={{padding: 40*heightScale}} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 0 })}
       >
         <Text style={styles.sec1}>Sec 1</Text>
       </Pressable>
+      <View style={{padding: 10*heightScale}} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 1 })}
       >
         <Text style={styles.sec1}>Sec 2</Text>
       </Pressable>
+      <View style={{padding: 10*heightScale}} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 2 })}
       >
         <Text style={styles.sec1}>Sec 3</Text>
       </Pressable>
+      <View style={{padding: 10*heightScale}} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 3 })}

@@ -127,6 +127,7 @@ export default function Home({navigation}) {
             tabBarStyle: { backgroundColor: "#222426", height: 72*heightScale},
             tabBarInactiveTintColor: "#387cc5",
             tabBarActiveTintColor: "#d13036",
+            
             headerShown: false,
             tabBarAllowFontScaling: true,
             tabBarLabelStyle: { fontSize: 7*Math.sqrt(heightScale ** 2 + widthScale ** 2) },
@@ -154,7 +155,7 @@ export default function Home({navigation}) {
             component={HomeScreen}
             options={{
               tabBarLabel: platform == "web" ? "Home" : "",
-              tabBarIcon: () => <Text style={styles.textSFPRORED}>􀎟</Text>,
+              tabBarIcon: () => <Text style={styles.textSFPRO}>􀎟</Text>,
             }}
           />
           <Tab.Screen
