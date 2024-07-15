@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   textTypo1: {
     fontSize: 24,
-    left: 333 * widthScale,
+    left: 360 * widthScale,
     textAlign: "left",
     fontFamily: "SF Pro Display",
     color: "#d13036",
