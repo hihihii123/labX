@@ -10,6 +10,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import Resources from "./resources";
+import LabBookPage from "./bookLab";
 // Get the window's width and height
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -52,8 +53,10 @@ function ISSHome({ navigation }) {
         </Pressable>
       </View>
       <View style={[styles.appearance2, styles.issWrapperPosition]}>
-        <View style={[styles.apperance, styles.issChildPosition]} />
-        <Text style={[styles.resources, styles.daysLayout]}>Booking</Text>
+        <Pressable onPress={() => navigation.navigate("LabBookPage")}>
+          <View style={[styles.apperance, styles.issChildPosition]} />
+          <Text style={[styles.resources, styles.daysLayout]}>Booking</Text>
+        </Pressable>
       </View>
       <View style={[styles.appearance3, styles.appearanceLayout]}>
         <View style={[styles.apperance, styles.issChildPosition]} />
@@ -69,20 +72,22 @@ function ISSHome({ navigation }) {
       </View>
       <View style={[styles.appearance5, styles.appearanceLayout]}>
         <View style={[styles.apperance, styles.issChildPosition]} />
-        <Text style={[styles.days, styles.daysLayout]}>42 DAYS</Text>
+        <Text style={[styles.days, styles.daysLayout]}>ISS has ended.</Text>
       </View>
       <View style={[styles.appearance6, styles.appearanceLayout]}>
         <View style={[styles.apperance, styles.issChildPosition]} />
-        <Text style={[styles.days, styles.daysLayout]}>01 Proposal</Text>
+        <Text style={[styles.days, styles.daysLayout]}>NIL</Text>
       </View>
       <View style={[styles.appearance7, styles.appearanceLayout]}>
         <View style={[styles.apperance, styles.issChildPosition]} />
         <Text style={[styles.hours9Minutes, styles.daysLayout]}>
-          6 HOURS, 9 MINUTES
+          ISS has ended.
         </Text>
       </View>
-      <Text style={[styles.text6, styles.textTypo1]}>􀆊</Text>
+      //for booking
       <Text style={[styles.text7, styles.textTypo1]}>􀆊</Text>
+      //for resources
+      <Text style={[styles.text6, styles.textTypo1]}>􀆊</Text>
     </View>
   );
 }
@@ -91,11 +96,14 @@ export default function MainISSNav({ navigation }) {
   return (
     <Stack.Navigator
       initialRouteName="ISSHome"
-      screenOptions={{ headerStyle: { backgroundColor: "#393E43" },
-      headerTintColor: "#FFF", }}
+      screenOptions={{
+        headerStyle: { backgroundColor: "#393E43" },
+        headerTintColor: "#FFF",
+      }}
     >
       <Stack.Screen name="ISSHome" component={ISSHome} />
       <Stack.Screen name="Resources" component={Resources} />
+      <Stack.Screen name="LabBookPage" component={LabBookPage} />
     </Stack.Navigator>
   );
 }
