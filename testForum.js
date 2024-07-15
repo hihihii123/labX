@@ -3,14 +3,19 @@ import { View, Text, FlatList, Pressable } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import { styles } from "./Home";
+import { FIREBASE_DB } from "./firebaseConfig";
+import { doc, getDoc} from "firebase/firestore";
+
 const Stack = createNativeStackNavigator();
 
 export default function ForumHomePage() {
   return (
     <Stack.Navigator
       initialRouteName="ForumHome"
-      screenOptions={{ headerStyle: { backgroundColor: "#393E43" },
-      headerTintColor: "#FFF", }}
+      screenOptions={{
+        headerStyle: { backgroundColor: "#393E43" },
+        headerTintColor: "#FFF",
+      }}
     >
       <Stack.Screen name="ForumHome" component={ForumHome} />
       <Stack.Screen name="IndivForum" component={ForumPull} />
@@ -84,12 +89,24 @@ function ForumPull({ route, level, navigation }) {
       }
       console.log(data);
       console.log(level);
+      const docRef = doc(FIREBASE_DB, "sec1", "2pAnLnKF2qOb2f0sAAuK");
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data());
+} else {
+  // docSnap.data() will be undefined in this case
+  console.log("No such document!");
+}
+
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
+    
     getMoviesFromApiAsync();
+    
   }, []);
   return (
     <View>
