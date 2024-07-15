@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import { heightScale, styles, widthScale } from "./Home";
 import { FIREBASE_DB } from "./firebaseConfig";
-import { doc, getDoc} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,28 +37,28 @@ function ForumHome({ navigation }) {
   return (
     <View style={styles.forumBG}>
       <Text style={styles.forum}>Forum</Text>
-      <View style={{padding: 40*heightScale}} />
+      <View style={{ padding: 40 * heightScale }} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 0 })}
       >
         <Text style={styles.sec1}>Sec 1</Text>
       </Pressable>
-      <View style={{padding: 10*heightScale}} />
+      <View style={{ padding: 10 * heightScale }} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 1 })}
       >
         <Text style={styles.sec1}>Sec 2</Text>
       </Pressable>
-      <View style={{padding: 10*heightScale}} />
+      <View style={{ padding: 10 * heightScale }} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 2 })}
       >
         <Text style={styles.sec1}>Sec 3</Text>
       </Pressable>
-      <View style={{padding: 10*heightScale}} />
+      <View style={{ padding: 10 * heightScale }} />
       <Pressable
         style={styles.apperancBTFR}
         onPress={() => navigation.navigate("IndivForum", { level: 3 })}
@@ -72,47 +72,48 @@ function ForumHome({ navigation }) {
 function ForumPull({ route, level, navigation }) {
   level = route.params.level;
   const [data, setData] = useState(null);
+  const [docSnapData, setDocSnapData] = useState(null);
   const getMoviesFromApiAsync = async () => {
     try {
-      const response = await fetch(
-        "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/data.json?alt=media&token=9b2cfd4f-6cf1-41b3-8e33-051b653afa43",
-        {
-          method: "GET",
-          mode: "cors",
-        }
-      );
-
-      const json = await response.json();
-
-      if (level === 0) {
-        setData(json.sec1);
-      } else if (level === 1) {
-        setData(json.sec2);
-      } else if (level === 2) {
-        setData(json.sec3);
-      } else if (level === 3) {
-        setData(json.sec4);
-      }
-      console.log(data);
       console.log(level);
-      const docRef = doc(FIREBASE_DB, "sec1", "2pAnLnKF2qOb2f0sAAuK");
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-  console.log("Document data:", docSnap.data());
-} else {
-  // docSnap.data() will be undefined in this case
-  console.log("No such document!");
-}
-
+      const docRef = doc(
+        FIREBASE_DB,
+        level === 0
+          ? "sec1"
+          : level === 1
+          ? "sec2"
+          : level === 2
+          ? "sec3"
+          : "sec4",
+        "data"
+      );
+      const docSnap = await getDoc(docRef);
+      setDocSnapData(docSnap);
+      if (docSnapData !== null) {
+        
+        console.log("Document data:", docSnap.data());
+        const response = await fetch(
+          docSnapData.files[0].fileLocation,
+          {
+            method: "GET",
+            mode: "cors",
+          }
+        );
+  
+        const json = await response.json();
+        setData(json);
+        console.log(data);
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
+      }
+      
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
-    
     getMoviesFromApiAsync();
-    
   }, []);
   return (
     <View>

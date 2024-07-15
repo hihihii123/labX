@@ -131,7 +131,7 @@ export default function Home({navigation}) {
             headerShown: false,
             tabBarAllowFontScaling: true,
             tabBarLabelStyle: { fontSize: 7*Math.sqrt(heightScale ** 2 + widthScale ** 2) },
-            
+            lazy: false,
           }}
         >
           <Tab.Screen
