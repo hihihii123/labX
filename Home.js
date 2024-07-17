@@ -13,7 +13,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import ForumPage from "./forum";
 import Login from "./Login";
-import { UserContext } from "./usercontextslave";
+import { LoginContext, UserContext } from "./usercontextslave";
 import React, { useContext, useEffect, useState } from "react";
 import MainISSNav from "./ISS";
 import Consult from "./Consult";
@@ -41,7 +41,9 @@ function HomeScreen({ navigation }) {
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
     "SF Compact Text": require("./assets/fonts/SF-Compact-Text-Regular.otf"),
   });
-  const { user, setUser } = React.useContext(UserContext);
+  const {value1, value2} = React.useContext(UserContext);
+  const { user, setUser } = value1;
+  const { loggedIn, setLoggedIn } = value2;
   return (
     <View style={styles.MainPage}>
       {fontsLoaded ? (
@@ -59,11 +61,12 @@ function HomeScreen({ navigation }) {
               <View style={[styles.apperance, styles.apperancePosition]} />
             </View>
             <Text style={[styles.factOfTheContainer, styles.containerFlexBox]}>
-              <Text style={styles.factOfThe}>{'Fact of the Day'}</Text>
+              <Text style={styles.factOfThe}>{"Fact of the Day"}</Text>
               <Text
                 style={[styles.materialsExpandWhen, styles.welcomeBackTypo]}
               >
-                Materials expand when heated because the forces of attraction between the particles is reduced.
+                Materials expand when heated because the forces of attraction
+                between the particles is reduced.
               </Text>
             </Text>
           </View>
@@ -114,68 +117,83 @@ function HomeScreen({ navigation }) {
   );
 }
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   const [user, setUser] = React.useState(null);
+  const [loggedin, setLoggedin] = React.useState(false);
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>
-        <Tab.Navigator
-          initialRouteName="Home"
-          tabBarBadge={{ focused: true, color: "Red", size: 11, }}
-          
-          screenOptions={{
-            tabBarStyle: { backgroundColor: "#222426", height: 72*heightScale},
-            tabBarInactiveTintColor: "#387cc5",
-            tabBarActiveTintColor: "#d13036",
-            
-            headerShown: false,
-            tabBarAllowFontScaling: true,
-            tabBarLabelStyle: { fontSize: 7*Math.sqrt(heightScale ** 2 + widthScale ** 2) },
-            lazy: false,
-          }}
-        >
-          <Tab.Screen
-            name="Consultation"
-            component={Consult}
-            options={{
-              tabBarLabel: platform == "web" ? "Consultation" : "",
-              tabBarIcon: () => <Text style={styles.textSFPRO}>􀉬</Text>,
+    <UserContext.Provider value={{value1: { user, setUser }, value2: {loggedin, setLoggedin} }}>
+      
+        <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>
+          <Tab.Navigator
+            initialRouteName="Home"
+            tabBarBadge={{ focused: true, color: "Red", size: 11 }}
+            screenOptions={{
+              tabBarStyle: {
+                backgroundColor: "#222426",
+                height: 72 * heightScale,
+              },
+              tabBarInactiveTintColor: "#387cc5",
+              tabBarActiveTintColor: "#d13036",
+              headerShown: false,
+              tabBarAllowFontScaling: true,
+              tabBarLabelStyle: {
+                fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
+              },
+              lazy: false,
             }}
-          />
-          <Tab.Screen
-            name="Forum"
-            component={ForumHomePage}
-            options={{
-              tabBarLabel: platform == "web" ? "Forum" : "",
-              tabBarIcon: () => <Text style={styles.textSFPRO}>􀌥</Text>,
-            }}
-          />
-          <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              tabBarLabel: platform == "web" ? "Home" : "",
-              tabBarIcon: () => <Text style={styles.textSFPRO}>􀎟</Text>,
-            }}
-          />
-          <Tab.Screen
-            name="ISS"
-            component={MainISSNav}
-            options={{
-              tabBarLabel: platform == "web" ? "ISS" : "",
-              tabBarIcon: () => <Text style={styles.textSFPRO}>􀝞</Text>,
-            }}
-          />
-          <Tab.Screen
-            name="Settings"
-            component={Login}
-            options={{
-              tabBarLabel: platform == "web" ? "Settings" : "",
-              tabBarIcon: () => <Text style={styles.textSFPRO}>􀣌</Text>,
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
+          >
+            <Tab.Screen
+              name="Consultation"
+              component={Consult}
+              options={{
+                tabBarLabel: platform == "web" ? "Consultation" : "",
+                tabBarIcon: () => <Text style={styles.textSFPRO}>􀉬</Text>,
+              }}
+            />
+            <Tab.Screen
+              name="Forum"
+              component={ForumHomePage}
+              options={{
+                tabBarLabel: platform == "web" ? "Forum" : "",
+                tabBarIcon: () => <Text style={styles.textSFPRO}>􀌥</Text>,
+              }}
+              listeners={({ navigation, route }) => ({
+                tabPress: (e) => {
+                  if (!loggedin) {
+                    e.preventDefault();
+                    navigation.navigate("Settings");
+                    alert("Please sign in to access the forum");
+                  }
+                },
+              })}
+            />
+            <Tab.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                tabBarLabel: platform == "web" ? "Home" : "",
+                tabBarIcon: () => <Text style={styles.textSFPRO}>􀎟</Text>,
+              }}
+            />
+            <Tab.Screen
+              name="ISS"
+              component={MainISSNav}
+              options={{
+                tabBarLabel: platform == "web" ? "ISS" : "",
+                tabBarIcon: () => <Text style={styles.textSFPRO}>􀝞</Text>,
+              }}
+            />
+            <Tab.Screen
+              name="Settings"
+              component={Login}
+              options={{
+                tabBarLabel: platform == "web" ? "Settings" : "",
+                tabBarIcon: () => <Text style={styles.textSFPRO}>􀣌</Text>,
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+     
     </UserContext.Provider>
   );
 }
@@ -514,32 +532,32 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontFamily: "SF Pro Display",
     color: "#387cc5",
-    textAlign: "left"
-    },
-    sec1: {
-      fontSize: 36,
-      letterSpacing: 0.1,
-      lineHeight: 41,
-      fontFamily: "SF Compact Text",
-      color: "#387cc5",
-      textAlign: "left",
-      display: "flex",
-      alignItems: "center",
-      width: 348,
-      height: 49
-    },
-    forumBG: {
-      backgroundColor: "#393e43",
-      flex: 1,
-      width: "100%",
-      height: 852,
-      overflow: "hidden"
-    },
-    apperancBTFR: {
-      borderRadius: 20,
-      backgroundColor: "#222426",
-      flex: 1,
-      width: "100%",
-      height: 60
-      }
+    textAlign: "left",
+  },
+  sec1: {
+    fontSize: 36,
+    letterSpacing: 0.1,
+    lineHeight: 41,
+    fontFamily: "SF Compact Text",
+    color: "#387cc5",
+    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+    width: 348,
+    height: 49,
+  },
+  forumBG: {
+    backgroundColor: "#393e43",
+    flex: 1,
+    width: "100%",
+    height: 852,
+    overflow: "hidden",
+  },
+  apperancBTFR: {
+    borderRadius: 20,
+    backgroundColor: "#222426",
+    flex: 1,
+    width: "100%",
+    height: 60,
+  },
 });
