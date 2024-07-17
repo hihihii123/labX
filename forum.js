@@ -22,7 +22,7 @@ class tag {
 
 function ForumPage() {
 
-  const { user, setUser } = React.useContext(UserContext);
+
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState([new message("Hello", "User", [])]);
   const [username, setUsername] = useState("");

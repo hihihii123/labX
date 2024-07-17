@@ -6,18 +6,23 @@ import { heightScale, styles, widthScale } from "./Home";
 import { FIREBASE_DB } from "./firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 
+
 const Stack = createNativeStackNavigator();
 
 
 
 export default function ForumHomePage() {
+
+  
   return (
     <Stack.Navigator
       initialRouteName="ForumHome"
       screenOptions={{
         headerStyle: { backgroundColor: "#393E43" },
         headerTintColor: "#FFF",
+        lazy: true,
       }}
+      
     >
       <Stack.Screen name="ForumHome" component={ForumHome} />
       <Stack.Screen name="IndivForum" component={ForumPull} />
@@ -87,6 +92,13 @@ function ForumPull({ route, level, navigation }) {
           : "sec4",
         "data"
       );
+      console.log(level === 0
+        ? "sec1"
+        : level === 1
+        ? "sec2"
+        : level === 2
+        ? "sec3"
+        : "sec4");
       const docSnap = await getDoc(docRef);
       setDocSnapData(docSnap);
       if (docSnapData !== null) {

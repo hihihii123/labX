@@ -1,73 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { FIREBASE_APP, FIREBASE_AUTH } from "./firebaseConfig";
-import { signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  sendEmailVerification,
+} from "firebase/auth";
 import { View, Text, Button } from "react-native";
 
-import { UserContext } from "./usercontextslave";
-
+import { UserContext, LoginContext } from "./usercontextslave";
 
 const auth = FIREBASE_AUTH;
 const provider = new GoogleAuthProvider(FIREBASE_APP);
 import { styles } from "./Home";
 
-
-
-
 export default function Login() {
-    const [loading, setLoading] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
-    const {user, setUser} = React.useContext(UserContext);
-    const signin = async() => {
-        setLoading(true);
-        try {
-            
-            await signInWithPopup(auth, provider)
-            .then((result) => {
-              // This gives you a Google Access Token. You can use it to access the Google API.
-              const credential = GoogleAuthProvider.credentialFromResult(result);
-              const token = credential.accessToken;
-              // The signed-in user info.
-              const userr = result.user;
-              // IdP data available using getAdditionalUserInfo(result)
-              // ...
-              
+  const { value1, value2 } = React.useContext(UserContext);
+  const { user, setUser } = value1;
+  const { loggedIn, setLoggedIn } = value2;
+  const [loading, setLoading] = useState(false);
 
-              setUser(userr);
-              setLoggedIn(true);
-              if (!userr.emailVerified) {
-                sendEmailVerification(userr);
-              }
-            }).catch((error) => {
-              // Handle Errors here.
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              // The email of the user's account used.
-              const email = error.customData.email;
-              // The AuthCredential type that was used.
-              const credential = GoogleAuthProvider.credentialFromError(error);
-              // ...
-            });
-        } catch (error) {
-            console.error(error);
-            alert('Sign in failed: ' + error.message);
+  const signin = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const userr = result.user;
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
 
-        } finally {
-            setLoading(false);
-        }
+          console.log(userr);
+          setUser(userr);
+          setLoggedIn(true);
+          console.log(user);
+          console.log("logged in");
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+        });
+    } catch (error) {
+      console.error(error);
+      alert("Sign in failed: " + error.message);
+    } finally {
+      setLoading(false);
     }
- 
-    return (
-        <View style={styles.MainPage}>
-        
-            <View>
-                <Text style={styles.header}>Log in</Text>
-                <Button style={styles.Text} title='Log in with Google' onPress={signin} />
-            </View>
-        
-            <Text style={{fontSize: 20, color: '#fff'}}>{ loggedIn ? user.email:'Sign in'}</Text>
+  };
 
-    
-        </View>
-    );
+  return (
+    <View style={styles.MainPage}>
+      <View>
+        <Text style={styles.header}>Log in</Text>
+        <Button
+          style={styles.Text}
+          title="Log in with Google"
+          onPress={signin}
+          disabled={loading}
+        />
+      </View>
+
+      <Text style={{ fontSize: 20, color: "#fff" }}>
+        {loggedIn ? user.email : "Sign in"}
+      </Text>
+    </View>
+  );
 }
