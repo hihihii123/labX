@@ -8,19 +8,18 @@ import {
 } from "firebase/auth";
 import { View, Text, Button } from "react-native";
 
-import { UserContext, LoginContext } from "./usercontextslave";
+import { UserContext } from "./usercontextslave";
 
 const auth = FIREBASE_AUTH;
 const provider = new GoogleAuthProvider(FIREBASE_APP);
 import { styles } from "./Home";
 
-export default function Login() {
-  const { value1, value2 } = React.useContext(UserContext);
-  const { user, setUser } = value1;
-  const { loggedIn, setLoggedIn } = value2;
-  const [loading, setLoading] = useState(false);
+export default function Login({ loggedIn, setLoggedIn, route }) {
+    const { user, setUser } = useContext(UserContext);
+   
+    const [loading, setLoading] = useState(false);
 
-  const signin = async () => {
+    const signin = async () => {
     setLoading(true);
     try {
       await signInWithPopup(auth, provider)

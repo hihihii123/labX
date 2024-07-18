@@ -13,7 +13,7 @@ import { Entypo } from "@expo/vector-icons";
 
 import ForumPage from "./forum";
 import Login from "./Login";
-import { LoginContext, UserContext } from "./usercontextslave";
+import { UserContext } from "./usercontextslave";
 import React, { useContext, useEffect, useState } from "react";
 import MainISSNav from "./ISS";
 import Consult from "./Consult";
@@ -41,9 +41,9 @@ function HomeScreen({ navigation }) {
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
     "SF Compact Text": require("./assets/fonts/SF-Compact-Text-Regular.otf"),
   });
-  const {value1, value2} = React.useContext(UserContext);
-  const { user, setUser } = value1;
-  const { loggedIn, setLoggedIn } = value2;
+ 
+  const { user, setUser } = React.useContext(UserContext);;
+
   return (
     <View style={styles.MainPage}>
       {fontsLoaded ? (
@@ -121,7 +121,7 @@ export default function Home({ navigation }) {
   const [user, setUser] = React.useState(null);
   const [loggedin, setLoggedin] = React.useState(false);
   return (
-    <UserContext.Provider value={{value1: { user, setUser }, value2: {loggedin, setLoggedin} }}>
+    <UserContext.Provider value={{ user, setUser }}>
       
         <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>
           <Tab.Navigator
