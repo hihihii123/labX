@@ -42,7 +42,7 @@ function HomeScreen({ navigation }) {
     "SF Compact Text": require("./assets/fonts/SF-Compact-Text-Regular.otf"),
   });
  
-  const { user, setUser } = React.useContext(UserContext);;
+  const { user, setUser } = React.useContext(UserContext);
 
   return (
     <View style={styles.MainPage}>
@@ -139,7 +139,7 @@ export default function Home({ navigation }) {
               tabBarLabelStyle: {
                 fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
               },
-              lazy: false,
+              
             }}
           >
             <Tab.Screen
@@ -156,6 +156,7 @@ export default function Home({ navigation }) {
               options={{
                 tabBarLabel: platform == "web" ? "Forum" : "",
                 tabBarIcon: () => <Text style={styles.textSFPRO}>􀌥</Text>,
+                lazy: true,
               }}
               listeners={({ navigation, route }) => ({
                 tabPress: (e) => {
@@ -185,10 +186,12 @@ export default function Home({ navigation }) {
             />
             <Tab.Screen
               name="Settings"
-              component={Login}
+           
+              children={() => <Login loggedIn={loggedin} setLoggedIn={setLoggedin} />}
               options={{
                 tabBarLabel: platform == "web" ? "Settings" : "",
                 tabBarIcon: () => <Text style={styles.textSFPRO}>􀣌</Text>,
+                
               }}
             />
           </Tab.Navigator>

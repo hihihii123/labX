@@ -15,6 +15,7 @@ const provider = new GoogleAuthProvider(FIREBASE_APP);
 import { styles } from "./Home";
 
 export default function Login({ loggedIn, setLoggedIn, route }) {
+
     const { user, setUser } = useContext(UserContext);
    
     const [loading, setLoading] = useState(false);
@@ -34,8 +35,9 @@ export default function Login({ loggedIn, setLoggedIn, route }) {
 
           console.log(userr);
           setUser(userr);
-          setLoggedIn(true);
           console.log(user);
+          setLoggedIn(true);
+          
           console.log("logged in");
         })
         .catch((error) => {
