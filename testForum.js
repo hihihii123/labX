@@ -100,12 +100,14 @@ function ForumPull({ route, level, navigation }) {
         ? "sec3"
         : "sec4");
       const docSnap = await getDoc(docRef);
-      setDocSnapData(docSnap);
-      if (docSnapData !== null) {
+      setDocSnapData(docSnap.data());
+      console.log(docSnap.data());
+      if (docSnap.data() !== null) {
         
-        console.log("Document data:", docSnap.data());
+        console.log(docSnap.data());
+        
         const response = await fetch(
-          docSnapData.files[0].fileLocation,
+          docSnap.data().files[0].filelocation,
           {
             method: "GET",
             mode: "cors",
@@ -114,7 +116,8 @@ function ForumPull({ route, level, navigation }) {
   
         const json = await response.json();
         setData(json);
-        console.log(data);
+        console.log(json);
+        
       } else {
         // docSnap.data() will be undefined in this case
         console.log("No such document!");
@@ -132,7 +135,7 @@ function ForumPull({ route, level, navigation }) {
       {data !== null ? (
         <View>
           <FlatList
-            data={data.postData}
+            data={docSnapData.files}
             renderItem={({ item }) => (
               <View>
                 <Pressable
