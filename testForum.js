@@ -20,7 +20,7 @@ export default function ForumHomePage() {
       screenOptions={{
         headerStyle: { backgroundColor: "#393E43" },
         headerTintColor: "#FFF",
-        lazy: true,
+     
       }}
       
     >
@@ -126,7 +126,7 @@ function ForumPull({ route, level, navigation }) {
   [refrest]);
   return (
     <View>
-      {data !== null ? (
+      {docSnapData !== null ? (
         <View>
           <FlatList
             data={docSnapData.files}
@@ -138,14 +138,16 @@ function ForumPull({ route, level, navigation }) {
                   }
                 >
                   <Text>{item.title}</Text>
+                  <Text style={{alignSelf: 'flex-end'}}>Username: {item.username}</Text>
                 </Pressable>
-                <Text>Username: {item.username}</Text>
+
+               
               </View>
             )}
             keyExtractor={(item) => item.id}
             style={{flex: 1, flexDirection: 'column'}}
             scrollEnabled={true}
-            refreshControl={() => setrefrest(refrest ? false : true)}
+        
           />
           <Text>Test</Text>
         </View>
