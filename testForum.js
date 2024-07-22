@@ -27,6 +27,7 @@ export default function ForumHomePage() {
       <Stack.Screen name="ForumHome" component={ForumHome} />
       <Stack.Screen name="IndivForum" component={ForumPull} />
       <Stack.Screen name="IndivPage" component={IndivPage} />
+      <Stack.Screen name="New Post" component={NEWFORUMPOST} />
     </Stack.Navigator>
   );
 }
@@ -75,6 +76,12 @@ function ForumHome({ navigation }) {
 }
 
 function ForumPull({ route, level, navigation }) {
+  const [fontsLoaded] = useFonts({
+    "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
+    "ethnocentric rg": require("./assets/fonts/ethnocentric rg.otf"),
+    "SF Compact": require("./assets/fonts/SF-Compact.ttf"),
+    "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
+  });
   level = route.params.level;
   const [data, setData] = useState(null);
   const [docSnapData, setDocSnapData] = useState(null);
@@ -126,7 +133,7 @@ function ForumPull({ route, level, navigation }) {
   [refrest]);
   return (
     <View>
-      {docSnapData !== null ? (
+      {docSnapData !== null && fontsLoaded === true ? (
         <View>
           <FlatList
             data={docSnapData.files}
@@ -150,6 +157,11 @@ function ForumPull({ route, level, navigation }) {
         
           />
           <Text>Test</Text>
+          <View style={{width: 'auto', flex: 1, backgroundColor: '#387cc5', margin: 20, position: 'relative'}}>
+            <Pressable onPress={() => navigation.navigate("New Post")}>
+              <Text style={{fontFamily: 'SF Pro Display', color: '#FFFFFF', fontSize: 50}}>+</Text>
+            </Pressable>
+          </View>
         </View>
       ) : (
         <Text>Loading...</Text>
@@ -190,5 +202,13 @@ function IndivPage({ navigation, route, item }) {
         <Text>Loading...</Text>
       )}
     </>
+  );
+}
+
+function NEWFORUMPOST({navigation}) {
+  return(
+    <View>
+      <Text>Placeholder</Text>
+    </View>
   );
 }
