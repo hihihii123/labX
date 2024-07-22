@@ -78,6 +78,7 @@ function ForumPull({ route, level, navigation }) {
   level = route.params.level;
   const [data, setData] = useState(null);
   const [docSnapData, setDocSnapData] = useState(null);
+  const [refrest, setrefrest] = useState(false);
   const getMoviesFromApiAsync = async () => {
     try {
       console.log(level);
@@ -106,17 +107,7 @@ function ForumPull({ route, level, navigation }) {
         
         console.log(docSnap.data());
         
-        const response = await fetch(
-          docSnap.data().files[0].filelocation,
-          {
-            method: "GET",
-            mode: "cors",
-          }
-        );
-  
-        const json = await response.json();
-        setData(json);
-        console.log(json);
+        
         
       } else {
         // docSnap.data() will be undefined in this case
@@ -129,7 +120,10 @@ function ForumPull({ route, level, navigation }) {
   };
   useEffect(() => {
     getMoviesFromApiAsync();
-  }, []);
+  
+ 
+},
+  [refrest]);
   return (
     <View>
       {data !== null ? (
@@ -137,7 +131,7 @@ function ForumPull({ route, level, navigation }) {
           <FlatList
             data={docSnapData.files}
             renderItem={({ item }) => (
-              <View>
+              <View style={{direction: 'ltr', alignContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                 <Pressable
                   onPress={() =>
                     navigation.navigate("IndivPage", { item: item })
@@ -145,9 +139,13 @@ function ForumPull({ route, level, navigation }) {
                 >
                   <Text>{item.title}</Text>
                 </Pressable>
+                <Text>Username: {item.username}</Text>
               </View>
             )}
             keyExtractor={(item) => item.id}
+            style={{flex: 1, flexDirection: 'column'}}
+            scrollEnabled={true}
+            refreshControl={() => setrefrest(refrest ? false : true)}
           />
           <Text>Test</Text>
         </View>
@@ -160,13 +158,31 @@ function ForumPull({ route, level, navigation }) {
 
 function IndivPage({ navigation, route, item }) {
   item = route.params.item;
+  const [data, setData] = useState(null);
+  const pullContent = async () => {
+    const response = await fetch(
+      item.filelocation,
+      {
+        method: "GET",
+        mode: "cors",
+      }
+    );
+
+    const json = await response.json();
+    setData(json);
+    console.log(json);
+  }
+  useEffect(() => {
+    pullContent();
+
+  }, [])
   return (
     <>
-      {item !== null ? (
+      {item !== null && data !== null ? (
         <View>
-          <Text>{item.title}</Text>
+          <Text>{data.title}</Text>
           <Text></Text>
-          <Text>{item.content}</Text>
+          <Text>{data.content}</Text>
         </View>
       ) : (
         <Text>Loading...</Text>
