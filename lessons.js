@@ -9,4 +9,4 @@ export default function lessons({}) {
             <Text>Placeholder for lessons page</Text>
         </View>
     );
-  }
+}
