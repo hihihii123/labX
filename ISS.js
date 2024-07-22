@@ -85,7 +85,6 @@ function ISSHome({ navigation }) {
         </Text>
       </View>
       <Text style={[styles.text7, styles.textTypo1]}>􀆊</Text>
-      //for resources
       <Text style={[styles.text6, styles.textTypo1]}>􀆊</Text>
     </View>
   );
