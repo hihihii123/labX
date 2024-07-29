@@ -18,8 +18,8 @@ import {
   FIREBASE_STORAGE,
   FIREBASE_STORAGEREF,
 } from "./firebaseConfig";
-import { arrayUnion, doc, getDoc, updateDoc} from "firebase/firestore";
-import { getStorage, ref, uploadBytes  } from "firebase/storage";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { UserContext } from "./usercontextslave";
 
 const Stack = createNativeStackNavigator();
@@ -175,7 +175,9 @@ function ForumPull({ route, level, navigation }) {
               position: "relative",
             }}
           >
-            <Pressable onPress={() => navigation.navigate("New Post", {level: level})}>
+            <Pressable
+              onPress={() => navigation.navigate("New Post", { level: level })}
+            >
               <Text
                 style={{
                   fontFamily: "SF Pro Display",
@@ -236,52 +238,93 @@ function NEWFORUMPOST({ navigation, route, level }) {
   });
   const { user, setUser } = useContext(UserContext);
   const [title, setTitle] = useState("Enter title");
-  const [postContent, setPostContent] = useState("Enter your forum post content");
-  function pushNOW() {
-    const docRef = doc(
-      FIREBASE_DB,
-      level === 0
-        ? "sec1"
-        : level === 1
-        ? "sec2"
-        : level === 2
-        ? "sec3"
-        : "sec4",
-      "data"
-    );
-   
-    const file = new File([JSON.stringify({title: title, content: postContent, tags: ["TBC"]})], String(Math.random().toString(36).substring(2,12))+'.json', {
-      type: "application/json",
-    });
-    console.log(URL.createObjectURL(file));
-    const storageRef = ref(FIREBASE_STORAGE, String(level === 0
-      ? "Sec1"
-      : level === 1
-      ? "Sec2"
-      : level === 2
-      ? "Sec3"
-      : "Sec4" + "/" + String(Math.random().toString(36).substring(2,12))+'.json'));
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
-    });
+  const [loading, setLoading] = useState(false);
+  const [postContent, setPostContent] = useState(
+    "Enter your forum post content"
+  );
+  const pushNOW = async () => {
+    try {
+      setLoading(true);
+      const docRef = doc(
+        FIREBASE_DB,
+        level === 0
+          ? "sec1"
+          : level === 1
+          ? "sec2"
+          : level === 2
+          ? "sec3"
+          : "sec4",
+        "data"
+      );
 
-    /*updateDoc(docRef, {
-      files: arrayUnion({
-        filelocation: filelocation,
-        shortdescripion: shortdesc,
-        title: titlelmao,
-        username: user.email,
-      }),
-    });
-    */
+      const file = new File(
+        [JSON.stringify({ title: title, content: postContent, tags: ["TBC"] })],
+        String(Math.random().toString(36).substring(2, 12)) + ".json",
+        {
+          type: "application/json",
+        }
+      );
+      console.log(URL.createObjectURL(file));
+      const randomName = String(Math.random().toString(36).substring(2, 12));
+      const storageRef = ref(
+        FIREBASE_STORAGE,
+        String(
+          (level === 0
+            ? "Sec1"
+            : level === 1
+            ? "Sec2"
+            : level === 2
+            ? "Sec3"
+            : "Sec4") +
+              "/" + randomName
+               +
+              ".json"
+        )
+      );
+      await uploadBytes(storageRef, file).then((snapshot) => {
+        console.log("Uploaded a blob or file!");
+        console.log(snapshot);
+      });
+      const response = await fetch("https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
+          (level === 0
+          ? "Sec1"
+          : level === 1
+          ? "Sec2"
+          : level === 2
+          ? "Sec3"
+          : "Sec4") + "%2F" + randomName + ".json", {
+        method: "GET",
+        mode: "cors",
+      });
+  
+      const json = await response.json();
+      console.log(json);
+      
+      const filelocation =
+        "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
+          (level === 0
+          ? "Sec1"
+          : level === 1
+          ? "Sec2"
+          : level === 2
+          ? "Sec3"
+          : "Sec4") + "%2F" + randomName + ".json?alt=media&token=" + json.downloadTokens;
+      await updateDoc(docRef, {
+        files: arrayUnion({
+          filelocation: filelocation,
+          shortdescripion: postContent.substring(1, 20),
+          title: title,
+          username: user.email,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <View style={styles.MainPage}>
       <Text style={styles.header}>New Post</Text>
-      <TextInput
-      value={title}
-      onChangeText={text => setTitle(text)}
-      />
+      <TextInput value={title} onChangeText={(text) => setTitle(text)} />
       <TextInput
         value={postContent}
         onChangeText={(text) => setPostContent(text)}
@@ -289,7 +332,6 @@ function NEWFORUMPOST({ navigation, route, level }) {
         allowFontScaling={true}
         multiline={true}
         enterKeyHint="Complete"
-      
       />
       <Pressable style={styless.appearance} onPress={() => pushNOW()}>
         <View style={styless.appearance}>
@@ -307,13 +349,11 @@ function NEWFORUMPOST({ navigation, route, level }) {
 }
 const styless = StyleSheet.create({
   apperance: {
- 
     borderRadius: 20,
     backgroundColor: "#222426",
     width: 356,
     position: "absolute",
     height: 60,
-  
   },
   send: {
     top: 5,
