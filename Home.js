@@ -567,5 +567,12 @@ export const styles = StyleSheet.create({
    
   
   },
+  textBox: {
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
+    padding: 20,
+    flex: 1,
+    fontFamily: 'SF Compact Text'
+  }
 });
 
