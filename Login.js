@@ -39,6 +39,7 @@ export default function Login({ loggedIn, setLoggedIn, route }) {
           setLoggedIn(true);
           
           console.log("logged in");
+
         })
         .catch((error) => {
           // Handle Errors here.
@@ -55,6 +56,7 @@ export default function Login({ loggedIn, setLoggedIn, route }) {
       alert("Sign in failed: " + error.message);
     } finally {
       setLoading(false);
+      
     }
   };
 
@@ -68,11 +70,13 @@ export default function Login({ loggedIn, setLoggedIn, route }) {
           onPress={signin}
           disabled={loading}
         />
+        
       </View>
 
       <Text style={{ fontSize: 20, color: "#fff" }}>
         {loggedIn ? user.email : "Sign in"}
       </Text>
+
     </View>
   );
 }

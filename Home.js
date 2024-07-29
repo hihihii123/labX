@@ -20,6 +20,7 @@ import Consult from "./Consult";
 import { set } from "lodash";
 import { useFonts } from "expo-font";
 import ForumHomePage from "./testForum";
+import { func } from "prop-types";
 const platform = Platform.OS;
 
 const Tab = createBottomTabNavigator();
@@ -562,5 +563,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: 60,
+   
+   
+  
   },
 });
+

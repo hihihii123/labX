@@ -30,6 +30,12 @@
           <string>com.TeamX.LabX</string>
         </array>
       </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>exp+labx</string>
+        </array>
+      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
@@ -42,6 +48,16 @@
       <key>NSAllowsLocalNetworking</key>
       <true/>
     </dict>
+    <key>UIAppFonts</key>
+    <array>
+      <string>ethnocentric rg.otf</string>
+      <string>SF-Pro-Display-Regular.otf</string>
+      <string>SF-Compact.ttf</string>
+      <string>InriaSans-Bold.ttf</string>
+      <string>InriaSans-Light.ttf</string>
+      <string>InriaSans-Regular.ttf</string>
+      <string>SF-Compact-Text-Regular.otf</string>
+    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>

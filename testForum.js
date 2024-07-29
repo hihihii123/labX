@@ -3,8 +3,10 @@ import { View, Text, FlatList, Pressable, Dimensions } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import { heightScale, styles, widthScale } from "./Home";
-import { FIREBASE_DB } from "./firebaseConfig";
+import { FIREBASE_DB, FIREBASE_STORAGE, FIREBASE_STORAGEREF } from "./firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -194,7 +196,7 @@ function IndivPage({ navigation, route, item }) {
     <>
       {item !== null && data !== null ? (
         <View>
-          <Text>{data.title}</Text>
+          <Text style={{fontSize: 48}}>{data.title}</Text>
           <Text></Text>
           <Text>{data.content}</Text>
         </View>

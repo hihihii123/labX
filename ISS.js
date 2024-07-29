@@ -6,6 +6,7 @@ import {
   ScrollView,
   Dimensions,
   Pressable,
+  Button,
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
@@ -25,6 +26,8 @@ const heightScale = windowHeight / baseHeight;
 
 const Stack = createNativeStackNavigator();
 
+
+
 function ISSHome({ navigation }) {
   const [fontsLoaded] = useFonts({
     "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
@@ -33,6 +36,7 @@ function ISSHome({ navigation }) {
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
     "InriaSans-Light": require("./assets/fonts/InriaSans-Light.ttf"),
   });
+  
   return (
     <View style={styles.iss}>
       <View style={[styles.appearanceParent, styles.appearanceLayout]}>
@@ -86,7 +90,9 @@ function ISSHome({ navigation }) {
       </View>
       <Text style={[styles.text7, styles.textTypo1]}>􀆊</Text>
       <Text style={[styles.text6, styles.textTypo1]}>􀆊</Text>
-    </View>
+  
+      </View>
+
   );
 }
 
