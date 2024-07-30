@@ -165,7 +165,7 @@ function ForumPull({ route, level, navigation }) {
             style={{ flex: 1, flexDirection: "column" }}
             scrollEnabled={true}
           />
-          <Text>Test</Text>
+    
           <View
             style={{
               width: "auto",
