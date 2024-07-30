@@ -140,7 +140,7 @@ export default function Home({ navigation }) {
               tabBarLabelStyle: {
                 fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
               },
-              
+            
             }}
           >
             <Tab.Screen
