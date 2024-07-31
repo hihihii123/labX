@@ -192,7 +192,7 @@ export default function Home({ navigation }) {
               options={{
                 tabBarLabel: platform == "web" ? "Settings" : "",
                 tabBarIcon: () => <Text style={styles.textSFPRO}>􀣌</Text>,
-                
+                lazy: true
               }}
             />
           </Tab.Navigator>

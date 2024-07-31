@@ -3656,9 +3656,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-google-signin/google-signin@npm:^12.1.0":
-  version: 12.1.0
-  resolution: "@react-native-google-signin/google-signin@npm:12.1.0"
+"@react-native-google-signin/google-signin@npm:^12.2.1":
+  version: 12.2.1
+  resolution: "@react-native-google-signin/google-signin@npm:12.2.1"
   peerDependencies:
     expo: ">=50.0.0"
     react: "*"
@@ -3669,7 +3669,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/29a12870c42c82388c4b8a8a931999559a6e90278779a759be62012f4951395e65d56bb09cd14a075c76160dea2fb1db9e794c861be31c3300a1c974d6d0a23b
+  checksum: 10c0/b2f416b1546375218811d6e0dbb44d382598716ec534955017198d932d016aecd899b9eb839e2445a7aab72cf5ece168e8afeeadf2baedced1bf3a730f5e1cb8
   languageName: node
   linkType: hard
 
@@ -7819,7 +7819,7 @@ __metadata:
     "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@react-native-firebase/app": "npm:^20.3.0"
     "@react-native-firebase/auth": "npm:^20.3.0"
-    "@react-native-google-signin/google-signin": "npm:^12.1.0"
+    "@react-native-google-signin/google-signin": "npm:^12.2.1"
     "@react-native-picker/picker": "npm:2.7.5"
     "@react-navigation/bottom-tabs": "npm:^6.5.20"
     "@react-navigation/drawer": "npm:^6.6.15"

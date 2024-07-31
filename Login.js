@@ -6,59 +6,71 @@ import {
   GoogleAuthProvider,
   sendEmailVerification,
 } from "firebase/auth";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Platform } from "react-native";
 
 import { UserContext } from "./usercontextslave";
+import {auth, firebase} from '@react-native-firebase/auth';
 
-const auth = FIREBASE_AUTH;
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
+const auth_web = FIREBASE_AUTH;
 const provider = new GoogleAuthProvider(FIREBASE_APP);
 import { styles } from "./Home";
 
-export default function Login({ loggedIn, setLoggedIn, route }) {
+const platform = Platform.OS;
+GoogleSignin.configure();
+firebase.initializeApp();
+export default function Login({ loggedIn, setLoggedIn }) {
+  const { user, setUser } = useContext(UserContext);
 
-    const { user, setUser } = useContext(UserContext);
-   
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const signin = async () => {
-    setLoading(true);
-    try {
-      await signInWithPopup(auth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          // The signed-in user info.
-          const userr = result.user;
-          // IdP data available using getAdditionalUserInfo(result)
-          // ...
 
-          console.log(userr);
-          setUser(userr);
-          console.log(user);
-          setLoggedIn(true);
-          
-          console.log("logged in");
+const signin = async () => {
+  setLoading(true);
 
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-        });
-    } catch (error) {
-      console.error(error);
-      alert("Sign in failed: " + error.message);
-    } finally {
-      setLoading(false);
-      
+  try {
+    if (platform === "web") {
+      // Web Sign-In
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth_web, provider);
+
+      // Extract user data and token
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+
+      // Update state
+      setUser(user);
+      setLoggedIn(true);
+      console.log("Logged in:", user);
+    } else {
+      // Mobile Sign-In (Android/iOS)
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+  
+
+  // Create a Google credential with the token
+  const credential = auth.GoogleAuthProvider.credential(userInfo);
+  setUser(userInfo);
+  setLoggedIn(true);
+  console.log("Logged in:", userInfo);
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(credential);
+      // Update state
+  
     }
-  };
+  } catch (error) {
+    console.error("Sign-in error:", error);
+    alert("Sign in failed: " + error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <View style={styles.MainPage}>
@@ -70,13 +82,11 @@ export default function Login({ loggedIn, setLoggedIn, route }) {
           onPress={signin}
           disabled={loading}
         />
-        
       </View>
 
       <Text style={{ fontSize: 20, color: "#fff" }}>
-        {loggedIn ? user.email : "Sign in"}
+        {loggedIn ? platform === "web" ? user.email : user.user.email : "Sign in"}
       </Text>
-
     </View>
   );
 }
