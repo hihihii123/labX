@@ -1,28 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 
-import { FIREBASE_APP, FIREBASE_AUTH } from "./firebaseConfig";
+import { FIREBASE_APP, FIREBASE_AUTH, firebaseConfig } from "./firebaseConfig";
 import {
   signInWithPopup,
   GoogleAuthProvider,
   sendEmailVerification,
+  updateCurrentUser,
 } from "firebase/auth";
 import { View, Text, Button, Platform } from "react-native";
 
 import { UserContext } from "./usercontextslave";
-import {auth, firebase} from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 
 import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
-const auth_web = FIREBASE_AUTH;
-const provider = new GoogleAuthProvider(FIREBASE_APP);
 import { styles } from "./Home";
 
 const platform = Platform.OS;
-GoogleSignin.configure();
-firebase.initializeApp();
+GoogleSignin.configure({webClientId: '482050813272-cn34emvm3ve05eariv3fe73f6s3c7n8n.apps.googleusercontent.com'});
+
 export default function Login({ loggedIn, setLoggedIn }) {
   const { user, setUser } = useContext(UserContext);
 
@@ -36,7 +35,7 @@ const signin = async () => {
     if (platform === "web") {
       // Web Sign-In
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth_web, provider);
+      const result = await signInWithPopup(FIREBASE_AUTH, provider); // Use FIREBASE_AUTH
 
       // Extract user data and token
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -48,18 +47,23 @@ const signin = async () => {
       setLoggedIn(true);
       console.log("Logged in:", user);
     } else {
+     
       // Mobile Sign-In (Android/iOS)
+      GoogleSignin.configure({
+        webClientId: '482050813272-cn34emvm3ve05eariv3fe73f6s3c7n8n.apps.googleusercontent.com',
+      });
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-  
 
-  // Create a Google credential with the token
-  const credential = auth.GoogleAuthProvider.credential(userInfo);
-  setUser(userInfo);
-  setLoggedIn(true);
-  console.log("Logged in:", userInfo);
-  // Sign-in the user with the credential
-  return auth().signInWithCredential(credential);
+      // Create a Google credential with the token
+      const credential = auth.GoogleAuthProvider.credential(userInfo.idToken); // Use idToken
+      const token = credential.token;
+      setUser(userInfo);
+      setLoggedIn(true);
+      console.log("Logged in:", userInfo);
+      // Sign-in the user with the credential
+      return await auth().signInWithCredential(credential);
+
       // Update state
   
     }
@@ -71,7 +75,6 @@ const signin = async () => {
   }
 };
 
-
   return (
     <View style={styles.MainPage}>
       <View>
@@ -79,7 +82,7 @@ const signin = async () => {
         <Button
           style={styles.Text}
           title="Log in with Google"
-          onPress={signin}
+          onPress={() => signin() .then(() => console.log('Signed in with google'))}
           disabled={loading}
         />
       </View>

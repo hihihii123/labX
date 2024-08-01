@@ -1,3 +1,4 @@
+
 import {
   Platform,
   Button,
@@ -6,9 +7,11 @@ import {
   View,
   Dimensions,
 } from "react-native";
+import './firebaseConfig'
+import auth, {firebase} from '@react-native-firebase/auth'
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import { firebaseConfig } from "./firebaseConfig";
 import { Entypo } from "@expo/vector-icons";
 
 import ForumPage from "./forum";
@@ -121,7 +124,9 @@ function HomeScreen({ navigation }) {
 export default function Home({ navigation }) {
   const [user, setUser] = React.useState(null);
   const [loggedin, setLoggedin] = React.useState(false);
+
   return (
+    
     <UserContext.Provider value={{ user, setUser }}>
       
         <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>

@@ -1,3 +1,4 @@
+import './firebaseConfig';
 import React, { useContext, useEffect, useState } from "react";
 import {
   View,
@@ -9,6 +10,7 @@ import {
   Button,
   StyleSheet,
   Image,
+  Platform,
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
@@ -21,6 +23,8 @@ import {
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { UserContext } from "./usercontextslave";
+import firestore from '@react-native-firebase/firestore'
+import { firebase } from "@react-native-firebase/auth";
 
 const Stack = createNativeStackNavigator();
 
@@ -96,39 +100,56 @@ function ForumPull({ route, level, navigation }) {
   const [docSnapData, setDocSnapData] = useState(null);
   const [refrest, setrefrest] = useState(false);
   const getMoviesFromApiAsync = async () => {
-    try {
-      console.log(level);
-      const docRef = doc(
-        FIREBASE_DB,
-        level === 0
-          ? "sec1"
-          : level === 1
-          ? "sec2"
-          : level === 2
-          ? "sec3"
-          : "sec4",
-        "data"
-      );
-      console.log(
-        level === 0
-          ? "sec1"
-          : level === 1
-          ? "sec2"
-          : level === 2
-          ? "sec3"
-          : "sec4"
-      );
-      const docSnap = await getDoc(docRef);
-      setDocSnapData(docSnap.data());
-      console.log(docSnap.data());
-      if (docSnap.data() !== null) {
+    if (Platform.OS === 'web') {
+      try {
+        console.log(level);
+        const docRef = doc(
+          FIREBASE_DB,
+          level === 0
+            ? "sec1"
+            : level === 1
+            ? "sec2"
+            : level === 2
+            ? "sec3"
+            : "sec4",
+          "data"
+        );
+        console.log(
+          level === 0
+            ? "sec1"
+            : level === 1
+            ? "sec2"
+            : level === 2
+            ? "sec3"
+            : "sec4"
+        );
+        const docSnap = await getDoc(docRef);
+        setDocSnapData(docSnap.data());
         console.log(docSnap.data());
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
+        if (docSnap.data() !== null) {
+          console.log(docSnap.data());
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+    } else {
+      try {
+        
+        const userr = await firestore(firebase.app()).collection(level === 0
+            ? "sec1"
+            : level === 1
+            ? "sec2"
+            : level === 2
+            ? "sec3"
+            : "sec4").doc('data').get();
+        console.log(userr);
+        setDocSnapData(userr);
+      } catch(error) {
+        console.error(error);
+      }
     }
   };
   useEffect(() => {
