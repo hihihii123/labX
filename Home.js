@@ -20,7 +20,7 @@ import { UserContext } from "./usercontextslave";
 import React, { useContext, useEffect, useState } from "react";
 import MainISSNav from "./ISS";
 import Consult from "./Consult";
-import { set } from "lodash";
+
 import { useFonts } from "expo-font";
 import ForumHomePage from "./testForum";
 import { func } from "prop-types";
@@ -221,7 +221,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    fontSize: 50 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 50 * widthScale,
     color: "#FFF",
     flex: 1,
     alignSelf: "center",
@@ -231,7 +231,7 @@ export const styles = StyleSheet.create({
   headerSFPRO: {
     color: "#387CC5",
     fontFamily: "SF Pro Display",
-    fontSize: 64 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 64 * widthScale,
     fontStyle: "normal",
     fontWeight: 700,
     lineHeight: 41 * heightScale,
@@ -256,7 +256,7 @@ export const styles = StyleSheet.create({
   headerEthno: {
     color: "#387CC5",
     fontFamily: "ethnocentric rg",
-    fontSize: 48 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 48 * widthScale,
     fontStyle: "normal",
     fontWeight: "400",
     lineHeight: 41 * heightScale,
@@ -265,7 +265,7 @@ export const styles = StyleSheet.create({
   textSFCompact: {
     color: "#387CC5",
     fontFamily: "SF Compact",
-    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 32 * widthScale,
     fontStyle: "normal",
     fontWeight: "600",
     lineHeight: 41 * heightScale,
@@ -278,10 +278,10 @@ export const styles = StyleSheet.create({
   },
   welcomeBackTypo: {
     fontFamily: "SF Compact",
-    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 32 * widthScale,
   },
   textTypo: {
-    fontSize: 40 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 40 * widthScale,
     top: 792 * heightScale,
     fontFamily: "SF Pro Display",
     textAlign: "left",
@@ -321,11 +321,11 @@ export const styles = StyleSheet.create({
     color: "#387cc5",
     lineHeight: 41 * heightScale,
     position: "absolute",
-    fontSize: 24 * Math.sqrt(widthScale ** 2 + heightScale ** 2), // Adjusted fontSize
+    fontSize: 24 * widthScale, // Adjusted fontSize
   },
   daysTypo: {
     width: 81 * widthScale,
-    fontSize: 24 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 24 * widthScale,
     left: 253 * widthScale,
     height: 22 * heightScale,
     fontFamily: "InriaSans-Bold",
@@ -339,12 +339,12 @@ export const styles = StyleSheet.create({
     position: "absolute",
   },
   hi: {
-    fontSize: 64 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 64 * widthScale,
     fontFamily: "SF Pro Display",
     fontWeight: "700",
   },
   aUser: {
-    fontSize: 48 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 48 * widthScale,
     fontFamily: "ethnocentric rg",
   },
   hiAUserContainer: {
@@ -358,7 +358,7 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     letterSpacing: 0.1 * widthScale,
     fontFamily: "SF Compact",
-    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 32 * widthScale,
     textAlign: "left",
     color: "#387cc5",
     lineHeight: 41 * heightScale,
@@ -439,7 +439,7 @@ export const styles = StyleSheet.create({
     height: 56 * heightScale,
     alignItems: "center",
     display: "flex",
-    fontSize: 36 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 36 * widthScale,
     fontFamily: "SF Compact",
     fontWeight: "500",
     letterSpacing: 0.1 * widthScale,
@@ -463,7 +463,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     letterSpacing: 0.1 * widthScale,
-    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 32 * widthScale,
     fontWeight: "700",
     textAlign: "left",
     color: "#387cc5",
@@ -473,7 +473,7 @@ export const styles = StyleSheet.create({
   today: {
     color: "#ff1c1c",
     width: 80 * widthScale,
-    fontSize: 24 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 24 * widthScale,
     left: 253 * widthScale,
     height: 22 * heightScale,
     fontFamily: "InriaSans-Bold",
@@ -523,7 +523,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#393e43",
   },
   factOfThe: {
-    fontSize: 36 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 36 * widthScale,
     fontFamily: "SF Compact",
     fontWeight: "500",
     color: "#387cc5",
@@ -532,7 +532,7 @@ export const styles = StyleSheet.create({
     fontWeight: "300",
     color: "#d13036",
     fontFamily: "SF Compact",
-    fontSize: 32 * Math.sqrt(widthScale ** 2 + heightScale ** 2),
+    fontSize: 20 * widthScale,
   },
   forum: {
     fontSize: 48,

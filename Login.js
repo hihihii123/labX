@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 
-import { FIREBASE_APP, FIREBASE_AUTH, firebaseConfig } from "./firebaseConfig";
+import { FIREBASE_APP, FIREBASE_APP_MOBILE, FIREBASE_AUTH, firebaseConfig } from "./firebaseConfig";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -49,9 +49,7 @@ const signin = async () => {
     } else {
      
       // Mobile Sign-In (Android/iOS)
-      GoogleSignin.configure({
-        webClientId: '482050813272-cn34emvm3ve05eariv3fe73f6s3c7n8n.apps.googleusercontent.com',
-      });
+      
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
 
@@ -62,7 +60,7 @@ const signin = async () => {
       setLoggedIn(true);
       console.log("Logged in:", userInfo);
       // Sign-in the user with the credential
-      return await auth().signInWithCredential(credential);
+      return await auth(FIREBASE_APP_MOBILE).signInWithCredential(credential);
 
       // Update state
   
