@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "482050813272",
+    "project_id": "labx-sst",
+    "storage_bucket": "labx-sst.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482050813272:android:b112c20f9d824d00f7092d",
+        "android_client_info": {
+          "package_name": "com.teamX.labX"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482050813272-mkbrnjpmp1jr7rgu8gs0jfrciiec0ist.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamX.labX",
+            "certificate_hash": "fc4a0096dd9428e0d3c24bb77c1582023677ff40"
+          }
+        },
+        {
+          "client_id": "482050813272-cn34emvm3ve05eariv3fe73f6s3c7n8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg0oiD8hu5QZhaaVT7e-e4TOHLCk8la_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482050813272-cn34emvm3ve05eariv3fe73f6s3c7n8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "482050813272-hc9en2nhm3cc98nlahmbpn9r20iml5f1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamX.labX"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

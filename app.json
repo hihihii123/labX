@@ -16,14 +16,15 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.TeamX.LabX"
-
+      "bundleIdentifier": "com.TeamX.LabX",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "googleServicesFile": "./google-services.json",
       "package": "com.TeamX.LabX"
     },
     "web": {
@@ -43,7 +44,8 @@
             "./assets/fonts/SF-Compact-Text-Regular.otf"
           ]
         }
-      ]
+      ],
+      "@react-native-google-signin/google-signin"
     ]
   }
 }

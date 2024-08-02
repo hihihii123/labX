@@ -1,3 +1,4 @@
+import "./firebaseConfig";
 import React, { useContext, useEffect, useState } from "react";
 import {
   View,
@@ -9,11 +10,15 @@ import {
   Button,
   StyleSheet,
   Image,
+  Platform,
+  ScrollView,
+  Alert,
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useFonts } from "expo-font";
+
 import { heightScale, styles, widthScale } from "./Home";
 import {
+  FIREBASE_APP_MOBILE,
   FIREBASE_DB,
   FIREBASE_STORAGE,
   FIREBASE_STORAGEREF,
@@ -21,6 +26,9 @@ import {
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { UserContext } from "./usercontextslave";
+import firestore from "@react-native-firebase/firestore";
+import { firebase } from "@react-native-firebase/auth";
+import { useFonts } from "expo-font";
 
 const Stack = createNativeStackNavigator();
 
@@ -96,50 +104,90 @@ function ForumPull({ route, level, navigation }) {
   const [docSnapData, setDocSnapData] = useState(null);
   const [refrest, setrefrest] = useState(false);
   const getMoviesFromApiAsync = async () => {
-    try {
-      console.log(level);
-      const docRef = doc(
-        FIREBASE_DB,
-        level === 0
-          ? "sec1"
-          : level === 1
-          ? "sec2"
-          : level === 2
-          ? "sec3"
-          : "sec4",
-        "data"
-      );
-      console.log(
-        level === 0
-          ? "sec1"
-          : level === 1
-          ? "sec2"
-          : level === 2
-          ? "sec3"
-          : "sec4"
-      );
-      const docSnap = await getDoc(docRef);
-      setDocSnapData(docSnap.data());
-      console.log(docSnap.data());
-      if (docSnap.data() !== null) {
+    if (Platform.OS === "web") {
+      try {
+        console.log(level);
+        const docRef = doc(
+          FIREBASE_DB,
+          level === 0
+            ? "sec1"
+            : level === 1
+            ? "sec2"
+            : level === 2
+            ? "sec3"
+            : "sec4",
+          "data"
+        );
+        console.log(
+          level === 0
+            ? "sec1"
+            : level === 1
+            ? "sec2"
+            : level === 2
+            ? "sec3"
+            : "sec4"
+        );
+        const docSnap = await getDoc(docRef);
+        setDocSnapData(docSnap.data());
         console.log(docSnap.data());
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
+        if (docSnap.data() !== null) {
+          console.log(docSnap.data());
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+    } else {
+      try {
+        const userr = await firestore(FIREBASE_APP_MOBILE)
+          .collection(
+            level === 0
+              ? "sec1"
+              : level === 1
+              ? "sec2"
+              : level === 2
+              ? "sec3"
+              : "sec4"
+          )
+          .doc("data")
+          .get();
+        console.log(userr);
+        setDocSnapData(userr);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   useEffect(() => {
     getMoviesFromApiAsync();
+    setrefrest(false);
   }, [refrest]);
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {docSnapData !== null && fontsLoaded === true ? (
-        <View>
+        <View style={{flex: 1}}>
+          <View
+            style={{
+              fontSize: 36,
+              letterSpacing: 0.1,
+              lineHeight: 41,
+              fontFamily: "SF Compact Text",
+              color: "#387cc5",
+              textAlign: "right",
+              display: "flex",
+              alignItems: "flex-end",
+              width: 348,
+              height: 49,
+            }}
+          >
+            <Pressable onPress={() => setrefrest(true)}>
+              <Text>Refresh</Text>
+            </Pressable>
+          </View>
           <FlatList
-            data={docSnapData.files}
+            data={Platform.OS !== 'web' ? docSnapData._data.files : docSnapData.files}
             renderItem={({ item }) => (
               <View
                 style={{
@@ -165,7 +213,7 @@ function ForumPull({ route, level, navigation }) {
             style={{ flex: 1, flexDirection: "column" }}
             scrollEnabled={true}
           />
-          <Text>Test</Text>
+
           <View
             style={{
               width: "auto",
@@ -213,13 +261,47 @@ function IndivPage({ navigation, route, item }) {
   useEffect(() => {
     pullContent();
   }, []);
+  replyMessage = () => {
+    Alert.alert('Replies not implemented yet', 'We are working very hard on this', [
+      {
+        text: 'I understand'
+        
+      },
+      {
+        text: 'Support us instead!',
+        onPress: () => buyMilo()
+      }
+        
+      
+    ]);
+  }
+  buyMilo = () => {
+    Alert.alert('Buying us a milo has not been implemented', 'We are working very hard on this very important feature', [
+      {
+        text: 'I understand'
+      },
+      {
+        text: 'Support us instead!',
+        onPress: () => buyMilo()
+      }
+    ]);
+  }
   return (
     <>
       {item !== null && data !== null ? (
-        <View>
-          <Text style={{ fontSize: 48 }}>{data.title}</Text>
-          <Text></Text>
-          <Text>{data.content}</Text>
+        <View style={{flex: 1}}>
+          <ScrollView>
+            <View>
+              <Text style={{ fontSize: 48 }}>{data.title}</Text>
+              <Text>
+                
+              </Text>
+              <Text>{data.content}</Text>
+            </View>
+          </ScrollView>
+          <Button onPress={() => replyMessage()} title="Reply" />
+            
+       
         </View>
       ) : (
         <Text>Loading...</Text>
@@ -276,39 +358,49 @@ function NEWFORUMPOST({ navigation, route, level }) {
             : level === 2
             ? "Sec3"
             : "Sec4") +
-              "/" + randomName
-               +
-              ".json"
+            "/" +
+            randomName +
+            ".json"
         )
       );
       await uploadBytes(storageRef, file).then((snapshot) => {
         console.log("Uploaded a blob or file!");
         console.log(snapshot);
       });
-      const response = await fetch("https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
-          (level === 0
-          ? "Sec1"
-          : level === 1
-          ? "Sec2"
-          : level === 2
-          ? "Sec3"
-          : "Sec4") + "%2F" + randomName + ".json", {
-        method: "GET",
-        mode: "cors",
-      });
-  
-      const json = await response.json();
-      console.log(json);
-      
-      const filelocation =
+      const response = await fetch(
         "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
           (level === 0
+            ? "Sec1"
+            : level === 1
+            ? "Sec2"
+            : level === 2
+            ? "Sec3"
+            : "Sec4") +
+          "%2F" +
+          randomName +
+          ".json",
+        {
+          method: "GET",
+          mode: "cors",
+        }
+      );
+
+      const json = await response.json();
+      console.log(json);
+
+      const filelocation =
+        "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
+        (level === 0
           ? "Sec1"
           : level === 1
           ? "Sec2"
           : level === 2
           ? "Sec3"
-          : "Sec4") + "%2F" + randomName + ".json?alt=media&token=" + json.downloadTokens;
+          : "Sec4") +
+        "%2F" +
+        randomName +
+        ".json?alt=media&token=" +
+        json.downloadTokens;
       await updateDoc(docRef, {
         files: arrayUnion({
           filelocation: filelocation,
@@ -320,7 +412,7 @@ function NEWFORUMPOST({ navigation, route, level }) {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
   return (
     <View style={styles.MainPage}>
       <Text style={styles.header}>New Post</Text>

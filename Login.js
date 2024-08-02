@@ -1,64 +1,77 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 
-import { FIREBASE_APP, FIREBASE_AUTH } from "./firebaseConfig";
+import { FIREBASE_APP, FIREBASE_APP_MOBILE, FIREBASE_AUTH, firebaseConfig } from "./firebaseConfig";
 import {
   signInWithPopup,
   GoogleAuthProvider,
   sendEmailVerification,
+  updateCurrentUser,
 } from "firebase/auth";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Platform } from "react-native";
 
 import { UserContext } from "./usercontextslave";
+import auth, { firebase } from '@react-native-firebase/auth';
 
-const auth = FIREBASE_AUTH;
-const provider = new GoogleAuthProvider(FIREBASE_APP);
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
 import { styles } from "./Home";
 
-export default function Login({ loggedIn, setLoggedIn, route }) {
+const platform = Platform.OS;
+GoogleSignin.configure({webClientId: '482050813272-cn34emvm3ve05eariv3fe73f6s3c7n8n.apps.googleusercontent.com'});
 
-    const { user, setUser } = useContext(UserContext);
-   
-    const [loading, setLoading] = useState(false);
+export default function Login({ loggedIn, setLoggedIn }) {
+  const { user, setUser } = useContext(UserContext);
 
-    const signin = async () => {
-    setLoading(true);
-    try {
-      await signInWithPopup(auth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          // The signed-in user info.
-          const userr = result.user;
-          // IdP data available using getAdditionalUserInfo(result)
-          // ...
+  const [loading, setLoading] = useState(false);
 
-          console.log(userr);
-          setUser(userr);
-          console.log(user);
-          setLoggedIn(true);
-          
-          console.log("logged in");
 
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-        });
-    } catch (error) {
-      console.error(error);
-      alert("Sign in failed: " + error.message);
-    } finally {
-      setLoading(false);
+const signin = async () => {
+  setLoading(true);
+
+  try {
+    if (platform === "web") {
+      // Web Sign-In
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(FIREBASE_AUTH, provider); // Use FIREBASE_AUTH
+
+      // Extract user data and token
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+
+      // Update state
+      setUser(user);
+      setLoggedIn(true);
+      console.log("Logged in:", user);
+    } else {
+     
+      // Mobile Sign-In (Android/iOS)
       
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+
+      // Create a Google credential with the token
+      const credential = auth.GoogleAuthProvider.credential(userInfo.idToken); // Use idToken
+      const token = credential.token;
+      setUser(userInfo);
+      setLoggedIn(true);
+      console.log("Logged in:", userInfo);
+      // Sign-in the user with the credential
+      return await auth(FIREBASE_APP_MOBILE).signInWithCredential(credential);
+
+      // Update state
+  
     }
-  };
+  } catch (error) {
+    console.error("Sign-in error:", error);
+    alert("Sign in failed: " + error.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <View style={styles.MainPage}>
@@ -67,16 +80,14 @@ export default function Login({ loggedIn, setLoggedIn, route }) {
         <Button
           style={styles.Text}
           title="Log in with Google"
-          onPress={signin}
+          onPress={() => signin() .then(() => console.log('Signed in with google'))}
           disabled={loading}
         />
-        
       </View>
 
       <Text style={{ fontSize: 20, color: "#fff" }}>
-        {loggedIn ? user.email : "Sign in"}
+        {loggedIn ? platform === "web" ? user.email : user.user.email : "Sign in"}
       </Text>
-
     </View>
   );
 }
