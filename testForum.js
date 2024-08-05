@@ -13,9 +13,10 @@ import {
   Platform,
   ScrollView,
   Alert,
+  Modal,
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import storage from "@react-native-firebase/storage";
 import { heightScale, styles, widthScale } from "./Home";
 import {
   FIREBASE_APP_MOBILE,
@@ -167,7 +168,7 @@ function ForumPull({ route, level, navigation }) {
   return (
     <View style={{ flex: 1 }}>
       {docSnapData !== null && fontsLoaded === true ? (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <View
             style={{
               fontSize: 36,
@@ -187,7 +188,11 @@ function ForumPull({ route, level, navigation }) {
             </Pressable>
           </View>
           <FlatList
-            data={Platform.OS !== 'web' ? docSnapData._data.files : docSnapData.files}
+            data={
+              Platform.OS !== "web"
+                ? docSnapData._data.files
+                : docSnapData.files
+            }
             renderItem={({ item }) => (
               <View
                 style={{
@@ -262,46 +267,47 @@ function IndivPage({ navigation, route, item }) {
     pullContent();
   }, []);
   replyMessage = () => {
-    Alert.alert('Replies not implemented yet', 'We are working very hard on this', [
-      {
-        text: 'I understand'
-        
-      },
-      {
-        text: 'Support us instead!',
-        onPress: () => buyMilo()
-      }
-        
-      
-    ]);
-  }
+    Alert.alert(
+      "Replies not implemented yet",
+      "We are working very hard on this",
+      [
+        {
+          text: "I understand",
+        },
+        {
+          text: "Support us instead!",
+          onPress: () => buyMilo(),
+        },
+      ]
+    );
+  };
   buyMilo = () => {
-    Alert.alert('Buying us a milo has not been implemented', 'We are working very hard on this very important feature', [
-      {
-        text: 'I understand'
-      },
-      {
-        text: 'Support us instead!',
-        onPress: () => buyMilo()
-      }
-    ]);
-  }
+    Alert.alert(
+      "Buying us a milo has not been implemented",
+      "We are working very hard on this very important feature",
+      [
+        {
+          text: "I understand",
+        },
+        {
+          text: "Support us instead!",
+          onPress: () => buyMilo(),
+        },
+      ]
+    );
+  };
   return (
     <>
       {item !== null && data !== null ? (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <ScrollView>
             <View>
               <Text style={{ fontSize: 48 }}>{data.title}</Text>
-              <Text>
-                
-              </Text>
+              <Text></Text>
               <Text>{data.content}</Text>
             </View>
           </ScrollView>
           <Button onPress={() => replyMessage()} title="Reply" />
-            
-       
         </View>
       ) : (
         <Text>Loading...</Text>
@@ -319,38 +325,131 @@ function NEWFORUMPOST({ navigation, route, level }) {
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
   });
   const { user, setUser } = useContext(UserContext);
-  const [title, setTitle] = useState("Enter title");
+  const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
-  const [postContent, setPostContent] = useState(
-    "Enter your forum post content"
-  );
+  const [postContent, setPostContent] = useState("");
+  const [modalShown, setModalShown] = useState(false);
+  const [opacityPressableA, setOpacityPressableA] = useState(false);
   const pushNOW = async () => {
-    try {
-      setLoading(true);
-      const docRef = doc(
-        FIREBASE_DB,
-        level === 0
-          ? "sec1"
-          : level === 1
-          ? "sec2"
-          : level === 2
-          ? "sec3"
-          : "sec4",
-        "data"
-      );
+    if (Platform.OS === "web") {
+      try {
+        setLoading(true);
+        const docRef = doc(
+          FIREBASE_DB,
+          level === 0
+            ? "sec1"
+            : level === 1
+            ? "sec2"
+            : level === 2
+            ? "sec3"
+            : "sec4",
+          "data"
+        );
 
-      const file = new File(
-        [JSON.stringify({ title: title, content: postContent, tags: ["TBC"] })],
-        String(Math.random().toString(36).substring(2, 12)) + ".json",
-        {
-          type: "application/json",
-        }
-      );
-      console.log(URL.createObjectURL(file));
-      const randomName = String(Math.random().toString(36).substring(2, 12));
-      const storageRef = ref(
-        FIREBASE_STORAGE,
-        String(
+        const file = new File(
+          [
+            JSON.stringify({
+              title: title,
+              content: postContent,
+              tags: ["TBC"],
+            }),
+          ],
+          String(Math.random().toString(36).substring(2, 12)) + ".json",
+          {
+            type: "application/json",
+          }
+        );
+        console.log(URL.createObjectURL(file));
+        const randomName = String(Math.random().toString(36).substring(2, 12));
+        const storageRef = ref(
+          FIREBASE_STORAGE,
+          String(
+            (level === 0
+              ? "Sec1"
+              : level === 1
+              ? "Sec2"
+              : level === 2
+              ? "Sec3"
+              : "Sec4") +
+              "/" +
+              randomName +
+              ".json"
+          )
+        );
+        await uploadBytes(storageRef, file).then((snapshot) => {
+          console.log("Uploaded a blob or file!");
+          console.log(snapshot);
+        });
+        const response = await fetch(
+          "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
+            (level === 0
+              ? "Sec1"
+              : level === 1
+              ? "Sec2"
+              : level === 2
+              ? "Sec3"
+              : "Sec4") +
+            "%2F" +
+            randomName +
+            ".json",
+          {
+            method: "GET",
+            mode: "cors",
+          }
+        );
+
+        const json = await response.json();
+        console.log(json);
+
+        const filelocation =
+          "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
+          (level === 0
+            ? "Sec1"
+            : level === 1
+            ? "Sec2"
+            : level === 2
+            ? "Sec3"
+            : "Sec4") +
+          "%2F" +
+          randomName +
+          ".json?alt=media&token=" +
+          json.downloadTokens;
+        await updateDoc(docRef, {
+          files: arrayUnion({
+            filelocation: filelocation,
+            shortdescripion: postContent.substring(1, 20),
+            title: title,
+            username: user.email,
+            replies: [],
+          }),
+        });
+        setModalShown(true);
+        setPostContent("");
+        setTitle("");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        setLoading(true);
+
+        const file = new File(
+          [
+            JSON.stringify({
+              title: title,
+              content: postContent,
+              tags: ["TBC"],
+            }),
+          ],
+          String(Math.random().toString(36).substring(2, 12)) + ".json",
+          {
+            type: "application/json",
+          }
+        );
+
+        console.log(URL.createObjectURL(file));
+        const randomName = String(Math.random().toString(36).substring(2, 12));
+        const referenceForNewDoc = storage(FIREBASE_APP_MOBILE).ref(
           (level === 0
             ? "Sec1"
             : level === 1
@@ -361,71 +460,96 @@ function NEWFORUMPOST({ navigation, route, level }) {
             "/" +
             randomName +
             ".json"
-        )
-      );
-      await uploadBytes(storageRef, file).then((snapshot) => {
-        console.log("Uploaded a blob or file!");
-        console.log(snapshot);
-      });
-      const response = await fetch(
-        "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
-          (level === 0
-            ? "Sec1"
-            : level === 1
-            ? "Sec2"
-            : level === 2
-            ? "Sec3"
-            : "Sec4") +
-          "%2F" +
-          randomName +
-          ".json",
-        {
-          method: "GET",
-          mode: "cors",
-        }
-      );
+        );
 
-      const json = await response.json();
-      console.log(json);
+        await referenceForNewDoc.put(file);
 
-      const filelocation =
-        "https://firebasestorage.googleapis.com/v0/b/labx-sst.appspot.com/o/" +
-        (level === 0
-          ? "Sec1"
-          : level === 1
-          ? "Sec2"
-          : level === 2
-          ? "Sec3"
-          : "Sec4") +
-        "%2F" +
-        randomName +
-        ".json?alt=media&token=" +
-        json.downloadTokens;
-      await updateDoc(docRef, {
-        files: arrayUnion({
-          filelocation: filelocation,
-          shortdescripion: postContent.substring(1, 20),
-          title: title,
-          username: user.email,
-        }),
-      });
-    } catch (error) {
-      console.error(error);
+        firestore(FIREBASE_APP_MOBILE)
+          .collection(
+            level === 0
+              ? "sec1"
+              : level === 1
+              ? "sec2"
+              : level === 2
+              ? "sec3"
+              : "sec4"
+          )
+          .doc("data")
+          .update({
+            files: firebase.firestore.FieldValue.arrayUnion({
+              filelocation: await referenceForNewDoc.getDownloadURL(),
+              shortdescripion: postContent.substring(1, 20),
+              title: title,
+              username: user.user.email,
+              replies: [],
+            }),
+          });
+        Alert.alert("Success", "Post has been posted to forum", [
+          {
+            text:
+              "return to " +
+              (level === 0
+                ? "Sec 1"
+                : level === 1
+                ? "Sec 2"
+                : level === 2
+                ? "Sec 3"
+                : "Sec 4") +
+              " forum",
+            onPress: () => navigation.navigate("IndivForum", { level: level }),
+          },
+        ]);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   return (
     <View style={styles.MainPage}>
-      <Text style={styles.header}>New Post</Text>
-      <TextInput value={title} onChangeText={(text) => setTitle(text)} />
-      <TextInput
-        value={postContent}
-        onChangeText={(text) => setPostContent(text)}
-        style={styles.textBox}
-        allowFontScaling={true}
-        multiline={true}
-        enterKeyHint="Complete"
-      />
-      <Pressable style={styless.appearance} onPress={() => pushNOW()}>
+      <Modal
+        visible={modalShown}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setModalShown(!modalShown)}
+      >
+        <View>
+          <Text style={styles.textSFPROWHITE}>Post has been posted!</Text>
+        </View>
+      </Modal>
+      <View style={{height: 'auto', flex: 1}}><Text style={styles.header}>New Post</Text></View>
+      
+      <View style={{flex: 1}}>
+        <TextInput
+          value={title}
+          onChangeText={(text) => setTitle(text)}
+          style={{ borderCurve: 10, borderRadius: 20, backgroundColor: "#FFFFFF", padding: 20, margin: 20, textAlign: "center", fontFamily: 'SF Pro Display', flex: 1, width: toString(Math.floor(393 * widthScale)*10) }}
+          defaultValue="Input title of your post"
+        />
+
+        <TextInput
+          value={postContent}
+          onChangeText={(text) => setPostContent(text)}
+          style={styles.textBox}
+          allowFontScaling={true}
+          multiline={true}
+          enterKeyHint="Complete"
+          defaultValue="Input content of your post"
+        />
+        </View>
+      <Pressable
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#222426",
+          width: 356,
+        
+          height: 60,
+          opacity: opacityPressableA ? 100 : 50,
+  
+        }}
+        onPress={() => pushNOW()}
+        onPressIn={() => setOpacityPressableA(true)}
+        onPressOut={() => setOpacityPressableA(false)}
+      >
         <View style={styless.appearance}>
           <View style={styless.apperance} />
           <Text style={styless.send}> Send</Text>
@@ -447,6 +571,7 @@ const styless = StyleSheet.create({
     position: "absolute",
     height: 60,
   },
+
   send: {
     top: 5,
     left: 8,

@@ -3665,6 +3665,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-firebase/storage@npm:^20.3.0":
+  version: 20.3.0
+  resolution: "@react-native-firebase/storage@npm:20.3.0"
+  peerDependencies:
+    "@react-native-firebase/app": 20.3.0
+  checksum: 10c0/fcc2c1bc2b82db2284a6ad2e746281135a6a4ce8252e84419f9251f2e055ed1b99c528ba17a7aacf0aba14e8798cbf42bc1eeace1205972fe9ec29ade0a4c50a
+  languageName: node
+  linkType: hard
+
 "@react-native-google-signin/google-signin@npm:^12.2.1":
   version: 12.2.1
   resolution: "@react-native-google-signin/google-signin@npm:12.2.1"
@@ -7829,6 +7838,7 @@ __metadata:
     "@react-native-firebase/app": "npm:^20.3.0"
     "@react-native-firebase/auth": "npm:^20.3.0"
     "@react-native-firebase/firestore": "npm:^20.3.0"
+    "@react-native-firebase/storage": "npm:^20.3.0"
     "@react-native-google-signin/google-signin": "npm:^12.2.1"
     "@react-native-picker/picker": "npm:2.7.5"
     "@react-navigation/bottom-tabs": "npm:^6.5.20"

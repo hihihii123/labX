@@ -240,7 +240,7 @@ export const styles = StyleSheet.create({
   textSFPRO: {
     color: "#387CC5",
     fontFamily: "SF Pro Display",
-    fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
+    fontSize: 7 * widthScale,
     fontStyle: "normal",
     fontWeight: "300",
     letterSpacing: 0.128 * widthScale,
@@ -248,7 +248,15 @@ export const styles = StyleSheet.create({
   textSFPRORED: {
     color: "#d13036",
     fontFamily: "SF Pro Display",
-    fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
+    fontSize: 7 * widthScale,
+    fontStyle: "normal",
+    fontWeight: "300",
+    letterSpacing: 0.128 * widthScale,
+  },
+  textSFPROWHITE: {
+    color: "#FFFFFF",
+    fontFamily: "SF Pro Display",
+    fontSize: 15 * widthScale,
     fontStyle: "normal",
     fontWeight: "300",
     letterSpacing: 0.128 * widthScale,
@@ -575,9 +583,12 @@ export const styles = StyleSheet.create({
   textBox: {
     borderRadius: 20,
     backgroundColor: '#FFFFFF',
+    borderColor: '#000000',
     padding: 20,
-    flex: 1,
-    fontFamily: 'SF Compact Text'
+    margin: 20,
+    width: 'auto',
+    fontFamily: 'SF Compact',
+    flex: 1
   }
 });
 
