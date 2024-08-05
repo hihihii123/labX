@@ -509,11 +509,17 @@ function NEWFORUMPOST({ navigation, route, level }) {
       <Modal
         visible={modalShown}
         animationType="slide"
-        transparent={false}
+        transparent={true}
         onRequestClose={() => setModalShown(!modalShown)}
       >
-        <Pressable style={{height: heightScale*393*0.2, padding: 20, position: 'relative', start: 'auto'}} onPress={() => setModalShown(false)}>
-          <Text style={styles.textSFPROWHITE}>Post has been posted!</Text>
+        <Pressable style={{height: heightScale*393*0.1, paddingBottom: 20, position: 'relative', start: 'auto', flex: 1}} onPress={() => setModalShown(false)}>
+          <View  style={{height: heightScale*393*0.1, paddingBottom: 20, position: 'relative', start: 'auto', flex: 1, backgroundColor: '#000000'}} >
+            <Text style={styles.textSFPROWHITE}>Post has been posted!</Text>
+         </View>
+          <View />
+          <View />
+          <View />
+          <View />
         </Pressable>
       </Modal>
       <View style={{height: 'auto', flex: 1}}><Text style={styles.header}>New Post</Text></View>
@@ -523,7 +529,7 @@ function NEWFORUMPOST({ navigation, route, level }) {
           value={title}
           onChangeText={(text) => setTitle(text)}
           style={{ borderCurve: 10, borderRadius: 20, backgroundColor: "#FFFFFF", padding: 20, margin: 20, textAlign: "center", fontFamily: 'SF Pro Display', flex: 1, width: toString(Math.floor(393 * widthScale)*10) }}
-          defaultValue="Input title of your post"
+          placeholder="Input title of your post"
         />
 
         <TextInput
@@ -533,7 +539,7 @@ function NEWFORUMPOST({ navigation, route, level }) {
           allowFontScaling={true}
           multiline={true}
           enterKeyHint="Complete"
-          defaultValue="Input content of your post"
+          placeholder="Input content of your post"
         />
         </View>
       <Pressable
