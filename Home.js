@@ -55,7 +55,7 @@ function HomeScreen({ navigation }) {
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.headerSFPRO}>Hi,</Text>
             <Text style={styles.headerEthno}>
-              {user != null ? user.displayName + "," : "A User, "}
+              {user != null ? Platform.OS === 'web' ? user.displayName : user.user.email + "," : "A User, "}
             </Text>
           </View>
           <Text style={styles.textSFCompact}>welcome back.</Text>
@@ -74,7 +74,7 @@ function HomeScreen({ navigation }) {
               </Text>
             </Text>
           </View>
-          <View style={[styles.groupParent, styles.groupLayout1]}>
+          {/*<View style={[styles.groupParent, styles.groupLayout1]}>
             <View style={[styles.appearanceGroup, styles.groupLayout1]}>
               <View style={[styles.appearanceGroup, styles.groupLayout1]}>
                 <View style={[styles.apperance1, styles.groupLayout1]} />
@@ -111,6 +111,7 @@ function HomeScreen({ navigation }) {
               <View style={styles.groupItem} />
             </View>
           </View>
+*/}
 
           <View style={{ flex: 1 }} />
         </View>

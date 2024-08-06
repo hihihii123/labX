@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet, View, Text, Image} from "react-native";
 
-const ConsultationFixed = () => {
+export const ConsultationFixed = () => {
   	
   	return (
     		<View style={styles.consultationFixed}>

@@ -1,9 +1,17 @@
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text } from "react-native";
-
+import ConsultationFixed from "./consultPage";
+const Stack = createNativeStackNavigator();
 export default function Consult() {
     return (
-        <View>
-            <Text>Consultation</Text>
-        </View>
+        <>
+            <Stack.Navigator initialRouteName="consult" >
+                <Stack.Screen 
+                    options={{headerStyle: {backgroundColor: '#222426'}, te}}
+                    component={ConsultationFixed}
+                    name="consult"
+                    />
+            </Stack.Navigator>
+        </>
     );
 }
