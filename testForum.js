@@ -510,10 +510,10 @@ function NEWFORUMPOST({ navigation, route, level }) {
         visible={modalShown}
         animationType="slide"
         transparent={true}
-        onRequestClose={() => setModalShown(!modalShown)}
+        statusBarTranslucent={true}
       >
         <Pressable style={{height: heightScale*393*0.1, paddingBottom: 20, position: 'relative', start: 'auto', flex: 1}} onPress={() => setModalShown(false)}>
-          <View  style={{height: heightScale*393*0.1, paddingBottom: 20, position: 'relative', start: 'auto', flex: 1, backgroundColor: '#000000'}} >
+          <View  style={{flex: 1, backgroundColor: '#000000'}} >
             <Text style={styles.textSFPROWHITE}>Post has been posted!</Text>
          </View>
           <View />
