@@ -41,7 +41,8 @@
             "./assets/fonts/InriaSans-Bold.ttf",
             "./assets/fonts/InriaSans-Light.ttf",
             "./assets/fonts/InriaSans-Regular.ttf",
-            "./assets/fonts/SF-Compact-Text-Regular.otf"
+            "./assets/fonts/SF-Compact-Text-Regular.otf",
+            "./assets/fonts/Inter-VariableFont_opsz,wght.ttf"
           ]
         }
       ],

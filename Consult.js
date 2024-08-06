@@ -7,7 +7,7 @@ export default function Consult() {
         <>
             <Stack.Navigator initialRouteName="consult" >
                 <Stack.Screen 
-                    options={{headerStyle: {backgroundColor: '#222426'}, te}}
+                    options={{headerStyle: {backgroundColor: '#222426'}, headerTintColor: '#fff'}}
                     component={ConsultationFixed}
                     name="consult"
                     />
