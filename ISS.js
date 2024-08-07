@@ -7,6 +7,7 @@ import {
   Dimensions,
   Pressable,
   Button,
+  SafeAreaView,
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
@@ -38,7 +39,7 @@ function ISSHome({ navigation }) {
   });
   
   return (
-    <View style={styles.iss}>
+    <SafeAreaView style={styles.iss}>
       <View style={[styles.appearanceParent, styles.appearanceLayout]}>
         <View style={[styles.appearance, styles.appearanceLayout]}>
           <View style={[styles.apperance, styles.issChildPosition]} />
@@ -91,7 +92,7 @@ function ISSHome({ navigation }) {
       <Text style={[styles.text7, styles.textTypo1]}>􀆊</Text>
       <Text style={[styles.text6, styles.textTypo1]}>􀆊</Text>
   
-      </View>
+      </SafeAreaView>
 
   );
 }

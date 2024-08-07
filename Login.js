@@ -7,7 +7,7 @@ import {
   sendEmailVerification,
   updateCurrentUser,
 } from "firebase/auth";
-import { View, Text, Button, Platform } from "react-native";
+import { View, Text, Button, Platform, SafeAreaView } from "react-native";
 
 import { UserContext } from "./usercontextslave";
 import auth, { firebase } from '@react-native-firebase/auth';
@@ -72,22 +72,40 @@ const signin = async () => {
     setLoading(false);
   }
 };
+function signout() {
+  if (platform === "web") {
+    FIREBASE_AUTH.signOut()
+    .then(() => setLoggedIn(false))
+      .then(() => console.log('Signed out'))
+  } else {
+  auth(FIREBASE_APP_MOBILE).signOut()
+.then(() => setLoggedIn(false))
+  .then(() => console.log('Signed out'))
+  } }
 
   return (
-    <View style={styles.MainPage}>
-      <View>
-        <Text style={styles.header}>Log in</Text>
+    <SafeAreaView style={styles.MainPage}>
+      <View style={{flex: 10}}>
+        <Text style={styles.header}>{loggedIn ? "Sign out" : "Log in"}</Text>
         <Button
           style={styles.Text}
-          title="Log in with Google"
-          onPress={() => signin() .then(() => console.log('Signed in with google'))}
+          title={loggedIn ? "Sign out" : "Log in with google"}
+          onPress={() => 
+            {if (!loggedIn) {
+              signin()
+            .then(() => console.log('Signed in with google'))
+            } else {
+              signout();
+            }
+          }}
           disabled={loading}
         />
       </View>
 
-      <Text style={{ fontSize: 20, color: "#fff" }}>
+      <Text style={{ fontSize: 20, color: "#fff", flex: 3 }}>
         {loggedIn ? platform === "web" ? user.email : user.user.email : "Sign in"}
       </Text>
-    </View>
+      <View style={{flex: 1}} />
+    </SafeAreaView>
   );
 }

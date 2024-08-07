@@ -144,7 +144,7 @@ export default function Home({ navigation }) {
               headerShown: false,
               tabBarAllowFontScaling: true,
               tabBarLabelStyle: {
-                fontSize: 7 * Math.sqrt(heightScale ** 2 + widthScale ** 2),
+                fontSize: 15 * Math.min(widthScale, heightScale),
               },
             
             }}
@@ -154,7 +154,7 @@ export default function Home({ navigation }) {
               component={Consult}
               options={{
                 tabBarLabel: platform == "web" ? "Consultation" : "",
-                tabBarIcon: () => <Text style={styles.textSFPRO}>􀉬</Text>,
+                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀉬</Text>,
               }}
             />
             <Tab.Screen
@@ -162,7 +162,7 @@ export default function Home({ navigation }) {
               component={ForumHomePage}
               options={{
                 tabBarLabel: platform == "web" ? "Forum" : "",
-                tabBarIcon: () => <Text style={styles.textSFPRO}>􀌥</Text>,
+                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀌥</Text>,
                 lazy: true,
               }}
               listeners={({ navigation, route }) => ({
@@ -180,7 +180,7 @@ export default function Home({ navigation }) {
               component={HomeScreen}
               options={{
                 tabBarLabel: platform == "web" ? "Home" : "",
-                tabBarIcon: () => <Text style={styles.textSFPRO}>􀎟</Text>,
+                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀎟</Text>,
               }}
             />
             <Tab.Screen
@@ -188,7 +188,7 @@ export default function Home({ navigation }) {
               component={MainISSNav}
               options={{
                 tabBarLabel: platform == "web" ? "ISS" : "",
-                tabBarIcon: () => <Text style={styles.textSFPRO}>􀝞</Text>,
+                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀝞</Text>,
               }}
             />
             <Tab.Screen
@@ -197,7 +197,7 @@ export default function Home({ navigation }) {
               children={() => <Login loggedIn={loggedin} setLoggedIn={setLoggedin} />}
               options={{
                 tabBarLabel: platform == "web" ? "Settings" : "",
-                tabBarIcon: () => <Text style={styles.textSFPRO}>􀣌</Text>,
+                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀣌</Text>,
                 lazy: true
               }}
             />
@@ -241,7 +241,15 @@ export const styles = StyleSheet.create({
   textSFPRO: {
     color: "#387CC5",
     fontFamily: "SF Pro Display",
-    fontSize: 7 * widthScale,
+    fontSize: 7 * Math.min(widthScale, heightScale),
+    fontStyle: "normal",
+    fontWeight: "300",
+    letterSpacing: 0.128 * widthScale,
+  },
+  textSFPROLG: {
+    color: "#387CC5",
+    fontFamily: "SF Pro Display",
+    fontSize: 20 * Math.min(widthScale, heightScale),
     fontStyle: "normal",
     fontWeight: "300",
     letterSpacing: 0.128 * widthScale,

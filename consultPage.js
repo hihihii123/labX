@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet, View, Text, Image, Dimensions} from "react-native";
+import {StyleSheet, View, Text, Image, Dimensions, SafeAreaView} from "react-native";
 import { useFonts } from "expo-font";
 import {Picker} from "@react-native-picker/picker";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -20,7 +20,7 @@ export const ConsultationFixed = () => {
 	  });
 	  const [selectedperson, setSelectedperson] = React.useState();
   	return (
-    		<View style={styles.consultationFixed}>
+    		<SafeAreaView style={styles.consultationFixed}>
       			<View style={styles.consultationFixedChild} />
       			
       			
@@ -73,7 +73,7 @@ export const ConsultationFixed = () => {
         				<Text style={[styles.request, styles.text5Typo]}>Request</Text>
       			</View>
       			<Image style={[styles.sendFilledIcon, styles.sendFilledIconLayout]} resizeMode="cover" source="send-filled.png" />
-    		</View>);
+    		</SafeAreaView>);
 };
 
 
