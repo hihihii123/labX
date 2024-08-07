@@ -7,6 +7,7 @@
 | Version | Supported          |
 | ------- | ------------------ |
 | 0.x.x   | :white_check_mark: |
+| 1.0.0 (under development)   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
