@@ -184,7 +184,13 @@ function ForumPull({ route, level, navigation }) {
             }}
           >
             <Pressable onPress={() => setrefrest(true)}>
-              <Text>Refresh</Text>
+              <Text
+                style={{
+                  fontFamily: "SF Pro Display",
+                }}
+              >
+                􀅈
+              </Text>
             </Pressable>
           </View>
           <FlatList
@@ -194,53 +200,68 @@ function ForumPull({ route, level, navigation }) {
                 : docSnapData.files
             }
             renderItem={({ item }) => (
-              <View
-                style={{
-                  direction: "ltr",
-                  alignContent: "center",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
-              >
-                <Pressable
-                  onPress={() =>
-                    navigation.navigate("IndivPage", { item: item })
-                  }
+              <View>
+                <View
+                  style={{
+                    paddingTop: 20,
+                    width: Dimensions.get("window").width - 10,
+                    maxHeight: 60,
+                    paddingBottom: 20,
+                    paddingLeft: 50,
+                    paddingRight: 50,
+                    backgroundColor: "#222426",
+                    borderRadius: 10,
+                    alignSelf: "center",
+                  }}
                 >
-                  <Text>{item.title}</Text>
-                  <Text style={{ alignSelf: "flex-end" }}>
-                    Username: {item.username}
-                  </Text>
-                </Pressable>
+                  <Pressable
+                    onPress={() =>
+                      navigation.navigate("IndivPage", { item: item })
+                    }
+                  >
+                    <Text style={{ color: "#FFFFFF" }}>{item.title}</Text>
+                    <Text style={{ alignSelf: "flex-end", color: "#FFF" }}>
+                      Username: {item.username}
+                    </Text>
+                  </Pressable>
+                </View>
+                <View style={{ paddingVertical: 10 }} />
+                <View style={{ paddingHorizontal: 10 }} />
               </View>
             )}
             keyExtractor={(item) => item.id}
-            style={{ flex: 1, flexDirection: "column" }}
+            style={{ flex: 7, flexDirection: "column" }}
             scrollEnabled={true}
           />
-
-          <View
-            style={{
-              width: "auto",
-              flex: 1,
-              backgroundColor: "#387cc5",
-              margin: 20,
-              position: "relative",
-            }}
-          >
-            <Pressable
-              onPress={() => navigation.navigate("New Post", { level: level })}
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flex: 10 }} />
+            <View
+              style={{
+                width: "auto",
+                flex: 1,
+                backgroundColor: "#387cc5",
+                margin: 20,
+                position: "relative",
+                borderRadius: 20,
+              }}
             >
-              <Text
-                style={{
-                  fontFamily: "SF Pro Display",
-                  color: "#FFFFFF",
-                  fontSize: 50,
-                }}
+              <Pressable
+                onPress={() =>
+                  navigation.navigate("New Post", { level: level })
+                }
               >
-                +
-              </Text>
-            </Pressable>
+                <Text
+                  style={{
+                    fontFamily: "SF Pro Display",
+                    color: "#FFFFFF",
+                    fontSize: 50,
+                    textAlign: "center",
+                  }}
+                >
+                  +
+                </Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       ) : (
@@ -512,21 +533,46 @@ function NEWFORUMPOST({ navigation, route, level }) {
         transparent={true}
         statusBarTranslucent={true}
       >
-        <Pressable style={{height: heightScale*393*0.1, paddingBottom: 20, position: 'relative', start: 'auto', flex: 1}} onPress={() => setModalShown(false)}>
-          <View  style={{flex: 1, backgroundColor: '#000000'}} >
+        <Pressable
+          style={{
+            height: heightScale * 393 * 0.1,
+            paddingBottom: 20,
+            position: "relative",
+            start: "auto",
+            flex: 1,
+          }}
+          onPress={() => setModalShown(false)}
+        >
+          <View style={{ flex: 1, backgroundColor: "#000000" }}>
             <Text style={styles.textSFPROWHITE}>Post has been posted!</Text>
+
          </View>
           <View style={{flex: 4}}/>
           
+
         </Pressable>
       </Modal>
-      <View style={{height: 'auto', flex: 1}}><Text style={styles.header}>New Post</Text></View>
-      
-      <View style={{flex: 1}}>
+      <View style={{ height: "auto", flex: 1 }}>
+        <Text style={styles.header}>New Post</Text>
+      </View>
+
+      <View style={{ flex: 1 }}>
         <TextInput
           value={title}
           onChangeText={(text) => setTitle(text)}
-          style={{ borderCurve: 10, borderRadius: 20, backgroundColor: "#FFFFFF", padding: 20, margin: 20, textAlign: "center", fontFamily: 'SF Pro Display', flex: 1, width: toString(Math.floor(393 * widthScale)*10) }}
+          style={{
+            borderCurve: 10,
+            borderRadius: 20,
+            backgroundColor: "#222426",
+            padding: 20,
+            margin: 20,
+            textAlign: "center",
+            fontFamily: "SF Pro Display",
+            color: "#FFF",
+            flex: 1,
+            height: 50,
+            width: Dimensions.get("window").width - 20,
+          }}
           placeholder="Input title of your post"
         />
 
@@ -539,16 +585,15 @@ function NEWFORUMPOST({ navigation, route, level }) {
           enterKeyHint="Complete"
           placeholder="Input content of your post"
         />
-        </View>
+      </View>
       <Pressable
         style={{
           borderRadius: 20,
           backgroundColor: "#222426",
           width: 356,
-        
+
           height: 60,
           opacity: opacityPressableA ? 100 : 50,
-  
         }}
         onPress={() => pushNOW()}
         onPressIn={() => setOpacityPressableA(true)}
@@ -605,5 +650,8 @@ const styless = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: 60,
+  },
+  title: {
+    backgroundColor: "#222426",
   },
 });
