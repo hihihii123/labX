@@ -545,11 +545,11 @@ function NEWFORUMPOST({ navigation, route, level }) {
         >
           <View style={{ flex: 1, backgroundColor: "#000000" }}>
             <Text style={styles.textSFPROWHITE}>Post has been posted!</Text>
-          </View>
-          <View />
-          <View />
-          <View />
-          <View />
+
+         </View>
+          <View style={{flex: 4}}/>
+          
+
         </Pressable>
       </Modal>
       <View style={{ height: "auto", flex: 1 }}>

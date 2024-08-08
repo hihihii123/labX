@@ -1,10 +1,10 @@
 import * as React from "react";
-import {StyleSheet, View, Text, Image, Dimensions, SafeAreaView} from "react-native";
+import {StyleSheet, View, Text, Image, Dimensions, SafeAreaView, Pressable, TextInput} from "react-native";
 import { useFonts } from "expo-font";
 import {Picker} from "@react-native-picker/picker";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const SCALE_WIDTH = SCREEN_WIDTH / 390; // iPhone 14 width
-const SCALE_HEIGHT = SCREEN_HEIGHT / 844; // iPhone 14 height
+const SCALE_HEIGHT = SCREEN_HEIGHT / 944; // iPhone 14 height
 
 const scale = (size, factor = 'width') => {
   return factor === 'height' ? size * SCALE_HEIGHT : size * SCALE_WIDTH;
@@ -19,17 +19,14 @@ export const ConsultationFixed = () => {
 		"Inter-SemiBold": require("./assets/fonts/Inter-VariableFont_opsz,wght.ttf"),
 	  });
 	  const [selectedperson, setSelectedperson] = React.useState();
+	  const [comment, setComment] = React.useState();
   	return (
     		<SafeAreaView style={styles.consultationFixed}>
+				<View style={{top: scale(-50, 'height')}}>
       			<View style={styles.consultationFixedChild} />
       			
       			
 
-      			<Text style={[styles.text, styles.textPosition]}>􀎟</Text>
-      			<Text style={[styles.text1, styles.textTypo3]}>􀉬</Text>
-      			<Text style={[styles.text2, styles.textTypo3]}>􀝞</Text>
-      			<Text style={[styles.text3, styles.textTypo3]}>􀣌</Text>
-      			<Text style={[styles.text4, styles.textTypo3]}>􀌥</Text>
       			<View style={[styles.appearance7, styles.appearanceLayout]}>
         				<View style={[styles.apperance7, styles.appearanceLayout]} />
         				<Text style={[styles.addFileOptional, styles.requestFlexBox]}>Add file (Optional)</Text>
@@ -47,7 +44,10 @@ export const ConsultationFixed = () => {
         				<Text style={styles.insert1Month}>insert 1 month calendar here</Text>
       			</View>
       			<View style={[styles.appearance10, styles.apperance10Layout]}>
-        				<View style={[styles.apperance10, styles.apperance10Layout]} />
+
+        				<TextInput style={[styles.apperance10, styles.apperance10Layout, {color: '#FFF', padding: 10}]} multiline={true} value={comment} onChangeText={text => setComment(text)}/>
+							
+			
       			</View>
       			<Text style={[styles.text5, styles.text5Typo]}>0/250</Text>
       			<View style={[styles.appearanceParent, styles.appearancePosition]}>
@@ -63,7 +63,7 @@ export const ConsultationFixed = () => {
         				<Text style={[styles.text12, styles.textTypo2]}>14: 30</Text>
         				<Text style={[styles.text13, styles.textTypo2]}>16: 30</Text>
       			</View>
-      			<Text style={styles.textPosition}>􀎟</Text>
+      	
       			<Text style={[styles.text15, styles.textTypo3]}>􀆈</Text>
       			<Text style={[styles.commentsattachments, styles.consultantTypo]}>Comments/Attachments:</Text>
       			<Text style={[styles.dateAndTime, styles.consultantTypo]}>Date and Time</Text>
@@ -73,6 +73,8 @@ export const ConsultationFixed = () => {
         				<Text style={[styles.request, styles.text5Typo]}>Request</Text>
       			</View>
       			<Image style={[styles.sendFilledIcon, styles.sendFilledIconLayout]} resizeMode="cover" source="send-filled.png" />
+				  </View>
+				  
     		</SafeAreaView>);
 };
 
@@ -464,8 +466,9 @@ const styles = StyleSheet.create({
     		backgroundColor: "#393e43",
     		flex: 1,
     		width: "100%",
-    		height: scale(852),
-    		overflow: "hidden"
+    		height: scale(952, 'height'),
+    		overflow: "hidden",
+		
   	}
 });
 
