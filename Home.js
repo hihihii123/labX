@@ -1,4 +1,3 @@
-
 import {
   Platform,
   Button,
@@ -6,9 +5,10 @@ import {
   Text,
   View,
   Dimensions,
+  ScrollView,
 } from "react-native";
-import './firebaseConfig'
-import auth, {firebase} from '@react-native-firebase/auth'
+import "./firebaseConfig";
+import auth, { firebase } from "@react-native-firebase/auth";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { firebaseConfig } from "./firebaseConfig";
@@ -45,80 +45,97 @@ function HomeScreen({ navigation }) {
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
     "SF Compact Text": require("./assets/fonts/SF-Compact-Text-Regular.otf"),
   });
- 
+
   const { user, setUser } = React.useContext(UserContext);
 
   return (
-    <View style={styles.MainPage}>
-      {fontsLoaded ? (
-        <View style={styles.MainPage}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.headerSFPRO}>Hi,</Text>
-            <Text style={styles.headerEthno}>
-              {user != null ? Platform.OS === 'web' ? user.displayName : user.user.givenname + "," : "A User, "}
-            </Text>
-          </View>
-          <Text style={styles.textSFCompact}>welcome back.</Text>
-
-          <View style={[styles.appearanceParent, styles.appearanceLayout]}>
-            <View style={[styles.appearance, styles.appearanceLayout]}>
-              <View style={[styles.apperance, styles.apperancePosition]} />
-            </View>
-            <Text style={[styles.factOfTheContainer, styles.containerFlexBox]}>
-              <Text style={styles.factOfThe}>{"Fact of the Day"}</Text>
-              <Text
-                style={[styles.materialsExpandWhen, styles.welcomeBackTypo]}
-              >
-                Materials expand when heated because the forces of attraction
-                between the particles is reduced.
+    <ScrollView>
+      <View style={styles.MainPage}>
+        {fontsLoaded ? (
+          <View style={styles.MainPage}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.headerSFPRO}>Hi,</Text>
+              <Text style={styles.headerEthno}>
+                {user != null
+                  ? Platform.OS === "web"
+                    ? user.displayName
+                    : user.user.givenname + ","
+                  : "A User, "}
               </Text>
+            </View>
+            <Text
+              style={{
+                color: "#387CC5",
+                fontFamily: "SF Compact",
+                fontSize: 32 * widthScale,
+                fontWeight: "600",
+                lineHeight: 41 * heightScale,
+                letterSpacing: 0.128 * widthScale,
+                paddingTop: 20,
+              }}
+            >
+              welcome back.
             </Text>
-          </View>
-          {/*<View style={[styles.groupParent, styles.groupLayout1]}>
-            <View style={[styles.appearanceGroup, styles.groupLayout1]}>
-              <View style={[styles.appearanceGroup, styles.groupLayout1]}>
-                <View style={[styles.apperance1, styles.groupLayout1]} />
+
+            <View style={{}}>
+              <View style={{}}>
+                <View style={{}} />
               </View>
-              <Text style={styles.upcoming}>Upcoming</Text>
-            </View>
-            <View style={[styles.rectangleParent, styles.groupLayout]}>
-              <View style={[styles.groupChild, styles.groupLayout]} />
-              <Text style={styles.issProposal}>ISS PROPOSAL</Text>
-              <Text style={styles.today}>Today!</Text>
-              <View style={styles.groupItem} />
-            </View>
-            <View style={[styles.rectangleGroup, styles.groupLayout]}>
-              <View style={[styles.groupChild, styles.groupLayout]} />
-              <Text
-                style={[styles.consultationNgGh, styles.consultationNgGhLayout]}
-              >
-                Consultation [NG GH]
+              <Text style={{}}>
+                <Text style={styles.factOfThe}>{"Fact of the Day"}</Text>
+                <Text style={{}}>
+                  Materials expand when heated because the forces of attraction
+                  between the particles is reduced.
+                </Text>
               </Text>
-              <Text style={[styles.days, styles.daysTypo]}>10 days</Text>
-              <View style={styles.groupItem} />
             </View>
-            <View style={[styles.rectangleContainer, styles.groupLayout]}>
-              <View style={[styles.groupChild, styles.groupLayout]} />
-              <Text
-                style={[
-                  styles.physicsLabBooking,
-                  styles.consultationNgGhLayout,
-                ]}
-              >
-                Physics Lab Booking
-              </Text>
-              <Text style={[styles.days1, styles.daysTypo]}>15 days</Text>
-              <View style={styles.groupItem} />
+            <View style={{}}>
+              <View style={{}}>
+                <View style={{}}>
+                  <View style={{}} />
+                </View>
+                <Text style={styles.upcoming}>Upcoming</Text>
+              </View>
+              <View style={{}}>
+                <View style={{}} />
+                <Text style={styles.issProposal}>ISS PROPOSAL</Text>
+                <Text style={styles.today}>Today!</Text>
+                <View style={styles.groupItem} />
+              </View>
+              <View style={[styles.rectangleGroup, styles.groupLayout]}>
+                <View style={[styles.groupChild, styles.groupLayout]} />
+                <Text
+                  style={[
+                    styles.consultationNgGh,
+                    styles.consultationNgGhLayout,
+                  ]}
+                >
+                  Consultation [NG GH]
+                </Text>
+                <Text style={[styles.days, styles.daysTypo]}>10 days</Text>
+                <View style={styles.groupItem} />
+              </View>
+              <View style={[styles.rectangleContainer, styles.groupLayout]}>
+                <View style={[styles.groupChild, styles.groupLayout]} />
+                <Text
+                  style={[
+                    styles.physicsLabBooking,
+                    styles.consultationNgGhLayout,
+                  ]}
+                >
+                  Physics Lab Booking
+                </Text>
+                <Text style={[styles.days1, styles.daysTypo]}>15 days</Text>
+                <View style={styles.groupItem} />
+              </View>
             </View>
+            <View style={{ flex: 1 }} />
           </View>
-*/}
-
-          <View style={{ flex: 1 }} />
-        </View>
-      ) : (
-        <Text style={styles.header}>Font not loaded</Text>
-      )}
-    </View>
+        ) : (
+          <Text style={styles.header}>Font not loaded</Text>
+        )}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -127,83 +144,80 @@ export default function Home({ navigation }) {
   const [loggedin, setLoggedin] = React.useState(false);
 
   return (
-    
     <UserContext.Provider value={{ user, setUser }}>
-      
-        <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>
-          <Tab.Navigator
-            initialRouteName="Home"
-            tabBarBadge={{ focused: true, color: "Red", size: 11 }}
-            screenOptions={{
-              tabBarStyle: {
-                backgroundColor: "#222426",
-                height: 72 * heightScale,
-              },
-              tabBarInactiveTintColor: "#387cc5",
-              tabBarActiveTintColor: "#d13036",
-              headerShown: false,
-              tabBarAllowFontScaling: true,
-              tabBarLabelStyle: {
-                fontSize: 15 * Math.min(widthScale, heightScale),
-              },
-            
+      <NavigationContainer style={{ backgroundColor: "#393E43", flex: 1 }}>
+        <Tab.Navigator
+          initialRouteName="Home"
+          tabBarBadge={{ focused: true, color: "Red", size: 11 }}
+          screenOptions={{
+            tabBarStyle: {
+              backgroundColor: "#222426",
+              height: 72 * heightScale,
+            },
+            tabBarInactiveTintColor: "#387cc5",
+            tabBarActiveTintColor: "#d13036",
+            headerShown: false,
+            tabBarAllowFontScaling: true,
+            tabBarLabelStyle: {
+              fontSize: 15 * Math.min(widthScale, heightScale),
+            },
+          }}
+        >
+          <Tab.Screen
+            name="Consultation"
+            component={Consult}
+            options={{
+              tabBarLabel: platform == "web" ? "Consultation" : "",
+              tabBarIcon: () => <Text style={styles.textSFPROLG}>􀉬</Text>,
             }}
-          >
-            <Tab.Screen
-              name="Consultation"
-              component={Consult}
-              options={{
-                tabBarLabel: platform == "web" ? "Consultation" : "",
-                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀉬</Text>,
-              }}
-            />
-            <Tab.Screen
-              name="Forum"
-              component={ForumHomePage}
-              options={{
-                tabBarLabel: platform == "web" ? "Forum" : "",
-                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀌥</Text>,
-                lazy: true,
-              }}
-              listeners={({ navigation, route }) => ({
-                tabPress: (e) => {
-                  if (!loggedin) {
-                    e.preventDefault();
-                    navigation.navigate("Settings");
-                    alert("Please sign in to access the forum");
-                  }
-                },
-              })}
-            />
-            <Tab.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                tabBarLabel: platform == "web" ? "Home" : "",
-                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀎟</Text>,
-              }}
-            />
-            <Tab.Screen
-              name="ISS"
-              component={MainISSNav}
-              options={{
-                tabBarLabel: platform == "web" ? "ISS" : "",
-                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀝞</Text>,
-              }}
-            />
-            <Tab.Screen
-              name="Settings"
-           
-              children={() => <Login loggedIn={loggedin} setLoggedIn={setLoggedin} />}
-              options={{
-                tabBarLabel: platform == "web" ? "Settings" : "",
-                tabBarIcon: () => <Text style={styles.textSFPROLG}>􀣌</Text>,
-                lazy: true
-              }}
-            />
-          </Tab.Navigator>
-        </NavigationContainer>
-     
+          />
+          <Tab.Screen
+            name="Forum"
+            component={ForumHomePage}
+            options={{
+              tabBarLabel: platform == "web" ? "Forum" : "",
+              tabBarIcon: () => <Text style={styles.textSFPROLG}>􀌥</Text>,
+              lazy: true,
+            }}
+            listeners={({ navigation, route }) => ({
+              tabPress: (e) => {
+                if (!loggedin) {
+                  e.preventDefault();
+                  navigation.navigate("Settings");
+                  alert("Please sign in to access the forum");
+                }
+              },
+            })}
+          />
+          <Tab.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              tabBarLabel: platform == "web" ? "Home" : "",
+              tabBarIcon: () => <Text style={styles.textSFPROLG}>􀎟</Text>,
+            }}
+          />
+          <Tab.Screen
+            name="ISS"
+            component={MainISSNav}
+            options={{
+              tabBarLabel: platform == "web" ? "ISS" : "",
+              tabBarIcon: () => <Text style={styles.textSFPROLG}>􀝞</Text>,
+            }}
+          />
+          <Tab.Screen
+            name="Settings"
+            children={() => (
+              <Login loggedIn={loggedin} setLoggedIn={setLoggedin} />
+            )}
+            options={{
+              tabBarLabel: platform == "web" ? "Settings" : "",
+              tabBarIcon: () => <Text style={styles.textSFPROLG}>􀣌</Text>,
+              lazy: true,
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
     </UserContext.Provider>
   );
 }
@@ -214,6 +228,8 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     alignItems: "center",
     justifyContent: "center",
+    height: Dimensions.get("window").height,
+    width: Dimensions.get("window").width,
   },
   Text: {
     color: "#FFF",
@@ -585,19 +601,15 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: 60,
-   
-   
-  
   },
   textBox: {
     borderRadius: 20,
-    backgroundColor: '#FFFFFF',
-    borderColor: '#000000',
+    backgroundColor: "#FFFFFF",
+    borderColor: "#000000",
     padding: 20,
     margin: 20,
-    width: 'auto',
-    fontFamily: 'SF Compact',
-    flex: 1
-  }
+    width: "auto",
+    fontFamily: "SF Compact",
+    flex: 1,
+  },
 });
-
