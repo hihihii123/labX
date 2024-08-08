@@ -11,25 +11,39 @@ import {
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
+import { send, EmailJSResponseStatus } from '@emailjs/react-native';
+
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
+
 const SCALE_WIDTH = SCREEN_WIDTH / 390; // iPhone 14 width
 const SCALE_HEIGHT = SCREEN_HEIGHT / 944; // iPhone 14 height
 
 const scale = (size, factor = "width") => {
   return factor === "height" ? size * SCALE_HEIGHT : size * SCALE_WIDTH;
 };
-var data = {
-  service_id: 'service_team5X',
-  template_id: 'template_y6ko58r',
-  user_id: 'oXtbVXokN13AvNZfl',
-  template_params: {
-      'stu_name': 'someone_hi@s2023.ssts.edu.sg',
+const onSubmit = async () => {
+  try {
+    await send(
+      'service_team5X',
+      'template_y6ko58r',
+      {
+       'stu_name': 'someone_hi@s2023.ssts.edu.sg',
       'tch_name': 'allan_lo@sst.edu.sg',
       'date' : "",
       'time': "",
       'Comments' : ""
+      },
+      {
+        publicKey: 'oXtbVXokN13AvNZfl',
+      },
+    );
+    console.log('SUCCESS!');
+  } catch (err) {
+    if (err instanceof EmailJSResponseStatus) {
+      console.log('EmailJS Request Failed...', err);
+    }
 
-      
+    console.log('ERROR', err);
   }
 };
 export const ConsultationFixed = () => {
