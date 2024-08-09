@@ -89,10 +89,28 @@ export const ConsultationFixed = () => {
               setSelectedperson(itemValue)
             }
           >
-            <Picker.Item label="Mr Ng Gh" value="Mr Ng Gh" />
-            <Picker.Item label="Mr Allan Low" value="Mr Allan Low" />
-            <Picker.Item label="Ms Ong" value="Ms Ong" />
-            <Picker.Item label="Mr Tan Hoe Teck" value="Mr Tan Hoe Teck" />
+            <Picker.Item label="Mr Ng Gh" value="ng_guohui@sst.edu.sg" />
+            <Picker.Item label="Mr Allan Low" value="low_zu_you_allan@sst.edu.sg" />
+            <Picker.Item label="Ms Ong" value="ong_jie_ying@sst.edu.sg" />
+            <Picker.Item label="Mr Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
+            <Picker.Item label="Lim-Leong Woon Foong" value="leong_woon_foong@sst.edu.sg" />
+            <Picker.Item label="Tan Soo Woon John" value="john_tan@sst.edu.sg" />
+            <Picker.Item label="Lim Ming Yang" value="lim_ming_yang@sst.edu.sg" />
+            <Picker.Item label="Ng Yi Ting Karen" value="karen_ng@sst.edu.sg" />
+            <Picker.Item label="Lim Chuay Sia" value="lim_chuay_sia@sst.edu.sg" />
+            <Picker.Item label="Praveena Sandra Mohan" value="praveena_sandra_mohan@sst.edu.sg" />
+            <Picker.Item label="Teo Soo Ling Karen" value="karen_teo@sst.edu.sg" />
+            <Picker.Item label="Chung Wing Shun Vincent" value="chung_wing_shun_vincent@sst.edu.sg" />
+            <Picker.Item label="Chee Meng Teck" value="chee_meng_teck@sst.edu.sg" />
+            <Picker.Item label="Choo Hui En" value="choo_hui_en@sst.edu.sg" />
+            <Picker.Item label="Loh Yue Yan Amelia" value="loh_yue_yan_amelia@sst.edu.sg" />
+            <Picker.Item label="Merlene Paik Xin Yi" value="merlene_paik_xin_yi@sst.edu.sg" />
+            <Picker.Item label="Ng Li-Ping" value="ng_li_ping@sst.edu.sg" />
+            <Picker.Item label="Szeto Dee Loon Dillon" value="szeto_dee_loon_dillon@sst.edu.sg" />
+            <Picker.Item label="Wong Koi Lin" value="wong_koi_lin@sst.edu.sg" />
+            <Picker.Item label="Tan Tong Lun Jason" value="tan_tong_lun_jason@sst.edu.sg" />
+            <Picker.Item label="Wan Han Xuan Thomas" value="wan_han_xuan_thomas@sst.edu.sg" />
+
           </Picker>
         </View>
         <View style={[styles.appearance9, styles.apperance9Layout]}>
