@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@babel/plugin-transform-template-literals": "^7.24.1",
+    "@emailjs/browser": "^4.4.1",
+    "@emailjs/react-native": "^4.2.2",
     "@expo/metro-config": "^0.18.10",
     "@expo/metro-runtime": "~3.2.1",
     "@expo/vector-icons": "^14.0.2",
