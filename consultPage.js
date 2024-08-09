@@ -27,8 +27,8 @@ const onSubmit = async () => {
       'service_team5X',
       'template_y6ko58r',
       {
-       'stu_name': 'someone_hi@s2023.ssts.edu.sg',
-      'tch_name': selectedperson,
+       'stu_name': 'labXtesting@s2023.ssts.edu.sg',
+      'tch_name': "",
       'date' : "",
       'time': "",
       'Comments' : ""
