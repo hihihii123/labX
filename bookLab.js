@@ -233,7 +233,10 @@ export const labBooking = () => {
             Date and Time
           </Text>
           <Text style={[styles.consultant, styles.consultantTypo]}>
-            Consultant
+            Lab
+          </Text>
+          <Text style={{}}>
+            Teacher
           </Text>
           <Pressable
             style={[styles.appearance12, styles.appearanceLayout]}
