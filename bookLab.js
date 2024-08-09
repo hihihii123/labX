@@ -10,6 +10,7 @@ import {
   TextInput,
   Alert,
   Platform,
+  ScrollView,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
@@ -68,196 +69,191 @@ export const labBooking = () => {
   const [comment, setComment] = React.useState();
   return (
     <SafeAreaView style={styles.consultationFixed}>
-      <View style={{ top: scale(-50, "height") }}>
-        <View style={styles.consultationFixedChild} />
+      <ScrollView>
+        <View style={{ top: scale(-50, "height") }}>
+          <View style={styles.consultationFixedChild} />
 
-        <View style={[styles.appearance7, styles.appearanceLayout]}>
-          <View style={[styles.apperance7, styles.appearanceLayout]} />
-          <Text style={[styles.addFileOptional, styles.requestFlexBox]}>
-            Add file (Optional)
+          <View style={[styles.appearance7, styles.appearanceLayout]}>
+            <View style={[styles.apperance7, styles.appearanceLayout]} />
+            <Text style={[styles.addFileOptional, styles.requestFlexBox]}>
+              Add file (Optional)
+            </Text>
+            <Image
+              style={[
+                styles.simpleIconsgoogledrive,
+                styles.sendFilledIconLayout,
+              ]}
+              resizeMode="contain"
+              source={require("./assets/simple-icons_googledrive.png")}
+            />
+          </View>
+          <View style={[styles.appearance8, styles.appearanceLayout]}>
+            <View style={[styles.apperance7, styles.appearanceLayout]} />
+            <Picker
+              style={styles.mrNgGh}
+              selectedValue={selectedperson}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedperson(itemValue)
+              }
+            >
+              <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
+              <Picker.Item
+                label="Allan Low"
+                value="low_zu_you_allan@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Ong Jie Ying"
+                value="ong_jie_ying@sst.edu.sg"
+              />
+
+              <Picker.Item
+                label="Tan Hoe Teck"
+                value="tan_hoe_teck@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Lim-Leong Woon Foong"
+                value="leong_woon_foong@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Tan Soo Woon John"
+                value="john_tan@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Lim Ming Yang"
+                value="lim_ming_yang@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Ng Yi Ting Karen"
+                value="karen_ng@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Lim Chuay Sia"
+                value="lim_chuay_sia@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Praveena Sandra Mohan"
+                value="praveena_sandra_mohan@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Teo Soo Ling Karen"
+                value="karen_teo@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Chung Wing Shun Vincent"
+                value="chung_wing_shun_vincent@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Chee Meng Teck"
+                value="chee_meng_teck@sst.edu.sg"
+              />
+              <Picker.Item label="Choo Hui En" value="choo_hui_en@sst.edu.sg" />
+              <Picker.Item
+                label="Loh Yue Yan Amelia"
+                value="loh_yue_yan_amelia@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Merlene Paik Xin Yi"
+                value="merlene_paik_xin_yi@sst.edu.sg"
+              />
+              <Picker.Item label="Ng Li-Ping" value="ng_li_ping@sst.edu.sg" />
+              <Picker.Item
+                label="Szeto Dee Loon Dillon"
+                value="szeto_dee_loon_dillon@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Wong Koi Lin"
+                value="wong_koi_lin@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Tan Tong Lun Jason"
+                value="tan_tong_lun_jason@sst.edu.sg"
+              />
+              <Picker.Item
+                label="Wan Han Xuan Thomas"
+                value="wan_han_xuan_thomas@sst.edu.sg"
+              />
+            </Picker>
+            <Picker
+              style={styles.mrNgGh}
+              selectedValue={selectedperson}
+              onValueChange={(itemValue, itemIndex) => setLab(itemValue)}
+            >
+              <Picker.Item label="Physics Lab 1" value="Phy1" />
+              <Picker.Item label="Physics Lab 2" value="Phy2" />
+              <Picker.Item label="Biology Lab 1" value="Bio1" />
+              <Picker.Item label="Biology Lab 2" value="Bio2" />
+              <Picker.Item label="Chemistry Lab 1" value="Chem1" />
+              <Picker.Item label="Chemistry Lab 2" value="Chem2" />
+              <Picker.Item label="Research Lab" value="Res" />
+              <Picker.Item label="Engineering Lab" value="Engi" />
+            </Picker>
+          </View>
+          <View style={[styles.appearance9, styles.apperance9Layout]}>
+            <View style={[styles.apperance9, styles.apperance9Layout]} />
+            <Text style={styles.insert1Month}>
+              insert 1 month calendar here
+            </Text>
+          </View>
+          <View style={[styles.appearance10, styles.apperance10Layout]}>
+            <TextInput
+              type="text"
+              rows={5}
+              className="full_height_Width"
+              onChange={() => setTextAreaCount(textAreaCount + 1)}
+              maxLength={255}
+              style={{
+                backgroundColor: "#222426",
+                color: "#FFF",
+                borderRadius: 20,
+                borderColor: "#222426",
+                padding: 20,
+              }}
+            />
+          </View>
+          <Text style={{}}>{textAreaCount}/250</Text>
+          <View style={[styles.appearanceParent, styles.appearancePosition]}>
+            <View style={styles.appearance}>
+              <View style={[styles.apperance, styles.apperancePosition]} />
+            </View>
+            <Text style={[styles.text6, styles.textTypo2]}>15: 00</Text>
+            <Text style={[styles.text7, styles.textTypo2]}>13: 00</Text>
+            <Text style={[styles.text8, styles.textTypo1]}>13: 30</Text>
+            <Text style={[styles.text9, styles.textTypo1]}>15: 30</Text>
+            <Text style={[styles.text10, styles.textTypo]}>14: 00</Text>
+            <Text style={[styles.text11, styles.textTypo]}>16: 00</Text>
+            <Text style={[styles.text12, styles.textTypo2]}>14: 30</Text>
+            <Text style={[styles.text13, styles.textTypo2]}>16: 30</Text>
+          </View>
+
+          {/* <Text style={[styles.text15, styles.textTypo3]}>􀆈</Text> */}
+          <Text style={[styles.commentsattachments, styles.consultantTypo]}>
+            Comments/Attachments:
           </Text>
-          <Image
-            style={[styles.simpleIconsgoogledrive, styles.sendFilledIconLayout]}
-            resizeMode="contain"
-            source={require("./assets/simple-icons_googledrive.png")}
-          />
-        </View>
-        <View style={[styles.appearance8, styles.appearanceLayout]}>
-          <View style={[styles.apperance7, styles.appearanceLayout]} />
-          <Picker
-            style={styles.mrNgGh}
-            selectedValue={selectedperson}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedperson(itemValue)
+          <Text style={[styles.dateAndTime, styles.consultantTypo]}>
+            Date and Time
+          </Text>
+          <Text style={[styles.consultant, styles.consultantTypo]}>
+            Consultant
+          </Text>
+          <Pressable
+            style={[styles.appearance12, styles.appearanceLayout]}
+            onPress={() =>
+              onSubmit().then(() =>
+                Alert.alert("Message Sent!", "", [{ text: "Acknowledge" }])
+              )
             }
           >
-            <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
-            <Picker.Item
-              label="Allan Low"
-              value="low_zu_you_allan@sst.edu.sg"
-            />
-            <Picker.Item label="Ong Jie Ying" value="ong_jie_ying@sst.edu.sg" />
+            <View style={[styles.apperance7, styles.appearanceLayout]} />
 
-            <Picker.Item label="Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
-            <Picker.Item
-              label="Lim-Leong Woon Foong"
-              value="leong_woon_foong@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Tan Soo Woon John"
-              value="john_tan@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Lim Ming Yang"
-              value="lim_ming_yang@sst.edu.sg"
-            />
-            <Picker.Item label="Ng Yi Ting Karen" value="karen_ng@sst.edu.sg" />
-            <Picker.Item
-              label="Lim Chuay Sia"
-              value="lim_chuay_sia@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Praveena Sandra Mohan"
-              value="praveena_sandra_mohan@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Teo Soo Ling Karen"
-              value="karen_teo@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Chung Wing Shun Vincent"
-              value="chung_wing_shun_vincent@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Chee Meng Teck"
-              value="chee_meng_teck@sst.edu.sg"
-            />
-            <Picker.Item label="Choo Hui En" value="choo_hui_en@sst.edu.sg" />
-            <Picker.Item
-              label="Loh Yue Yan Amelia"
-              value="loh_yue_yan_amelia@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Merlene Paik Xin Yi"
-              value="merlene_paik_xin_yi@sst.edu.sg"
-            />
-            <Picker.Item label="Ng Li-Ping" value="ng_li_ping@sst.edu.sg" />
-            <Picker.Item
-              label="Szeto Dee Loon Dillon"
-              value="szeto_dee_loon_dillon@sst.edu.sg"
-            />
-            <Picker.Item label="Wong Koi Lin" value="wong_koi_lin@sst.edu.sg" />
-            <Picker.Item
-              label="Tan Tong Lun Jason"
-              value="tan_tong_lun_jason@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Wan Han Xuan Thomas"
-              value="wan_han_xuan_thomas@sst.edu.sg"
-            />
-          </Picker>
-          <Picker
-            style={styles.mrNgGh}
-            selectedValue={selectedperson}
-            onValueChange={(itemValue, itemIndex) => setLab(itemValue)}
-          >
-            <Picker.Item
-              label="Physics Lab 1"
-              value="Phy1"
-            />
-             <Picker.Item
-              label="Physics Lab 2"
-              value="Phy2"
-            />
-             <Picker.Item
-              label="Biology Lab 1"
-              value="Bio1"
-            />
-             <Picker.Item
-              label="Biology Lab 2"
-              value="Bio2"
-            />
-             <Picker.Item
-              label="Chemistry Lab 1"
-              value="Chem1"
-            />
-            <Picker.Item
-              label="Chemistry Lab 2"
-              value="Chem2"
-            />
-            <Picker.Item
-              label="Research Lab"
-              value="Res"
-            />
-            <Picker.Item
-              label="Engineering Lab"
-              value="Engi"
-            />
-          </Picker>
-        </View>
-        <View style={[styles.appearance9, styles.apperance9Layout]}>
-          <View style={[styles.apperance9, styles.apperance9Layout]} />
-          <Text style={styles.insert1Month}>insert 1 month calendar here</Text>
-        </View>
-        <View style={[styles.appearance10, styles.apperance10Layout]}>
-          <TextInput
-            type="text"
-            rows={5}
-            className="full_height_Width"
-            onChange={() => setTextAreaCount(textAreaCount + 1)}
-            maxLength={255}
-            style={{
-              backgroundColor: "#222426",
-              color: "#FFF",
-              borderRadius: 20,
-              borderColor: "#222426",
-              padding: 20,
-            }}
+            <Text style={[styles.request, styles.text5Typo]}>Request</Text>
+          </Pressable>
+          <Image
+            style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
+            resizeMode="contain"
+            source={require("./assets/send-filled.png")}
           />
         </View>
-        <Text style={{}}>{textAreaCount}/250</Text>
-        <View style={[styles.appearanceParent, styles.appearancePosition]}>
-          <View style={styles.appearance}>
-            <View style={[styles.apperance, styles.apperancePosition]} />
-          </View>
-          <Text style={[styles.text6, styles.textTypo2]}>15: 00</Text>
-          <Text style={[styles.text7, styles.textTypo2]}>13: 00</Text>
-          <Text style={[styles.text8, styles.textTypo1]}>13: 30</Text>
-          <Text style={[styles.text9, styles.textTypo1]}>15: 30</Text>
-          <Text style={[styles.text10, styles.textTypo]}>14: 00</Text>
-          <Text style={[styles.text11, styles.textTypo]}>16: 00</Text>
-          <Text style={[styles.text12, styles.textTypo2]}>14: 30</Text>
-          <Text style={[styles.text13, styles.textTypo2]}>16: 30</Text>
-        </View>
-
-        {/* <Text style={[styles.text15, styles.textTypo3]}>􀆈</Text> */}
-        <Text style={[styles.commentsattachments, styles.consultantTypo]}>
-          Comments/Attachments:
-        </Text>
-        <Text style={[styles.dateAndTime, styles.consultantTypo]}>
-          Date and Time
-        </Text>
-        <Text style={[styles.consultant, styles.consultantTypo]}>
-          Consultant
-        </Text>
-        <Pressable
-          style={[styles.appearance12, styles.appearanceLayout]}
-          onPress={() =>
-            onSubmit().then(() =>
-              Alert.alert("Message Sent!", "", [{ text: "Acknowledge" }])
-            )
-          }
-        >
-          <View style={[styles.apperance7, styles.appearanceLayout]} />
-
-          <Text style={[styles.request, styles.text5Typo]}>Request</Text>
-        </Pressable>
-        <Image
-          style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
-          resizeMode="contain"
-          source={require("./assets/send-filled.png")}
-        />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
