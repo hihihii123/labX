@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Dimensions,
+  SafeAreaView,
 } from "react-native";
 import './firebaseConfig'
 import auth, {firebase} from '@react-native-firebase/auth'
@@ -49,13 +50,13 @@ function HomeScreen({ navigation }) {
   const { user, setUser } = React.useContext(UserContext);
 
   return (
-    <View style={styles.MainPage}>
+    <SafeAreaView style={styles.MainPage}>
       {fontsLoaded ? (
         <View style={styles.MainPage}>
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.headerSFPRO}>Hi,</Text>
             <Text style={styles.headerEthno}>
-              {user != null ? Platform.OS === 'web' ? user.displayName : user.user.givenname + "," : "A User, "}
+              {user !== null ? Platform.OS === 'web' ? user.displayName : user.user.givenname + "," : "A User, "}
             </Text>
           </View>
           <Text style={styles.textSFCompact}>welcome back.</Text>
@@ -118,7 +119,7 @@ function HomeScreen({ navigation }) {
       ) : (
         <Text style={styles.header}>Font not loaded</Text>
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
