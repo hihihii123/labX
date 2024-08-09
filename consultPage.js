@@ -68,7 +68,7 @@ export const ConsultationFixed = () => {
         <View style={[styles.appearance7, styles.appearanceLayout]}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
           <Text style={[styles.addFileOptional, styles.requestFlexBox]}>
-            Add file (Optional)
+            Add file (Optional) 
           </Text>
           <Image
             style={[styles.simpleIconsgoogledrive, styles.sendFilledIconLayout]}
