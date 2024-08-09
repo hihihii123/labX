@@ -89,7 +89,71 @@ export const labBooking = () => {
           </View>
           <View style={[styles.appearance8, styles.appearanceLayout]}>
             <View style={[styles.apperance7, styles.appearanceLayout]} />
+           
             <Picker
+              style={styles.mrNgGh}
+              selectedValue={selectedperson}
+              onValueChange={(itemValue, itemIndex) => setLab(itemValue)}
+            >
+              <Picker.Item label="Physics Lab 1" value="Phy1" />
+              <Picker.Item label="Physics Lab 2" value="Phy2" />
+              <Picker.Item label="Biology Lab 1" value="Bio1" />
+              <Picker.Item label="Biology Lab 2" value="Bio2" />
+              <Picker.Item label="Chemistry Lab 1" value="Chem1" />
+              <Picker.Item label="Chemistry Lab 2" value="Chem2" />
+              <Picker.Item label="Research Lab" value="Res" />
+              <Picker.Item label="Engineering Lab" value="Engi" />
+            </Picker>
+          </View>
+          <View style={[styles.appearance9, styles.apperance9Layout]}>
+            <View style={[styles.apperance9, styles.apperance9Layout]} />
+            <Text style={styles.insert1Month}>
+              insert 1 month calendar here
+            </Text>
+          </View>
+          <View style={[styles.appearance10, styles.apperance10Layout]}>
+            <TextInput
+              type="text"
+              rows={5}
+              className="full_height_Width"
+              onChange={() => setTextAreaCount(textAreaCount + 1)}
+              maxLength={255}
+              style={{
+                backgroundColor: "#222426",
+                color: "#FFF",
+                borderRadius: 20,
+                borderColor: "#222426",
+                padding: 20,
+              }}
+            />
+          </View>
+          <Text style={{}}>{textAreaCount}/250</Text>
+          <View style={[styles.appearanceParent, styles.appearancePosition]}>
+            <View style={styles.appearance}>
+              <View style={[styles.apperance, styles.apperancePosition]} />
+            </View>
+            <Text style={[styles.text6, styles.textTypo2]}>15: 00</Text>
+            <Text style={[styles.text7, styles.textTypo2]}>13: 00</Text>
+            <Text style={[styles.text8, styles.textTypo1]}>13: 30</Text>
+            <Text style={[styles.text9, styles.textTypo1]}>15: 30</Text>
+            <Text style={[styles.text10, styles.textTypo]}>14: 00</Text>
+            <Text style={[styles.text11, styles.textTypo]}>16: 00</Text>
+            <Text style={[styles.text12, styles.textTypo2]}>14: 30</Text>
+            <Text style={[styles.text13, styles.textTypo2]}>16: 30</Text>
+          </View>
+
+          {/* <Text style={[styles.text15, styles.textTypo3]}>􀆈</Text> */}
+          <Text style={[styles.commentsattachments, styles.consultantTypo]}>
+            Comments/Attachments:
+          </Text>
+          <Text style={[styles.dateAndTime, styles.consultantTypo]}>
+            Date and Time
+          </Text>
+          <Text style={[styles.consultant, styles.consultantTypo]}>Lab</Text>
+          <Text style={[{ top: scale(90, "height"), left: scale(19) }, styles.consultantTypo]}>
+            Teacher
+          </Text>
+          <Picker
               style={styles.mrNgGh}
               selectedValue={selectedperson}
               onValueChange={(itemValue, itemIndex) =>
@@ -173,69 +237,6 @@ export const labBooking = () => {
                 value="wan_han_xuan_thomas@sst.edu.sg"
               />
             </Picker>
-            <Picker
-              style={styles.mrNgGh}
-              selectedValue={selectedperson}
-              onValueChange={(itemValue, itemIndex) => setLab(itemValue)}
-            >
-              <Picker.Item label="Physics Lab 1" value="Phy1" />
-              <Picker.Item label="Physics Lab 2" value="Phy2" />
-              <Picker.Item label="Biology Lab 1" value="Bio1" />
-              <Picker.Item label="Biology Lab 2" value="Bio2" />
-              <Picker.Item label="Chemistry Lab 1" value="Chem1" />
-              <Picker.Item label="Chemistry Lab 2" value="Chem2" />
-              <Picker.Item label="Research Lab" value="Res" />
-              <Picker.Item label="Engineering Lab" value="Engi" />
-            </Picker>
-          </View>
-          <View style={[styles.appearance9, styles.apperance9Layout]}>
-            <View style={[styles.apperance9, styles.apperance9Layout]} />
-            <Text style={styles.insert1Month}>
-              insert 1 month calendar here
-            </Text>
-          </View>
-          <View style={[styles.appearance10, styles.apperance10Layout]}>
-            <TextInput
-              type="text"
-              rows={5}
-              className="full_height_Width"
-              onChange={() => setTextAreaCount(textAreaCount + 1)}
-              maxLength={255}
-              style={{
-                backgroundColor: "#222426",
-                color: "#FFF",
-                borderRadius: 20,
-                borderColor: "#222426",
-                padding: 20,
-              }}
-            />
-          </View>
-          <Text style={{}}>{textAreaCount}/250</Text>
-          <View style={[styles.appearanceParent, styles.appearancePosition]}>
-            <View style={styles.appearance}>
-              <View style={[styles.apperance, styles.apperancePosition]} />
-            </View>
-            <Text style={[styles.text6, styles.textTypo2]}>15: 00</Text>
-            <Text style={[styles.text7, styles.textTypo2]}>13: 00</Text>
-            <Text style={[styles.text8, styles.textTypo1]}>13: 30</Text>
-            <Text style={[styles.text9, styles.textTypo1]}>15: 30</Text>
-            <Text style={[styles.text10, styles.textTypo]}>14: 00</Text>
-            <Text style={[styles.text11, styles.textTypo]}>16: 00</Text>
-            <Text style={[styles.text12, styles.textTypo2]}>14: 30</Text>
-            <Text style={[styles.text13, styles.textTypo2]}>16: 30</Text>
-          </View>
-
-          {/* <Text style={[styles.text15, styles.textTypo3]}>􀆈</Text> */}
-          <Text style={[styles.commentsattachments, styles.consultantTypo]}>
-            Comments/Attachments:
-          </Text>
-          <Text style={[styles.dateAndTime, styles.consultantTypo]}>
-            Date and Time
-          </Text>
-          <Text style={[styles.consultant, styles.consultantTypo]}>Lab</Text>
-          <Text style={{ top: scale(90, "height"), left: scale(19) }}>
-            Teacher
-          </Text>
           <Pressable
             style={[styles.appearance12, styles.appearanceLayout]}
             onPress={() =>
@@ -507,7 +508,7 @@ const styles = StyleSheet.create({
     display: "flex",
     letterSpacing: scale(0.1),
     fontSize: 24,
-    top: scale(5, "height"),
+    top: scale(20, "height"),
     textAlign: "left",
     color: "#387cc5",
     fontWeight: "700",
