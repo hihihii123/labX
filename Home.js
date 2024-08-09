@@ -157,6 +157,15 @@ export default function Home({ navigation }) {
                 tabBarLabel: platform == "web" ? "Consultation" : "",
                 tabBarIcon: () => <Text style={styles.textSFPROLG}>􀉬</Text>,
               }}
+              listeners={({ navigation, route }) => ({
+                tabPress: (e) => {
+                  if (!loggedin) {
+                    e.preventDefault();
+                    navigation.navigate("Settings");
+                    alert("Please sign in to access the forum");
+                  }
+                },
+              })}
             />
             <Tab.Screen
               name="Forum"
