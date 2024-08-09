@@ -30,7 +30,7 @@ export const ConsultationFixed = () => {
   const {user, setUser} = React.useContext(UserContext);
   const onSubmit = async () => {
     try {
-      Alert.alert('Please Wait', '', );
+      Alert.alert('Please Wait', '' );
       await send(
         'service_team5X',
         'template_y6ko58r',
@@ -167,14 +167,15 @@ export const ConsultationFixed = () => {
         </Text>
         <Pressable style={[styles.appearance12, styles.appearanceLayout]} onPress={() => onSubmit() .then(() => Alert.alert('Message Sent!', '', [{ text: 'Acknowledge'}]))}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
+          
           <Text style={[styles.request, styles.text5Typo]}>Request</Text>
-          <Image
+          
+        </Pressable>
+        <Image
           style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
           resizeMode="cover"
-          source="send-filled.png"
+          source={require("./assets/send-filled.png")}
         />
-        </Pressable>
-        
       </View>
     </SafeAreaView>
   );
