@@ -656,4 +656,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConsultationFixed;
+export default labBooking;
