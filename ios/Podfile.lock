@@ -962,12 +962,12 @@ PODS:
   - DoubleConversion (1.1.6)
   - EASClient (0.12.0):
     - ExpoModulesCore
-  - EXConstants (16.0.2):
+  - EXConstants (16.0.1):
     - ExpoModulesCore
   - EXJSONUtils (0.13.1)
   - EXManifests (0.14.3):
     - ExpoModulesCore
-  - Expo (51.0.25):
+  - Expo (51.0.14):
     - ExpoModulesCore
   - expo-dev-client (4.0.20):
     - EXManifests
@@ -1180,15 +1180,15 @@ PODS:
     - ExpoModulesCore
     - GoogleSignIn (~> 7.1)
     - React-Core
-  - ExpoAsset (10.0.10):
+  - ExpoAsset (10.0.9):
     - ExpoModulesCore
   - ExpoFileSystem (17.0.1):
     - ExpoModulesCore
-  - ExpoFont (12.0.9):
+  - ExpoFont (12.0.7):
     - ExpoModulesCore
   - ExpoKeepAwake (13.0.2):
     - ExpoModulesCore
-  - ExpoModulesCore (1.12.20):
+  - ExpoModulesCore (1.12.15):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1211,10 +1211,10 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoSystemUI (3.0.7):
+  - ExpoSystemUI (3.0.6):
     - ExpoModulesCore
   - EXStructuredHeaders (3.8.0)
-  - EXUpdates (0.25.22):
+  - EXUpdates (0.25.17):
     - DoubleConversion
     - EASClient
     - EXManifests
@@ -2995,23 +2995,23 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   EASClient: 1509a9a6b48b932ec61667644634daf2562983b8
-  EXConstants: 409690fbfd5afea964e5e9d6c4eb2c2b59222c59
+  EXConstants: 9a008dbf262550884e6280dea95b81b51f65ea6f
   EXJSONUtils: 30c17fd9cc364d722c0946a550dfbf1be92ef6a4
   EXManifests: c1fab4c3237675e7b0299ea8df0bcb14baca4f42
-  Expo: 88047e6d12a8113a18887b6ebd775fccfcdbf3c9
+  Expo: 9c87c876b45a6934894ba5e9353ee94fdba48125
   expo-dev-client: d24806e84d072563b0a26537c22ec902443e77d6
   expo-dev-launcher: d5d9578924f01ed6647e4d406b35b985cc84c788
   expo-dev-menu: 1a5c625ec904ae230ee552aeddb5c09949db4882
   expo-dev-menu-interface: be32c09f1e03833050f0ee290dcc86b3ad0e73e4
   ExpoAdapterGoogleSignIn: 20e6be8bff6e951607ace66e6d3d11b30f2e9e3a
-  ExpoAsset: 323700f291684f110fb55f0d4022a3362ea9f875
+  ExpoAsset: 39e60dc31b16e204a9949caf3edb6dcda322e667
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
-  ExpoFont: e7f2275c10ca8573c991e007329ad6bf98086485
+  ExpoFont: 43b69559cef3d773db57c7ae7edd3cb0aa0dc610
   ExpoKeepAwake: 3b8815d9dd1d419ee474df004021c69fdd316d08
-  ExpoModulesCore: 17a5163fddddcc6472ccf9d57a64f5a075a4c6db
-  ExpoSystemUI: d4f065a016cae6721b324eb659cdee4d4cf0cb26
+  ExpoModulesCore: 2731dc119f8c1400636a994df4efbc19522defbd
+  ExpoSystemUI: 65007dd0537cb38649ee55b4670a6ed222769b3a
   EXStructuredHeaders: cb8d1f698e144f4c5547b4c4963e1552f5d2b457
-  EXUpdates: e75edd13af11dab201e966a08eeef017c933909e
+  EXUpdates: 98b4009f8ce6455ce2791d4db0daedc4d3d8fcd0
   EXUpdatesInterface: 996527fd7d1a5d271eb523258d603f8f92038f24
   FBLazyVector: 4bc164e5b5e6cfc288d2b5ff28643ea15fa1a589
   Firebase: cec914dab6fd7b1bd8ab56ea07ce4e03dd251c2d
