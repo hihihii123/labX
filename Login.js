@@ -11,6 +11,7 @@ import {
   GoogleAuthProvider,
   sendEmailVerification,
   updateCurrentUser,
+  getReactNativePersistence
 } from "firebase/auth";
 import { View, Text, Button, Platform, SafeAreaView } from "react-native";
 
@@ -23,6 +24,7 @@ import {
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 import { styles } from "./Home";
+
 
 const platform = Platform.OS;
 GoogleSignin.configure({
