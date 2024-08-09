@@ -232,10 +232,8 @@ export const labBooking = () => {
           <Text style={[styles.dateAndTime, styles.consultantTypo]}>
             Date and Time
           </Text>
-          <Text style={[styles.consultant, styles.consultantTypo]}>
-            Lab
-          </Text>
-          <Text style={{}}>
+          <Text style={[styles.consultant, styles.consultantTypo]}>Lab</Text>
+          <Text style={{ top: scale(90, "height"), left: scale(19) }}>
             Teacher
           </Text>
           <Pressable
