@@ -68,12 +68,12 @@ function HomeScreen({ navigation }) {
             }}
           >
             <Text style={[styles.headerSFPRO, { flex: 1 }]}>
-              Hi{" "}
+              Hi
               <Text
                 style={[
                   styles.headerEthno,
                   {
-                    paddingHorizontal: 160,
+                    paddingHorizontal: 165,
                     textAlign: "right",
                     width: Dimensions.get("window").width,
                     flex: 2,
@@ -81,7 +81,7 @@ function HomeScreen({ navigation }) {
                   },
                 ]}
               >
-                {user !== null ? nameList[0] + "," : "A User, "}
+                {user !== null ? nameList[1] + "," : "A User, "}
               </Text>
             </Text>
           </View>
