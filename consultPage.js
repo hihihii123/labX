@@ -65,17 +65,6 @@ export const ConsultationFixed = () => {
   const [comment, setComment] = React.useState();
   return (
     <SafeAreaView style={styles.consultationFixed}>
-      <script
-        type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-      ></script>
-      <script type="text/javascript">
-        (function()
-        {emailjs.init({
-          publicKey: "oXtbVXokN13AvNZfl",
-        })}
-        )();
-      </script>
       <View style={{ top: scale(-50, "height") }}>
         <View style={styles.consultationFixedChild} />
 
@@ -115,6 +104,7 @@ export const ConsultationFixed = () => {
             rows={5}
             className="full_height_Width"
             onChange={recalculate}
+            maxLength= {255}
             style={{
               backgroundColor: "#222426",
               color: "#FFF",
