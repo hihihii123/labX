@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -10,12 +11,13 @@ import {
   TextInput,
   Alert,
   Platform,
+  Button
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
 import { send, EmailJSResponseStatus } from '@emailjs/react-native';
 import { UserContext } from "./usercontextslave";
-
+import DateAndTime from "@react-native-community/datetimepicker"
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const SCALE_WIDTH = SCREEN_WIDTH / 390; // iPhone 14 width
@@ -27,6 +29,16 @@ const scale = (size, factor = "width") => {
 
 
 export const ConsultationFixed = () => {
+  const [date, setDate] = useState(new Date(1598051730000));
+
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+
+    setDate(currentDate);
+  };
+
+
   const {user, setUser} = React.useContext(UserContext);
   const onSubmit = async () => {
     try {
@@ -39,13 +51,14 @@ export const ConsultationFixed = () => {
         tch_name: "teamx.sst@gmail.com",
         date : "",
         time: "",
-        Comments : "hi@"
+        Comments : {comment},
         },
         {
           publicKey: 'oXtbVXokN13AvNZfl',
         },
       );
       console.log(Platform.OS === 'web' ? user.email : user.user.email);
+      
       console.log('SUCCESS!');
     } catch (err) {
       if (err instanceof EmailJSResponseStatus) {
@@ -121,6 +134,14 @@ export const ConsultationFixed = () => {
         <View style={[styles.appearance9, styles.apperance9Layout]}>
           <View style={[styles.apperance9, styles.apperance9Layout]} />
           <Text style={styles.insert1Month}>insert 1 month calendar here</Text>
+     
+          <DateAndTime
+            testID="DateAndTimePicker"
+            value={date}
+            mode="mode"
+            is24Hour={true}
+            onChange={onChange}
+            />
         </View>
         <View style={[styles.appearance10, styles.apperance10Layout]}>
           <TextInput
@@ -145,14 +166,16 @@ export const ConsultationFixed = () => {
           <View style={styles.appearance}>
             <View style={[styles.apperance, styles.apperancePosition]} />
           </View>
-          <Text style={[styles.text6, styles.textTypo2]}>15: 00</Text>
-          <Text style={[styles.text7, styles.textTypo2]}>13: 00</Text>
-          <Text style={[styles.text8, styles.textTypo1]}>13: 30</Text>
-          <Text style={[styles.text9, styles.textTypo1]}>15: 30</Text>
-          <Text style={[styles.text10, styles.textTypo]}>14: 00</Text>
-          <Text style={[styles.text11, styles.textTypo]}>16: 00</Text>
-          <Text style={[styles.text12, styles.textTypo2]}>14: 30</Text>
-          <Text style={[styles.text13, styles.textTypo2]}>16: 30</Text>
+          <Text>selected: {date.toLocaleString()}</Text>
+      
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={"date"}
+          is24Hour={true}
+          onChange={onChange}
+        />
+
         </View>
 
         {/* <Text style={[styles.text15, styles.textTypo3]}>􀆈</Text> */}

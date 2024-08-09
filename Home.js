@@ -157,15 +157,15 @@ export default function Home({ navigation }) {
                 tabBarLabel: platform == "web" ? "Consultation" : "",
                 tabBarIcon: () => <Text style={styles.textSFPROLG}>􀉬</Text>,
               }}
-              listeners={({ navigation, route }) => ({
+              /*listeners={({ navigation, route }) => ({
                 tabPress: (e) => {
                   if (!loggedin) {
                     e.preventDefault();
                     navigation.navigate("Settings");
-                    alert("Please sign in to access the consultation booking");
+                    alert("Please sign in to access the consultation");
                   }
                 },
-              })}
+              })}*/
             />
             <Tab.Screen
               name="Forum"
