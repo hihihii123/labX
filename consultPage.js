@@ -8,10 +8,13 @@ import {
   SafeAreaView,
   Pressable,
   TextInput,
+  Alert,
+  Platform,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
 import { send, EmailJSResponseStatus } from '@emailjs/react-native';
+import { UserContext } from "./usercontextslave";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -21,38 +24,40 @@ const SCALE_HEIGHT = SCREEN_HEIGHT / 944; // iPhone 14 height
 const scale = (size, factor = "width") => {
   return factor === "height" ? size * SCALE_HEIGHT : size * SCALE_WIDTH;
 };
-const onSubmit = async () => {
-  try {
-    await send(
-      'service_team5X',
-      'template_y6ko58r',
-      {
-       'stu_name': 'someone_hi@s2023.ssts.edu.sg',
-      'tch_name': selectedperson,
-      'date' : "",
-      'time': "",
-      'Comments' : ""
-      },
-      {
-        publicKey: 'oXtbVXokN13AvNZfl',
-      },
-    );
-    console.log('SUCCESS!');
-  } catch (err) {
-    if (err instanceof EmailJSResponseStatus) {
-      console.log('EmailJS Request Failed...', err);
-    }
 
-    console.log('ERROR', err);
-  }
-};
+
 export const ConsultationFixed = () => {
-  const [textAreaCount = 0, textAreaTotal = 250] = React.useState(0);
-
-  const recalculate = (e) => {
-    console.log("event value:", e);
-    textAreaCount = e.target.value.length;
+  const {user, setUser} = React.useContext(UserContext);
+  const onSubmit = async () => {
+    try {
+      Alert.alert('Please Wait', '' );
+      await send(
+        'service_team5X',
+        'template_y6ko58r',
+        {
+         stu_name: Platform.OS === 'web' ? user.email : user.user.email,
+        tch_name: "teamx.sst@gmail.com",
+        date : "",
+        time: "",
+        Comments : "hi@"
+        },
+        {
+          publicKey: 'oXtbVXokN13AvNZfl',
+        },
+      );
+      console.log(Platform.OS === 'web' ? user.email : user.user.email);
+      console.log('SUCCESS!');
+    } catch (err) {
+      if (err instanceof EmailJSResponseStatus) {
+        console.log('EmailJS Request Failed...', err);
+      }
+  
+      console.log('ERROR', err);
+    }
   };
+  const [textAreaCount, setTextAreaCount] = React.useState(0);
+
+  
 
   const [fontsLoaded] = useFonts({
     "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
@@ -71,7 +76,7 @@ export const ConsultationFixed = () => {
         <View style={[styles.appearance7, styles.appearanceLayout]}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
           <Text style={[styles.addFileOptional, styles.requestFlexBox]}>
-            Add file (Optional)
+            Add file (Optional) 
           </Text>
           <Image
             style={[styles.simpleIconsgoogledrive, styles.sendFilledIconLayout]}
@@ -92,6 +97,7 @@ export const ConsultationFixed = () => {
             <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
             <Picker.Item label="Allan Low" value="low_zu_you_allan@sst.edu.sg" />
             <Picker.Item label="Ong Jie Ying" value="ong_jie_ying@sst.edu.sg" />
+
             <Picker.Item label="Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
             <Picker.Item label="Lim-Leong Woon Foong" value="leong_woon_foong@sst.edu.sg" />
             <Picker.Item label="Tan Soo Woon John" value="john_tan@sst.edu.sg" />
@@ -121,7 +127,7 @@ export const ConsultationFixed = () => {
             type="text"
             rows={5}
             className="full_height_Width"
-            onChange={recalculate}
+            onChange={() => setTextAreaCount(textAreaCount + 1)}
             maxLength= {255}
             style={{
               backgroundColor: "#222426",
@@ -159,14 +165,16 @@ export const ConsultationFixed = () => {
         <Text style={[styles.consultant, styles.consultantTypo]}>
           Consultant
         </Text>
-        <View style={[styles.appearance12, styles.appearanceLayout]}>
+        <Pressable style={[styles.appearance12, styles.appearanceLayout]} onPress={() => onSubmit() .then(() => Alert.alert('Message Sent!', '', [{ text: 'Acknowledge'}]))}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
+          
           <Text style={[styles.request, styles.text5Typo]}>Request</Text>
-        </View>
+          
+        </Pressable>
         <Image
           style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
           resizeMode="cover"
-          source="send-filled.png"
+          source={require("./assets/send-filled.png")}
         />
       </View>
     </SafeAreaView>
