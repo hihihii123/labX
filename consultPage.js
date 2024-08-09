@@ -28,7 +28,7 @@ const onSubmit = async () => {
       'template_y6ko58r',
       {
        'stu_name': 'someone_hi@s2023.ssts.edu.sg',
-      'tch_name': 'allan_lo@sst.edu.sg',
+      'tch_name': selectedperson,
       'date' : "",
       'time': "",
       'Comments' : ""
@@ -85,6 +85,7 @@ export const ConsultationFixed = () => {
             style={styles.mrNgGh}
             selectedValue={selectedperson}
             onValueChange={(itemValue, itemIndex) =>
+
               setSelectedperson(itemValue)
             }
           >
@@ -99,7 +100,7 @@ export const ConsultationFixed = () => {
           <Text style={styles.insert1Month}>insert 1 month calendar here</Text>
         </View>
         <View style={[styles.appearance10, styles.apperance10Layout]}>
-          <textarea
+          <TextInput
             type="text"
             rows={5}
             className="full_height_Width"
@@ -114,7 +115,7 @@ export const ConsultationFixed = () => {
             }}
           />
         </View>
-        <Text style={[styles.text5, styles.text5Typo]}>
+        <Text style={{}}>
           {textAreaCount}/250
         </Text>
         <View style={[styles.appearanceParent, styles.appearancePosition]}>
