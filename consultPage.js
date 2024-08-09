@@ -86,9 +86,10 @@ export const ConsultationFixed = () => {
               setSelectedperson(itemValue)
             }
           >
-            <Picker.Item label="Ng GH" value="ng_guohui@sst.edu.sg" />
+            <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
             <Picker.Item label="Allan Low" value="low_zu_you_allan@sst.edu.sg" />
-            <Picker.Item label="Ong" value="ong_jie_ying@sst.edu.sg" />
+            <Picker.Item label="Ong Jie Ying" value="ong_jie_ying@sst.edu.sg" />
+
             <Picker.Item label="Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
             <Picker.Item label="Lim-Leong Woon Foong" value="leong_woon_foong@sst.edu.sg" />
             <Picker.Item label="Tan Soo Woon John" value="john_tan@sst.edu.sg" />
@@ -107,7 +108,6 @@ export const ConsultationFixed = () => {
             <Picker.Item label="Wong Koi Lin" value="wong_koi_lin@sst.edu.sg" />
             <Picker.Item label="Tan Tong Lun Jason" value="tan_tong_lun_jason@sst.edu.sg" />
             <Picker.Item label="Wan Han Xuan Thomas" value="wan_han_xuan_thomas@sst.edu.sg" />
-
           </Picker>
         </View>
         <View style={[styles.appearance9, styles.apperance9Layout]}>
