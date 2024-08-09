@@ -74,7 +74,7 @@ export const labBooking = () => {
           <View style={styles.consultationFixedChild} />
 
           <View style={[styles.appearance7, styles.appearanceLayout]}>
-            <View style={[styles.apperance7, styles.appearanceLayout]} />
+            {/* <View style={[styles.apperance7, styles.appearanceLayout]} />
             <Text style={[styles.addFileOptional, styles.requestFlexBox]}>
               Add file (Optional)
             </Text>
@@ -85,7 +85,7 @@ export const labBooking = () => {
               ]}
               resizeMode="contain"
               source={require("./assets/simple-icons_googledrive.png")}
-            />
+            /> */}
           </View>
           <View style={[styles.appearance8, styles.appearanceLayout]}>
             <View style={[styles.apperance7, styles.appearanceLayout]} />
