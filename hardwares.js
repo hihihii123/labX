@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 export default function hardwares({}) {
     return (
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center', }}>
-            <Text>Placeholder for hardwares page</Text>
+            <Text>Don't Worry! We're working hard to implement this soon!</Text>
         </View>
     );
   }
