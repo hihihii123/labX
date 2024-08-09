@@ -89,6 +89,7 @@ export const ConsultationFixed = () => {
             <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
             <Picker.Item label="Allan Low" value="low_zu_you_allan@sst.edu.sg" />
             <Picker.Item label="Ong Jie Ying" value="ong_jie_ying@sst.edu.sg" />
+
             <Picker.Item label="Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
             <Picker.Item label="Lim-Leong Woon Foong" value="leong_woon_foong@sst.edu.sg" />
             <Picker.Item label="Tan Soo Woon John" value="john_tan@sst.edu.sg" />
