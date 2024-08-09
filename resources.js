@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Citation from "./citation.js";
+import PastYearProj from "./pastYr.js";
 
 const { width, height } = Dimensions.get('window');
 const baseWidth = 543;
@@ -50,8 +51,10 @@ const ResourcesScreen = ({ navigation }) => {
       </View>
       <View style={[styles.appearanceParent, styles.groupParentLayout]}>
         <View style={[styles.appearance1, styles.groupParentLayout]}>
+		<Pressable onPress={() => navigation.navigate("PastYearProj")}>
           <View style={[styles.apperance, styles.groupParentLayout]} />
           <Text style={[styles.pastYearProjects, styles.pastYearProjectsLayout]}>Past Year Projects</Text>
+		</Pressable>
         </View>
         <Text style={[styles.text5, styles.textTypo]}>􀆊</Text>
       </View>
