@@ -47,12 +47,9 @@ const onSubmit = async () => {
   }
 };
 export const ConsultationFixed = () => {
-  const [textAreaCount = 0, textAreaTotal = 250] = React.useState(0);
+  const [textAreaCount, setTextAreaCount] = React.useState(0);
 
-  const recalculate = (e) => {
-    console.log("event value:", e);
-    textAreaCount = e.target.value.length;
-  };
+  
 
   const [fontsLoaded] = useFonts({
     "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
@@ -122,7 +119,7 @@ export const ConsultationFixed = () => {
             type="text"
             rows={5}
             className="full_height_Width"
-            onChange={recalculate}
+            onChange={() => setTextAreaCount(textAreaCount + 1)}
             maxLength= {255}
             style={{
               backgroundColor: "#222426",
