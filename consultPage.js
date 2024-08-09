@@ -175,7 +175,7 @@ export const ConsultationFixed = () => {
         </Pressable>
         <Image
           style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
-          resizeMode="cover"
+          resizeMode="contain"
           source={require("./assets/send-filled.png")}
         />
       </View>
