@@ -8,10 +8,13 @@ import {
   SafeAreaView,
   Pressable,
   TextInput,
+  Alert,
+  Platform,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
 import { send, EmailJSResponseStatus } from '@emailjs/react-native';
+import { UserContext } from "./usercontextslave";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -21,32 +24,37 @@ const SCALE_HEIGHT = SCREEN_HEIGHT / 944; // iPhone 14 height
 const scale = (size, factor = "width") => {
   return factor === "height" ? size * SCALE_HEIGHT : size * SCALE_WIDTH;
 };
-const onSubmit = async () => {
-  try {
-    await send(
-      'service_team5X',
-      'template_y6ko58r',
-      {
-       'stu_name': 'labXtesting@s2023.ssts.edu.sg',
-      'tch_name': "",
-      'date' : "",
-      'time': "",
-      'Comments' : ""
-      },
-      {
-        publicKey: 'oXtbVXokN13AvNZfl',
-      },
-    );
-    console.log('SUCCESS!');
-  } catch (err) {
-    if (err instanceof EmailJSResponseStatus) {
-      console.log('EmailJS Request Failed...', err);
-    }
 
-    console.log('ERROR', err);
-  }
-};
+
 export const ConsultationFixed = () => {
+  const {user, setUser} = React.useContext(UserContext);
+  const onSubmit = async () => {
+    try {
+      Alert.alert('Please Wait', '' );
+      await send(
+        'service_team5X',
+        'template_y6ko58r',
+        {
+         stu_name: Platform.OS === 'web' ? user.email : user.user.email,
+        tch_name: "teamx.sst@gmail.com",
+        date : "",
+        time: "",
+        Comments : "hi@"
+        },
+        {
+          publicKey: 'oXtbVXokN13AvNZfl',
+        },
+      );
+      console.log(Platform.OS === 'web' ? user.email : user.user.email);
+      console.log('SUCCESS!');
+    } catch (err) {
+      if (err instanceof EmailJSResponseStatus) {
+        console.log('EmailJS Request Failed...', err);
+      }
+  
+      console.log('ERROR', err);
+    }
+  };
   const [textAreaCount, setTextAreaCount] = React.useState(0);
 
   
@@ -157,14 +165,16 @@ export const ConsultationFixed = () => {
         <Text style={[styles.consultant, styles.consultantTypo]}>
           Consultant
         </Text>
-        <View style={[styles.appearance12, styles.appearanceLayout]}>
+        <Pressable style={[styles.appearance12, styles.appearanceLayout]} onPress={() => onSubmit() .then(() => Alert.alert('Message Sent!', '', [{ text: 'Acknowledge'}]))}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
+          
           <Text style={[styles.request, styles.text5Typo]}>Request</Text>
-        </View>
+          
+        </Pressable>
         <Image
           style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
           resizeMode="cover"
-          source="send-filled.png"
+          source={require("./assets/send-filled.png")}
         />
       </View>
     </SafeAreaView>
