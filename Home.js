@@ -162,7 +162,7 @@ export default function Home({ navigation }) {
                   if (!loggedin) {
                     e.preventDefault();
                     navigation.navigate("Settings");
-                    alert("Please sign in to access the forum");
+                    alert("Please sign in to access the consultation booking");
                   }
                 },
               })}
