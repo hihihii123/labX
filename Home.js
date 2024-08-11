@@ -33,17 +33,6 @@ export const windowHeight = Dimensions.get("window").height;
 // Define the dimensions of the screen size your styles are currently optimized for
 export const baseWidth = 393;
 export const baseHeight = 852;
-
-function splitName() {
-  if (user != null) {
-    if (platform == "web") {
-      const nameList = user.displayName.split(" ");
-    } else {
-      const nameList = user.user.givenname.split(" ");
-    }
-  }
-}
-
 // Calculate the scale factors
 export const widthScale = windowWidth / baseWidth;
 export const heightScale = windowHeight / baseHeight;
@@ -85,7 +74,7 @@ function HomeScreen({ navigation }) {
                 ]}
                 
               >
-                {user !== null ? splitName() +  nameList.split(0, 7) + "," : "A User, "}
+                {user !== null ? Platform.OS === 'web' ? user.displayName : user.user.givenname + "," : "A User, "}
               </Text>
             </Text>
           </View>
@@ -94,6 +83,7 @@ function HomeScreen({ navigation }) {
           >
             welcome back.
           </Text>
+          
         </View>
       ) : (
         //         <View style={styles.MainPage}>
