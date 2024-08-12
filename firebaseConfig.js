@@ -18,12 +18,26 @@ export const firebaseConfig = {
   appId: "1:482050813272:web:d74abc620a7113a3f7092d",
   databaseURL: ""
 };
-firebase.initializeApp(firebaseConfig);
+let FIREBASE_APP_MOBILE;
+let FIREBASE_APP;
+let FIREBASE_AUTH;
+let FIREBASE_DB;
+let FIREBASE_STORAGE;
+let FIREBASE_STORAGEREF;
+
+if (Platform.OS === 'web') {
+  FIREBASE_APP = initializeApp(firebaseConfig);
+  FIREBASE_AUTH = getAuth(FIREBASE_APP);
+  FIREBASE_DB = getFirestore(FIREBASE_APP);
+  FIREBASE_STORAGE = getStorage();
+  FIREBASE_STORAGEREF = ref(FIREBASE_STORAGE);
+} else {
+  firebase.initializeApp(firebaseConfig);
+  FIREBASE_APP_MOBILE = firebase.app();
+}
+export {FIREBASE_APP_MOBILE, FIREBASE_APP, FIREBASE_AUTH, FIREBASE_DB, FIREBASE_STORAGE, FIREBASE_STORAGEREF};
+
+
+
 
 // Initialize Firebase
-export const FIREBASE_APP_MOBILE = firebase.app();
-export const FIREBASE_APP = initializeApp(firebaseConfig);
-export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
-export const FIREBASE_DB = getFirestore(FIREBASE_APP);
-export const FIREBASE_STORAGE = getStorage();
-export const FIREBASE_STORAGEREF = ref(FIREBASE_STORAGE);
