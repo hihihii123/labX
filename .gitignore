@@ -36,5 +36,7 @@ yarn-error.*
 .vercel
 
 # sensitive
-ios/GoogleService-Info.plist/
+
 android/app/google-services.json/
+ios/GoogleService-Info.plist
+android/app/google-services.json
