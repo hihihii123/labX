@@ -3596,6 +3596,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/datetimepicker@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@react-native-community/datetimepicker@npm:8.2.0"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    expo: ">=50.0.0"
+    react: "*"
+    react-native: "*"
+    react-native-windows: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+    react-native-windows:
+      optional: true
+  checksum: 10c0/bfb99fd5148f15be6a00653434979591a880394fc5b5c50c16fea7cac13d84d663603f3cb62dbfb6933c472d4805b69456bab445ea44122c95cbf437bc4b8bb3
+  languageName: node
+  linkType: hard
+
 "@react-native-firebase/app@npm:^20.3.0":
   version: 20.3.0
   resolution: "@react-native-firebase/app@npm:20.3.0"
@@ -7890,6 +7909,7 @@ __metadata:
     "@expo/metro-runtime": "npm:~3.2.1"
     "@expo/vector-icons": "npm:^14.0.2"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
+    "@react-native-community/datetimepicker": "npm:^8.2.0"
     "@react-native-firebase/app": "npm:^20.3.0"
     "@react-native-firebase/auth": "npm:^20.3.0"
     "@react-native-firebase/firestore": "npm:^20.3.0"
@@ -7917,6 +7937,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-native: "npm:0.74.2"
+    react-native-dropdown-picker: "npm:^5.4.6"
     react-native-gesture-handler: "npm:~2.16.1"
     react-native-multiple-select: "npm:^0.5.12"
     react-native-reanimated: "npm:~3.10.1"
@@ -9644,6 +9665,16 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 10c0/2bdb6b93fbb1820b024b496042cce405c57e2f85e777c9aabd55f9b26d145408f9f74f5934676ffdc46f3dcff656d78413a6e43968e7b3f92eea35b3052e9053
+  languageName: node
+  linkType: hard
+
+"react-native-dropdown-picker@npm:^5.4.6":
+  version: 5.4.6
+  resolution: "react-native-dropdown-picker@npm:5.4.6"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/29b29d6168dc71386a0fd9dc5dedebd23cbb7baa977e4f37f6ff6fd13a800628e73e6624d0563b7471cec9a5dd76e196aed0e41d2da4bac8abefacbd1f0eb347
   languageName: node
   linkType: hard
 

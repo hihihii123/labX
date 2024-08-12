@@ -23,6 +23,7 @@
 		C8D40FF743F44FE6A46A5185 /* InriaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 742735BB9D7648909A6DBEDF /* InriaSans-Regular.ttf */; };
 		D766BE6FD49646E4827A95FF /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E0AFF0C7D4EFCBD769C34 /* noop-file.swift */; };
 		DCDF24F156F94CA88150208B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B5635D4D52D45E88879C164 /* GoogleService-Info.plist */; };
+		E0A03A3C39E341DAA9D59DE2 /* Inter-VariableFont_opsz,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4644FE25404459786349C20 /* Inter-VariableFont_opsz,wght.ttf */; };
 		FB9EC6528E8048ED8592FDB8 /* SF-Compact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376272F2224744B5A3D63EB7 /* SF-Compact.ttf */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		CA820370ED234CC4800548EF /* LabX-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "LabX-Bridging-Header.h"; path = "LabX/LabX-Bridging-Header.h"; sourceTree = "<group>"; };
 		D06E0AFF0C7D4EFCBD769C34 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "LabX/noop-file.swift"; sourceTree = "<group>"; };
 		D22D9819289740D1AA859B62 /* ethnocentric rg.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "ethnocentric rg.otf"; path = "../assets/fonts/ethnocentric rg.otf"; sourceTree = "<group>"; };
+		E4644FE25404459786349C20 /* Inter-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-VariableFont_opsz,wght.ttf"; path = "../assets/fonts/Inter-VariableFont_opsz,wght.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-LabX/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +104,7 @@
 				1DCD891330C541BE99E53906 /* InriaSans-Light.ttf */,
 				742735BB9D7648909A6DBEDF /* InriaSans-Regular.ttf */,
 				06D6F44D3F574575B88CE984 /* SF-Compact-Text-Regular.otf */,
+				E4644FE25404459786349C20 /* Inter-VariableFont_opsz,wght.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -246,6 +249,7 @@
 				C8D40FF743F44FE6A46A5185 /* InriaSans-Regular.ttf in Resources */,
 				559BDD6FA34347908709E07F /* SF-Compact-Text-Regular.otf in Resources */,
 				69942BB55D56231415B757EB /* PrivacyInfo.xcprivacy in Resources */,
+				E0A03A3C39E341DAA9D59DE2 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

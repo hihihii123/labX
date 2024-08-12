@@ -63,6 +63,7 @@
       <string>InriaSans-Light.ttf</string>
       <string>InriaSans-Regular.ttf</string>
       <string>SF-Compact-Text-Regular.otf</string>
+      <string>Inter-VariableFont_opsz,wght.ttf</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
