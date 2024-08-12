@@ -119,6 +119,7 @@ export const ConsultationFixed = () => {
         </View>
         <View style={[styles.appearance8, styles.appearanceLayout]}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
+
           <DropDownPicker
       open={open}
       value={selectedperson}
@@ -128,7 +129,7 @@ export const ConsultationFixed = () => {
       setItems={setItemss}
       style={styles.mrNgGh}
     />
-          
+
         </View>
         <View style={[styles.appearance9, styles.apperance9Layout]}>
           <View style={[styles.apperance9, styles.apperance9Layout]} />
