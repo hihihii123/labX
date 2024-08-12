@@ -8,11 +8,11 @@ import {
   Dimensions,
   SafeAreaView,
 } from "react-native";
-import './firebaseConfig'
-import auth, {firebase} from '@react-native-firebase/auth'
+
+import auth, {firebase} from '@react-native-firebase/auth';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { firebaseConfig } from "./firebaseConfig";
+
 import { Entypo } from "@expo/vector-icons";
 
 import ForumPage from "./forum";
@@ -157,7 +157,7 @@ export default function Home({ navigation }) {
                 tabBarLabel: platform == "web" ? "Consultation" : "",
                 tabBarIcon: () => <Text style={styles.textSFPROLG}>􀉬</Text>,
               }}
-              /*listeners={({ navigation, route }) => ({
+              listeners={({ navigation, route }) => ({
                 tabPress: (e) => {
                   if (!loggedin) {
                     e.preventDefault();
@@ -165,7 +165,7 @@ export default function Home({ navigation }) {
                     alert("Please sign in to access the consultation");
                   }
                 },
-              })}*/
+              })}
             />
             <Tab.Screen
               name="Forum"
