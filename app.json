@@ -27,7 +27,7 @@
         "backgroundColor": "#ffffff"
       },
       "googleServicesFile": "./google-services.json",
-      "package": "com.TeamX.LabX"
+      "package": "com.teamX.labX"
     },
     "web": {
       "favicon": "./assets/adaptive-icon.png"
@@ -48,7 +48,11 @@
           ]
         }
       ],
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
+    
+
     ],
     "extra": {
       "eas": {

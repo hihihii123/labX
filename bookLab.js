@@ -26,7 +26,7 @@ const scale = (size, factor = "width") => {
   return factor === "height" ? size * SCALE_HEIGHT : size * SCALE_WIDTH;
 };
 
-export const labBooking = () => {
+export const LabBookPage = () => {
   const { user, setUser } = React.useContext(UserContext);
   const onSubmit = async () => {
     try {
@@ -655,4 +655,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default labBooking;
+export default LabBookPage;

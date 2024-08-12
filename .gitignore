@@ -34,3 +34,7 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 .vercel
+
+# sensitive
+ios/GoogleService-Info.plist
+android/app/google-services.json
