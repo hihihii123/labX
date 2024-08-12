@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   StyleSheet,
   View,
@@ -11,13 +11,13 @@ import {
   TextInput,
   Alert,
   Platform,
-  Button
+  Button,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
-import { send, EmailJSResponseStatus } from '@emailjs/react-native';
+import { send, EmailJSResponseStatus } from "@emailjs/react-native";
 import { UserContext } from "./usercontextslave";
-import DateAndTime from "@react-native-community/datetimepicker"
+import DateAndTime from "@react-native-community/datetimepicker";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const SCALE_WIDTH = SCREEN_WIDTH / 390; // iPhone 14 width
@@ -27,50 +27,47 @@ const scale = (size, factor = "width") => {
   return factor === "height" ? size * SCALE_HEIGHT : size * SCALE_WIDTH;
 };
 
-
 export const ConsultationFixed = () => {
   const [date, setDate] = useState(new Date(1598051730000));
-
-
+  const [comment, setComment] = useState('');
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
 
     setDate(currentDate);
   };
 
-
-  const {user, setUser} = React.useContext(UserContext);
+  const { user, setUser } = React.useContext(UserContext);
   const onSubmit = async () => {
     try {
-      Alert.alert('Please Wait', '' );
+      Alert.alert("Please Wait", "", [] );
+      console.log(comment);
+
       await send(
-        'service_team5X',
-        'template_y6ko58r',
+        "service_team5X",
+        "template_y6ko58r",
         {
-         stu_name: Platform.OS === 'web' ? user.email : user.user.email,
-        tch_name: "teamx.sst@gmail.com",
-        date : "",
-        time: "",
-        Comments : {comment},
+          stu_name: Platform.OS === "web" ? user.email : user.user.email,
+          tch_name: "teamx.sst@gmail.com",
+          date: date.getDate,
+          time: date.getTime,
+          Comments: comment,
         },
         {
-          publicKey: 'oXtbVXokN13AvNZfl',
-        },
+          publicKey: "oXtbVXokN13AvNZfl",
+        }
       );
-      console.log(Platform.OS === 'web' ? user.email : user.user.email);
       
-      console.log('SUCCESS!');
+      console.log(Platform.OS === "web" ? user.email : user.user.email);
+
+      console.log("SUCCESS!");
     } catch (err) {
       if (err instanceof EmailJSResponseStatus) {
-        console.log('EmailJS Request Failed...', err);
+        console.log("EmailJS Request Failed...", err);
       }
-  
-      console.log('ERROR', err);
+      console.log("ERROR", err);
     }
   };
   const [textAreaCount, setTextAreaCount] = React.useState(0);
-
-  
 
   const [fontsLoaded] = useFonts({
     "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
@@ -80,7 +77,10 @@ export const ConsultationFixed = () => {
     "Inter-SemiBold": require("./assets/fonts/Inter-VariableFont_opsz,wght.ttf"),
   });
   const [selectedperson, setSelectedperson] = React.useState();
-  const [comment, setComment] = React.useState();
+  function seTcom(text) {
+    setComment(text);
+ 
+  }
   return (
     <SafeAreaView style={styles.consultationFixed}>
       <View style={{ top: scale(-50, "height") }}>
@@ -89,7 +89,7 @@ export const ConsultationFixed = () => {
         <View style={[styles.appearance7, styles.appearanceLayout]}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
           <Text style={[styles.addFileOptional, styles.requestFlexBox]}>
-            Add file (Optional) 
+            Add file (Optional)
           </Text>
           <Image
             style={[styles.simpleIconsgoogledrive, styles.sendFilledIconLayout]}
@@ -103,32 +103,73 @@ export const ConsultationFixed = () => {
             style={styles.mrNgGh}
             selectedValue={selectedperson}
             onValueChange={(itemValue, itemIndex) =>
-
               setSelectedperson(itemValue)
             }
           >
             <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
-            <Picker.Item label="Allan Low" value="low_zu_you_allan@sst.edu.sg" />
+            <Picker.Item
+              label="Allan Low"
+              value="low_zu_you_allan@sst.edu.sg"
+            />
             <Picker.Item label="Ong Jie Ying" value="ong_jie_ying@sst.edu.sg" />
 
             <Picker.Item label="Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
-            <Picker.Item label="Lim-Leong Woon Foong" value="leong_woon_foong@sst.edu.sg" />
-            <Picker.Item label="Tan Soo Woon John" value="john_tan@sst.edu.sg" />
-            <Picker.Item label="Lim Ming Yang" value="lim_ming_yang@sst.edu.sg" />
+            <Picker.Item
+              label="Lim-Leong Woon Foong"
+              value="leong_woon_foong@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Tan Soo Woon John"
+              value="john_tan@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Lim Ming Yang"
+              value="lim_ming_yang@sst.edu.sg"
+            />
             <Picker.Item label="Ng Yi Ting Karen" value="karen_ng@sst.edu.sg" />
-            <Picker.Item label="Lim Chuay Sia" value="lim_chuay_sia@sst.edu.sg" />
-            <Picker.Item label="Praveena Sandra Mohan" value="praveena_sandra_mohan@sst.edu.sg" />
-            <Picker.Item label="Teo Soo Ling Karen" value="karen_teo@sst.edu.sg" />
-            <Picker.Item label="Chung Wing Shun Vincent" value="chung_wing_shun_vincent@sst.edu.sg" />
-            <Picker.Item label="Chee Meng Teck" value="chee_meng_teck@sst.edu.sg" />
+            <Picker.Item
+              label="Lim Chuay Sia"
+              value="lim_chuay_sia@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Praveena Sandra Mohan"
+              value="praveena_sandra_mohan@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Teo Soo Ling Karen"
+              value="karen_teo@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Chung Wing Shun Vincent"
+              value="chung_wing_shun_vincent@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Chee Meng Teck"
+              value="chee_meng_teck@sst.edu.sg"
+            />
             <Picker.Item label="Choo Hui En" value="choo_hui_en@sst.edu.sg" />
-            <Picker.Item label="Loh Yue Yan Amelia" value="loh_yue_yan_amelia@sst.edu.sg" />
-            <Picker.Item label="Merlene Paik Xin Yi" value="merlene_paik_xin_yi@sst.edu.sg" />
+            <Picker.Item
+              label="Loh Yue Yan Amelia"
+              value="loh_yue_yan_amelia@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Merlene Paik Xin Yi"
+              value="merlene_paik_xin_yi@sst.edu.sg"
+            />
             <Picker.Item label="Ng Li-Ping" value="ng_li_ping@sst.edu.sg" />
-            <Picker.Item label="Szeto Dee Loon Dillon" value="szeto_dee_loon_dillon@sst.edu.sg" />
+            <Picker.Item
+              label="Szeto Dee Loon Dillon"
+              value="szeto_dee_loon_dillon@sst.edu.sg"
+            />
             <Picker.Item label="Wong Koi Lin" value="wong_koi_lin@sst.edu.sg" />
-            <Picker.Item label="Tan Tong Lun Jason" value="tan_tong_lun_jason@sst.edu.sg" />
-            <Picker.Item label="Wan Han Xuan Thomas" value="wan_han_xuan_thomas@sst.edu.sg" />
+            <Picker.Item
+              label="Tan Tong Lun Jason"
+              value="tan_tong_lun_jason@sst.edu.sg"
+            />
+            <Picker.Item
+              label="Wan Han Xuan Thomas"
+              value="wan_han_xuan_thomas@sst.edu.sg"
+            />
           </Picker>
         </View>
         <View style={[styles.appearance9, styles.apperance9Layout]}>
@@ -142,14 +183,18 @@ export const ConsultationFixed = () => {
             is24Hour={true}
             onChange={onChange}
             />
+
+          
         </View>
         <View style={[styles.appearance10, styles.apperance10Layout]}>
           <TextInput
             type="text"
             rows={5}
             className="full_height_Width"
-            onChange={() => setTextAreaCount(textAreaCount + 1)}
-            maxLength= {255}
+            onChangeText={(text) => 
+            seTcom(text)
+              }
+            maxLength={255}
             style={{
               backgroundColor: "#222426",
               color: "#FFF",
@@ -157,25 +202,24 @@ export const ConsultationFixed = () => {
               borderColor: "#222426",
               padding: 20,
             }}
+            placeholder="Input comments"
+            value={comment}
           />
         </View>
-        <Text style={{}}>
-          {textAreaCount}/250
-        </Text>
+        <Text style={{}}>{textAreaCount}/250</Text>
         <View style={[styles.appearanceParent, styles.appearancePosition]}>
           <View style={styles.appearance}>
             <View style={[styles.apperance, styles.apperancePosition]} />
           </View>
           <Text>selected: {date.toLocaleString()}</Text>
-      
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={"date"}
-          is24Hour={true}
-          onChange={onChange}
-        />
 
+          <DateAndTime
+            testID="dateTimePicker"
+            value={date}
+            mode={"datetime"}
+            is24Hour={true}
+            onChange={onChange}
+          />
         </View>
 
         {/* <Text style={[styles.text15, styles.textTypo3]}>􀆈</Text> */}
@@ -188,11 +232,17 @@ export const ConsultationFixed = () => {
         <Text style={[styles.consultant, styles.consultantTypo]}>
           Consultant
         </Text>
-        <Pressable style={[styles.appearance12, styles.appearanceLayout]} onPress={() => onSubmit() .then(() => Alert.alert('Message Sent!', '', [{ text: 'Acknowledge'}]))}>
+        <Pressable
+          style={[styles.appearance12, styles.appearanceLayout]}
+          onPress={() =>
+            onSubmit().then(() =>
+              Alert.alert("Message Sent!", "", [{ text: "Acknowledge" }])
+            )
+          }
+        >
           <View style={[styles.apperance7, styles.appearanceLayout]} />
-          
+
           <Text style={[styles.request, styles.text5Typo]}>Request</Text>
-          
         </Pressable>
         <Image
           style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
