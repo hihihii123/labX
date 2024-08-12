@@ -41,6 +41,26 @@ export const ConsultationFixed = () => {
   };
   const [itemss, setItemss] = useState([
     {label: "Ng Guohui", value: "ng_guohui@sst.edu.sg"},
+    {label: "Allan Low", value:"low_zu_you_allan@sst.edu.sg" },
+    {label:"Ong", value:"ong_jie_ying@sst.edu.sg" },
+    {label:"Tan Hoe Teck", value:"tan_hoe_teck@sst.edu.sg"},
+    {label:"Lim-Leong Woon Foong", value:"leong_woon_foong@sst.edu.sg" },
+    {label:"Tan Soo Woon John", value:"john_tan@sst.edu.sg" },
+    {label:"Lim Ming Yang", value:"lim_ming_yang@sst.edu.sg" },
+    {label:"Ng Yi Ting Karen", value:"karen_ng@sst.edu.sg" },
+    {label:"Lim Chuay Sia", value:"lim_chuay_sia@sst.edu.sg" },
+    {label:"Praveena Sandra Mohan", value:"praveena_sandra_mohan@sst.edu.sg" },
+    {label:"Teo Soo Ling Karen", value:"karen_teo@sst.edu.sg" },
+    {label:"Chung Wing Shun Vincent", value:"chung_wing_shun_vincent@sst.edu.sg" },
+    {label:"Chee Meng Teck", value:"chee_meng_teck@sst.edu.sg" },
+    {label:"Choo Hui En", value:"choo_hui_en@sst.edu.sg" },
+    {label:"Loh Yue Yan Amelia", value:"loh_yue_yan_amelia@sst.edu.sg" },
+    {label:"Merlene Paik Xin Yi", value:"merlene_paik_xin_yi@sst.edu.sg" },
+    {label:"Ng Li-Ping", value:"ng_li_ping@sst.edu.sg" },
+    {label:"Szeto Dee Loon Dillon", value:"szeto_dee_loon_dillon@sst.edu.sg" },
+    {label:"Wong Koi Lin", value:"wong_koi_lin@sst.edu.sg" },
+    {label:"Tan Tong Lun Jason", value:"tan_tong_lun_jason@sst.edu.sg" },
+    {label:"Wan Han Xuan Thomas", value:"wan_han_xuan_thomas@sst.edu.sg" },
   ])
   const { user, setUser } = React.useContext(UserContext);
   const onSubmit = async () => {
