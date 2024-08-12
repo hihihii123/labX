@@ -56,7 +56,7 @@ function HomeScreen({ navigation }) {
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.headerSFPRO}>Hi,</Text>
             <Text style={styles.headerEthno}>
-              {user !== null ? Platform.OS === 'web' ? user.displayName : user.user.givenname + "," : "A User, "}
+              {user !== null ? Platform.OS === 'web' ? user.displayName : user.user.givenName + "," : "A User, "}
             </Text>
           </View>
           <Text style={styles.textSFCompact}>welcome back.</Text>
