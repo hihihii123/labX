@@ -18,6 +18,7 @@ import { Picker } from "@react-native-picker/picker";
 import { send, EmailJSResponseStatus } from "@emailjs/react-native";
 import { UserContext } from "./usercontextslave";
 import DateAndTime from "@react-native-community/datetimepicker";
+import DropDownPicker from 'react-native-dropdown-picker'
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const SCALE_WIDTH = SCREEN_WIDTH / 390; // iPhone 14 width
@@ -28,14 +29,17 @@ const scale = (size, factor = "width") => {
 };
 
 export const ConsultationFixed = () => {
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [comment, setComment] = useState('');
+  const [open, setOpen] = useState(false);
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
 
     setDate(currentDate);
   };
-
+  const [itemss, setItemss] = useState([
+    {label: "Ng Guohui", value: "ng_guohui@sst.edu.sg"},
+  ])
   const { user, setUser } = React.useContext(UserContext);
   const onSubmit = async () => {
     try {
@@ -76,7 +80,7 @@ export const ConsultationFixed = () => {
     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
     "Inter-SemiBold": require("./assets/fonts/Inter-VariableFont_opsz,wght.ttf"),
   });
-  const [selectedperson, setSelectedperson] = React.useState();
+  const [selectedperson, setSelectedperson] = React.useState('ng_guohui@sst.edu.sg');
   function seTcom(text) {
     setComment(text);
  
@@ -99,90 +103,22 @@ export const ConsultationFixed = () => {
         </View>
         <View style={[styles.appearance8, styles.appearanceLayout]}>
           <View style={[styles.apperance7, styles.appearanceLayout]} />
-          <Picker
-            style={styles.mrNgGh}
-            selectedValue={selectedperson}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedperson(itemValue)
-            }
-          >
-            <Picker.Item label="Ng Guohui" value="ng_guohui@sst.edu.sg" />
-            <Picker.Item
-              label="Allan Low"
-              value="low_zu_you_allan@sst.edu.sg"
-            />
-            <Picker.Item label="Ong Jie Ying" value="ong_jie_ying@sst.edu.sg" />
-
-            <Picker.Item label="Tan Hoe Teck" value="tan_hoe_teck@sst.edu.sg" />
-            <Picker.Item
-              label="Lim-Leong Woon Foong"
-              value="leong_woon_foong@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Tan Soo Woon John"
-              value="john_tan@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Lim Ming Yang"
-              value="lim_ming_yang@sst.edu.sg"
-            />
-            <Picker.Item label="Ng Yi Ting Karen" value="karen_ng@sst.edu.sg" />
-            <Picker.Item
-              label="Lim Chuay Sia"
-              value="lim_chuay_sia@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Praveena Sandra Mohan"
-              value="praveena_sandra_mohan@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Teo Soo Ling Karen"
-              value="karen_teo@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Chung Wing Shun Vincent"
-              value="chung_wing_shun_vincent@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Chee Meng Teck"
-              value="chee_meng_teck@sst.edu.sg"
-            />
-            <Picker.Item label="Choo Hui En" value="choo_hui_en@sst.edu.sg" />
-            <Picker.Item
-              label="Loh Yue Yan Amelia"
-              value="loh_yue_yan_amelia@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Merlene Paik Xin Yi"
-              value="merlene_paik_xin_yi@sst.edu.sg"
-            />
-            <Picker.Item label="Ng Li-Ping" value="ng_li_ping@sst.edu.sg" />
-            <Picker.Item
-              label="Szeto Dee Loon Dillon"
-              value="szeto_dee_loon_dillon@sst.edu.sg"
-            />
-            <Picker.Item label="Wong Koi Lin" value="wong_koi_lin@sst.edu.sg" />
-            <Picker.Item
-              label="Tan Tong Lun Jason"
-              value="tan_tong_lun_jason@sst.edu.sg"
-            />
-            <Picker.Item
-              label="Wan Han Xuan Thomas"
-              value="wan_han_xuan_thomas@sst.edu.sg"
-            />
-          </Picker>
+          <DropDownPicker
+      open={open}
+      value={selectedperson}
+      items={itemss}
+      setOpen={setOpen}
+      setValue={setSelectedperson}
+      setItems={setItemss}
+      style={styles.mrNgGh}
+    />
+          
         </View>
         <View style={[styles.appearance9, styles.apperance9Layout]}>
           <View style={[styles.apperance9, styles.apperance9Layout]} />
-          <Text style={styles.insert1Month}>insert 1 month calendar here</Text>
+      
      
-          <DateAndTime
-            testID="DateAndTimePicker"
-            value={date}
-            mode="mode"
-            is24Hour={true}
-            onChange={onChange}
-            />
+          
 
           
         </View>
@@ -211,7 +147,7 @@ export const ConsultationFixed = () => {
           <View style={styles.appearance}>
             <View style={[styles.apperance, styles.apperancePosition]} />
           </View>
-          <Text>selected: {date.toLocaleString()}</Text>
+
 
           <DateAndTime
             testID="dateTimePicker"
@@ -219,6 +155,8 @@ export const ConsultationFixed = () => {
             mode={"datetime"}
             is24Hour={true}
             onChange={onChange}
+            style={{flex: 1, top: scale(-30, "height")}}
+            themeVariant="dark"
           />
         </View>
 
