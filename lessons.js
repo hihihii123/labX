@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 export default function lessons({}) {
     return (
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center', }}>
-            <Text>Placeholder for lessons page</Text>
+            <Text>Don't Worry! We're working hard to implement this soon!</Text>
         </View>
     );
 }

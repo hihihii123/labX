@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 export default function pastYR({}) {
     return (
         <View style={{flex:1, alignItems: 'center', justifyContent: 'center', }}>
-            <Text>Placeholder for last year projects page</Text>
+            <Text>Don't Worry! We're working hard to implement this soon!</Text>
         </View>
     );
   }

@@ -17,8 +17,10 @@ import { useFonts } from "expo-font";
 import { Picker } from "@react-native-picker/picker";
 import { send, EmailJSResponseStatus } from "@emailjs/react-native";
 import { UserContext } from "./usercontextslave";
+
 import DateAndTime from "@react-native-community/datetimepicker";
 import DropDownPicker from 'react-native-dropdown-picker'
+
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const SCALE_WIDTH = SCREEN_WIDTH / 390; // iPhone 14 width
@@ -50,20 +52,34 @@ export const ConsultationFixed = () => {
         "service_team5X",
         "template_y6ko58r",
         {
+
           stu_name: Platform.OS === "web" ? user.email : user.user.email,
           tch_name: "teamx.sst@gmail.com",
           date: date.getDate,
           time: date.getTime,
           Comments: comment,
+
+         stu_name: Platform.OS === 'web' ? user.email : user.user.email,
+        tch_name: "teamx.sst@gmail.com",
+        date : "",
+        time: "",
+        Comments : {comment},
+
         },
         {
           publicKey: "oXtbVXokN13AvNZfl",
         }
       );
+
       
       console.log(Platform.OS === "web" ? user.email : user.user.email);
 
       console.log("SUCCESS!");
+
+      console.log(Platform.OS === 'web' ? user.email : user.user.email);
+  
+      console.log('SUCCESS!');
+
     } catch (err) {
       if (err instanceof EmailJSResponseStatus) {
         console.log("EmailJS Request Failed...", err);
@@ -184,7 +200,7 @@ export const ConsultationFixed = () => {
         </Pressable>
         <Image
           style={[styles.sendFilledIcon, styles.sendFilledIconLayout]}
-          resizeMode="cover"
+          resizeMode="contain"
           source={require("./assets/send-filled.png")}
         />
       </View>

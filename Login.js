@@ -94,10 +94,17 @@ export default function Login({ loggedIn, setLoggedIn }) {
 
   return (
     <SafeAreaView style={styles.MainPage}>
-      <View style={{ flex: 10 }}>
+      <View style={{flex:1}}/>
+      <View style={{ flex: 2, justifyContent: "center" }}>
         <Text style={styles.header}>{loggedIn ? "Sign out" : "Log in"}</Text>
         <Button
-          style={styles.Text}
+          style={{
+            color: "#fff",
+            flex: 1,
+            alignSelf: "center",
+            justifyContent: "center",
+            paddingVertical: 20
+          }}
           title={loggedIn ? "Sign out" : "Log in with google"}
           onPress={() => {
             if (!loggedIn) {
@@ -108,16 +115,17 @@ export default function Login({ loggedIn, setLoggedIn }) {
           }}
           disabled={loading}
         />
-      </View>
-
-      <Text style={{ fontSize: 20, color: "#fff", flex: 3 }}>
+         <Text style={{ fontSize: 20, color: "#fff", flex: 5, padding: 10, textAlign: "center" }}>
         {loggedIn
           ? platform === "web"
             ? user.email
             : user.user.email
-          : "Sign in"}
+          : "Please sign in to access features such as the Forum and Consultation"}
       </Text>
-      <View style={{ flex: 1 }} />
+      <View style={{ flex: 10}} />
+      </View>
+
+     
     </SafeAreaView>
   );
 }
