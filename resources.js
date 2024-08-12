@@ -38,6 +38,13 @@ const Resources = ({ navigation }) => {
 };
 
 const ResourcesScreen = ({ navigation }) => {
+	const [fontsLoaded] = useFonts({
+     "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
+     "ethnocentric rg": require("./assets/fonts/ethnocentric rg.otf"),
+     "SF Compact": require("./assets/fonts/SF-Compact.ttf"),
+     "InriaSans-Bold": require("./assets/fonts/InriaSans-Bold.ttf"),
+     "InriaSans-Regular": require("./assets/fonts/InriaSans-Regular.ttf"),
+   });
   return (
     <View style={styles.resources}>
       <View style={styles.resourcesWrapper}>
