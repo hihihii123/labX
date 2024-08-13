@@ -40,3 +40,4 @@ yarn-error.*
 android/app/google-services.json/
 ios/GoogleService-Info.plist
 android/app/google-services.json
+ios/LabX/GoogleService-Info.plist
