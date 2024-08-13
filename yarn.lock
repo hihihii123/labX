@@ -3419,18 +3419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-async-storage/async-storage@npm:1.23.1":
-  version: 1.23.1
-  resolution: "@react-native-async-storage/async-storage@npm:1.23.1"
-  dependencies:
-    merge-options: "npm:^3.0.4"
-  peerDependencies:
-    react-native: ^0.0.0-0 || >=0.60 <1.0
-  checksum: 10c0/6cfdcab91f0e04f80f4aa91397eb4aedcd1124bf2a997cb730c7f2c70dad75d2aa0ca0f41576ed4e34544a1f79e090169f566366c32a89a41b74bf74bea1c1db
-  languageName: node
-  linkType: hard
-
-"@react-native-async-storage/async-storage@npm:^1.22.3":
+"@react-native-async-storage/async-storage@npm:1.24.0, @react-native-async-storage/async-storage@npm:^1.22.3":
   version: 1.24.0
   resolution: "@react-native-async-storage/async-storage@npm:1.24.0"
   dependencies:
@@ -7934,7 +7923,7 @@ __metadata:
     "@expo/metro-config": "npm:^0.18.11"
     "@expo/metro-runtime": "npm:~3.2.1"
     "@expo/vector-icons": "npm:^14.0.2"
-    "@react-native-async-storage/async-storage": "npm:1.23.1"
+    "@react-native-async-storage/async-storage": "npm:1.24.0"
     "@react-native-community/datetimepicker": "npm:^8.2.0"
     "@react-native-firebase/app": "npm:^20.3.0"
     "@react-native-firebase/auth": "npm:^20.3.0"
