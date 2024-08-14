@@ -19,7 +19,7 @@
       "icon": "./assets/adaptive-icon.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.TeamX.LabX",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./ios/GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
