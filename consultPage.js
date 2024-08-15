@@ -79,11 +79,7 @@ export const ConsultationFixed = () => {
           time: date.getTime,
           Comments: comment,
 
-         stu_name: Platform.OS === 'web' ? user.email : user.user.email,
-        tch_name: "teamx.sst@gmail.com",
-        date : "",
-        time: "",
-        Comments : {comment},
+         
 
         },
         {
@@ -92,9 +88,7 @@ export const ConsultationFixed = () => {
       );
 
       
-      console.log(Platform.OS === "web" ? user.email : user.user.email);
 
-      console.log("SUCCESS!");
 
       console.log(Platform.OS === 'web' ? user.email : user.user.email);
   
@@ -153,11 +147,7 @@ export const ConsultationFixed = () => {
         </View>
         <View style={[styles.appearance9, styles.apperance9Layout]}>
           <View style={[styles.apperance9, styles.apperance9Layout]} />
-      
-     
-          
-
-          
+ 
         </View>
         <View style={[styles.appearance10, styles.apperance10Layout]}>
           <TextInput

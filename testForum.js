@@ -94,6 +94,13 @@ function ForumHome({ navigation }) {
 }
 
 function ForumPull({ route, level, navigation }) {
+  const storangeref = ref(FIREBASE_STORAGE, level === 0
+    ? "sec1"
+    : level === 1
+    ? "sec2"
+    : level === 2
+    ? "sec3"
+    : "sec4");
   const [fontsLoaded] = useFonts({
     "SF Pro Display": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
     "ethnocentric rg": require("./assets/fonts/ethnocentric rg.otf"),
@@ -107,6 +114,7 @@ function ForumPull({ route, level, navigation }) {
   const getMoviesFromApiAsync = async () => {
     if (Platform.OS === "web") {
       try {
+
         console.log(level);
         const docRef = doc(
           FIREBASE_DB,

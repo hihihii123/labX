@@ -163,6 +163,9 @@ export default function Home({ navigation }) {
                     e.preventDefault();
                     navigation.navigate("Settings");
                     alert("Please sign in to access the consultation");
+                  } else if (Platform.OS === "web") {
+                    e.preventDefault();
+                    alert("Our apologies, but consultation is not available on the web");
                   }
                 },
               })}

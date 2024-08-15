@@ -54,6 +54,10 @@ export default function Login({ loggedIn, setLoggedIn }) {
         setUser(user);
         setLoggedIn(true);
         console.log("Logged in:", user);
+        if (!user.email.includes("edu.sg")) {
+          signout();
+          throw new Error("Please sign in with your SST email address.");
+        }
       } else {
         // Mobile Sign-In (Android/iOS)
 
@@ -67,13 +71,24 @@ export default function Login({ loggedIn, setLoggedIn }) {
         setLoggedIn(true);
         console.log("Logged in:", userInfo);
         // Sign-in the user with the credential
+        if (!userInfo.user.email.includes("edu.sg")) {
+          signout();
+          throw new Error("Please sign in with your SST email address.");
+        } else{
         return await auth(FIREBASE_APP_MOBILE).signInWithCredential(credential);
-
+        };
+        
         // Update state
       }
+      
     } catch (error) {
       console.error("Sign-in error:", error);
+      if (error.code === 'FirebaseError: Firebase: Error (auth/user-disabled).') {
+        alert("Your account has been disabled. Please contact the administrator.");
+
+      } else {
       alert("Sign in failed: " + error.message);
+      }
     } finally {
       setLoading(false);
     }
