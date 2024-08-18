@@ -3604,9 +3604,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^20.3.0":
-  version: 20.3.0
-  resolution: "@react-native-firebase/app@npm:20.3.0"
+"@react-native-firebase/app@npm:^20.4.0":
+  version: 20.4.0
+  resolution: "@react-native-firebase/app@npm:20.4.0"
   dependencies:
     firebase: "npm:10.12.2"
     superstruct: "npm:^0.6.2"
@@ -3617,7 +3617,7 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 10c0/f001b19d95007a6f8e2af5e1293f0d8c84fe0159af55d22ecfddb66764bc1d4e1a903e547e1a37c499f9d795182697029195cba2a4d725d12229809ded5c5cc2
+  checksum: 10c0/e2ad84966575eab3b849cadbe8cb227eafb1b7f99651077fe9c834fe4f1d1000cb4cece9bb7f7f6666179c5f0c64a6431617ee2e70ea0e3b823973c2bc9f4cac
   languageName: node
   linkType: hard
 
@@ -7899,7 +7899,7 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.2"
     "@react-native-async-storage/async-storage": "npm:1.24.0"
     "@react-native-community/datetimepicker": "npm:^8.2.0"
-    "@react-native-firebase/app": "npm:^20.3.0"
+    "@react-native-firebase/app": "npm:^20.4.0"
     "@react-native-firebase/auth": "npm:^20.3.0"
     "@react-native-firebase/firestore": "npm:^20.3.0"
     "@react-native-firebase/storage": "npm:^20.3.0"
