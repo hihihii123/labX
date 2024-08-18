@@ -7931,7 +7931,7 @@ __metadata:
     react-native-multiple-select: "npm:^0.5.12"
     react-native-reanimated: "npm:~3.15.0"
     react-native-safe-area-context: "npm:4.10.1"
-    react-native-screens: "npm:3.31.1"
+    react-native-screens: "npm:3.34.0"
     react-native-vector-icons: "npm:^10.1.0"
     react-native-web: "npm:~0.19.6"
     typescript: "npm:^5.5.3"
@@ -9730,16 +9730,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:3.31.1":
-  version: 3.31.1
-  resolution: "react-native-screens@npm:3.31.1"
+"react-native-screens@npm:3.34.0":
+  version: 3.34.0
+  resolution: "react-native-screens@npm:3.34.0"
   dependencies:
     react-freeze: "npm:^1.0.0"
     warn-once: "npm:^0.1.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/899a02751ecbc6231ce3c869268fb510e5b53428c788135ae46f4bbd768efe78bf74f17fec5becc4c4c1e81a5f224a907dc890ba2406181ff9e21830dda95dec
+  checksum: 10c0/568af49a1d79797ebecf5b8c815d44b651b0affdd82d7a8024b9e5e71250a23e108d73562200ef571b806c6a9ebba0484510e710246165dbdc50ad18e4d77619
   languageName: node
   linkType: hard
 
