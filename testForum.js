@@ -24,7 +24,7 @@ import {
   FIREBASE_STORAGE,
   FIREBASE_STORAGEREF,
 } from "./firebaseConfig";
-import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { UserContext } from "./usercontextslave";
 import firestore from "@react-native-firebase/firestore";
@@ -174,7 +174,7 @@ function ForumPull({ route, level, navigation }) {
     setrefrest(false);
   }, [refrest]);
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: '#393e43' }}>
       {docSnapData !== null && fontsLoaded === true ? (
         <View style={{ flex: 1 }}>
           <View
@@ -183,7 +183,7 @@ function ForumPull({ route, level, navigation }) {
               letterSpacing: 0.1,
               lineHeight: 41,
               fontFamily: "SF Compact Text",
-              color: "#387cc5",
+       
               textAlign: "right",
               display: "flex",
               alignItems: "flex-end",
@@ -195,6 +195,8 @@ function ForumPull({ route, level, navigation }) {
               <Text
                 style={{
                   fontFamily: "SF Pro Display",
+                  color: "#FFFFFF",
+                  fontSize: 50,
                 }}
               >
                 􀅈
@@ -228,9 +230,13 @@ function ForumPull({ route, level, navigation }) {
                     }
                   >
                     <Text style={{ color: "#FFFFFF" }}>{item.title}</Text>
-                    <Text style={{ alignSelf: "flex-end", color: "#FFF" }}>
-                      Username: {item.username}
-                    </Text>
+                    <View style={{ paddingVertical: 10, flexDirection: 'row' }} >
+                      <Text style={{ alignSelf: "flex-start", color: "#FFF" }}> {item.timestamp !== undefined && item.timestamp !== null ? 'Date: ' + item.timestamp.toDate().getDate() + '/' + item.timestamp.toDate().getMonth() + '/' + item.timestamp.toDate().getFullYear() : 'Date not recorded!'} </Text>
+                      <Text style={{ alignSelf: "flex-end", color: "#FFF" }}>
+                        Username: {item.username}
+                      </Text>
+                      
+                    </View>
                   </Pressable>
                 </View>
                 <View style={{ paddingVertical: 10 }} />
@@ -241,6 +247,13 @@ function ForumPull({ route, level, navigation }) {
             style={{ flex: 7, flexDirection: "column" }}
             scrollEnabled={true}
           />
+          <View style={{ }} >
+            <Text style={{ fontSize: 36, color: "#FFFFFF", textAlign: "center" }}>
+              Number of posts: {(Platform.OS !== "web"
+                ? docSnapData._data.files
+                : docSnapData.files).length}{" "}
+            </Text>
+          </View>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 10 }} />
             <View
@@ -328,12 +341,16 @@ function IndivPage({ navigation, route, item }) {
   return (
     <>
       {item !== null && data !== null ? (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: '#393e43' }}>
           <ScrollView>
             <View>
-              <Text style={{ fontSize: 48 }}>{data.title}</Text>
+              <View style={{ padding: 20, flexDirection: "row" }} >
+        
+                <Text style={{ alignSelf: "flex-end", color: "#FFF" }}> Date: {item.timestamp !== undefined && item.timestamp !== null ? item.timestamp.toDate().getDate() + '/' + item.timestamp.toDate().getMonth() + '/' + item.timestamp.toDate().getFullYear() : 'Date not recorded!'}, time: {item.timestamp !== undefined && item.timestamp !== null ? item.timestamp.toDate().toTimeString() : 'Time not recorded'} </Text>
+                </View>
+              <Text style={{ fontSize: 48, color: "#FFF" }}>{data.title}</Text> 
               <Text></Text>
-              <Text>{data.content}</Text>
+              <Text style={{ color: "#FFF"}}>{data.content}</Text>
             </View>
           </ScrollView>
           <Button onPress={() => replyMessage()} title="Reply" />
@@ -381,6 +398,7 @@ function NEWFORUMPOST({ navigation, route, level }) {
               title: title,
               content: postContent,
               tags: ["TBC"],
+              
             }),
           ],
           String(Math.random().toString(36).substring(2, 12)) + ".json",
@@ -450,6 +468,7 @@ function NEWFORUMPOST({ navigation, route, level }) {
             title: title,
             username: user.email,
             replies: [],
+            timestamp: new Date(),
           }),
         });
         setModalShown(true);
@@ -511,6 +530,7 @@ function NEWFORUMPOST({ navigation, route, level }) {
               title: title,
               username: user.user.email,
               replies: [],
+              timestamp: new Date(),
             }),
           });
         Alert.alert("Success", "Post has been posted to forum", [
