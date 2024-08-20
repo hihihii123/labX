@@ -7,6 +7,7 @@ import {
   View,
   Dimensions,
   SafeAreaView,
+  ActivityIndicator
 } from "react-native";
 
 import auth, {firebase} from '@react-native-firebase/auth';
@@ -26,6 +27,7 @@ import { useFonts } from "expo-font";
 import ForumHomePage from "./testForum";
 import { func } from "prop-types";
 const platform = Platform.OS;
+
 
 const Tab = createBottomTabNavigator();
 export const windowWidth = Dimensions.get("window").width;
@@ -117,7 +119,10 @@ function HomeScreen({ navigation }) {
           <View style={{ flex: 1 }} />
         </View>
       ) : (
-        <Text style={styles.header}>Font not loaded</Text>
+        <View>
+          <ActivityIndicator size="large" color="#cd3038" style={{ transform: [{ scale: 4 }] }} />
+          <Text style={styles.header}>Loading</Text>
+        </View>
       )}
     </SafeAreaView>
   );
@@ -235,12 +240,14 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header: {
-    fontSize: 50 * widthScale,
+    fontSize: 15 * widthScale,
     color: "#FFF",
     flex: 1,
     alignSelf: "center",
     justifyContent: "center",
     paddingBottom: 20 * heightScale,
+    fontWeight: "bold",
+    paddingTop: 50 * heightScale,
   },
   headerSFPRO: {
     color: "#387CC5",
