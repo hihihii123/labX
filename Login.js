@@ -12,7 +12,7 @@ import {
   updateCurrentUser,
   getReactNativePersistence
 } from "firebase/auth";
-import { View, Text, Button, Platform, SafeAreaView } from "react-native";
+import { View, Text, Button, Platform, SafeAreaView, Image } from "react-native";
 
 import { UserContext } from "./usercontextslave";
 import auth, { firebase } from "@react-native-firebase/auth";
@@ -97,19 +97,26 @@ export default function Login({ loggedIn, setLoggedIn }) {
     if (platform === "web") {
       FIREBASE_AUTH.signOut()
         .then(() => setLoggedIn(false))
+        .then(() => setUser(null))
         .then(() => console.log("Signed out"));
+        
     } else {
       auth(FIREBASE_APP_MOBILE)
         .signOut()
         .then(() => setLoggedIn(false))
+        .then(() => setUser(null))
         .then(() => console.log("Signed out"));
     }
   }
 
   return (
     <SafeAreaView style={styles.MainPage}>
-      <View style={{flex:1}}/>
-      <View style={{ flex: 2, justifyContent: "center" }}>
+      <View style={{flex:3}}/>
+      <View style={{flex: 3, flexDirection: 'row'}}>
+        <View style={{flex: 5}}/>
+        { loggedIn ? (<Image source={Platform.OS === 'web' ? {uri: user.photoURL} : {uri: user.user.photo}} style={{height: 30, width: 30,  borderRadius: 15}}/>) : (<Text style={{color: '#FFF'}}>Not Signed in, no profile picture</Text>)}
+      </View>
+      <View style={{ flex: 8, justifyContent: "center" }}>
         <Text style={styles.header}>{loggedIn ? "Sign out" : "Log in"}</Text>
         <Button
           style={{
@@ -136,7 +143,7 @@ export default function Login({ loggedIn, setLoggedIn }) {
             : user.user.email
           : "Please sign in to access features such as the Forum and Consultation"}
       </Text>
-      <View style={{ flex: 10}} />
+      <View style={{ flex: 20}} />
       </View>
 
      
