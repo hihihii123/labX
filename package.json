@@ -22,7 +22,7 @@
     "@react-native-firebase/firestore": "^20.3.0",
     "@react-native-firebase/storage": "^20.3.0",
     "@react-native-google-signin/google-signin": "^12.2.1",
-    "@react-native-picker/picker": "2.7.5",
+    "@react-native-picker/picker": "2.8.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",

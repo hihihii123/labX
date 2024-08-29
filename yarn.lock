@@ -3671,13 +3671,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-picker/picker@npm:2.7.5":
-  version: 2.7.5
-  resolution: "@react-native-picker/picker@npm:2.7.5"
+"@react-native-picker/picker@npm:2.8.0":
+  version: 2.8.0
+  resolution: "@react-native-picker/picker@npm:2.8.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/461cee92d2aeebe64a33948b61b2d8706663c09c3d18181fc32c2650f27096cd02d0b1a69d32fb567d60be74e71a01b1b19eb0202b3b1b1e06f0a748b849ed7a
+  checksum: 10c0/479293f34d52285de90e5d400b176c958c2cfe298086d09864397c2d68a87574ce47b0c1f19ebd727b010b71627d00fb359f1fbda50e03ec9b4ec400f5f5223f
   languageName: node
   linkType: hard
 
@@ -7904,7 +7904,7 @@ __metadata:
     "@react-native-firebase/firestore": "npm:^20.3.0"
     "@react-native-firebase/storage": "npm:^20.3.0"
     "@react-native-google-signin/google-signin": "npm:^12.2.1"
-    "@react-native-picker/picker": "npm:2.7.5"
+    "@react-native-picker/picker": "npm:2.8.0"
     "@react-navigation/bottom-tabs": "npm:^6.5.20"
     "@react-navigation/drawer": "npm:^6.6.15"
     "@react-navigation/native": "npm:^6.1.17"
