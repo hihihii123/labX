@@ -3636,12 +3636,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/firestore@npm:^20.3.0":
-  version: 20.3.0
-  resolution: "@react-native-firebase/firestore@npm:20.3.0"
+"@react-native-firebase/firestore@npm:^20.5.0":
+  version: 20.5.0
+  resolution: "@react-native-firebase/firestore@npm:20.5.0"
   peerDependencies:
-    "@react-native-firebase/app": 20.3.0
-  checksum: 10c0/39dcccd47ce0d49b38b8e392450bc09de891795abe0f7e0d9e1b5744c7084028e3a509f013e9c0eaf17722dd680264a01b816d59bf8d6d9c6022d7891ba84a74
+    "@react-native-firebase/app": 20.5.0
+  checksum: 10c0/64b7da04d978966b6adf01edbbeaa5a3b8b9915e892c11fd74220ff27412fa4819489789086b1775795f51436e31001e4872fd4f92dbe8ef4bfc205f0fb8ba1d
   languageName: node
   linkType: hard
 
@@ -7901,7 +7901,7 @@ __metadata:
     "@react-native-community/datetimepicker": "npm:^8.2.0"
     "@react-native-firebase/app": "npm:^20.3.0"
     "@react-native-firebase/auth": "npm:^20.3.0"
-    "@react-native-firebase/firestore": "npm:^20.3.0"
+    "@react-native-firebase/firestore": "npm:^20.5.0"
     "@react-native-firebase/storage": "npm:^20.3.0"
     "@react-native-google-signin/google-signin": "npm:^12.2.1"
     "@react-native-picker/picker": "npm:2.7.5"
